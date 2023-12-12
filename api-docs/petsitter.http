@@ -1,0 +1,5 @@
+# 페이지 접속
+GET http://localhost:3020/
+
+###
+GET  http://localhost:3020/api/pet-sitter/1
