@@ -42,7 +42,7 @@ model USER_PET_SITTERS {
 
   RESERVES             RESERVES[]
   PET_SITTER_REVIEWS   PET_SITTER_REVIEWS[]
-  AVAILABLE_DATES      AVAILABLE_DATES[]
+  PET_SITTER_SCHEDULES      PET_SITTER_SCHEDULES[]
 
   @@map("USER_PET_SITTERS")
 }
@@ -81,8 +81,8 @@ model PET_SITTER_REVIEWS {
   USER_PET_SITTER      USER_PET_SITTERS     @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
 }
 
-model AVAILABLE_DATES {
-  availableDateId    Int      @id    @default(autoincrement())      @map("userId")
+model PET_SITTER_SCHEDULES {
+  scheduleId    Int      @id    @default(autoincrement())      @map("scheduleId")
   reserveId  Int  @map("reserveId")
   petSitterId  Int  @map("petSitterId")
   status  Status  @default(inProgress)  @map("status")
@@ -93,7 +93,7 @@ model AVAILABLE_DATES {
   USER_PET_SITTER  USER_PET_SITTERS @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
   RESERVE  RESERVES @relation(fields : [reserveId], references : [reserveId], onDelete : Cascade)
 
-  @@map("AVAILABLE_DATE")
+  @@map("PET_SITTER_SCHEDULES")
   
 }
 
@@ -109,7 +109,7 @@ model RESERVES {
   updatedAt       DateTime        @updatedAt
 
   USER_MEMBER       USER_MEMBERS       @relation(fields : [userId], references : [userId], onDelete : Cascade)
-  AVAILABLE_DATES   AVAILABLE_DATES[]
+  PET_SITTER_SCHEDULES   PET_SITTER_SCHEDULES[]
   USER_PET_SITTER   USER_PET_SITTERS   @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
 
 }

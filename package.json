@@ -1,9 +1,9 @@
 {
-	"name": "HugeMyPet",
+	"name": "HugMyPet",
 	"version": "1.0.0",
 	"main": "index.js",
 	"type": "module",
-	"repository": "https://github.com/eunji624/HugeMyPet.git",
+	"repository": "https://github.com/eunji624/HugMyPet.git",
 	"author": "eunji624 <allrkatk@naver.com>",
 	"license": "MIT",
 	"scripts": {
