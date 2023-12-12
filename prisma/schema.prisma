@@ -9,3 +9,112 @@ datasource db {
   provider = "mysql"
   url      = env("DATABASE_URL")
 }
+
+model USER_MEMBERS {
+  userId Int @id @default(autoincrement()) @map("userId")
+  userName String @map("userName")
+  age Int @map("age")
+  address String @map("address")
+  imagePath String @map("imagePath")
+  createdAt DateTime @default(now()) @map("createdAt")
+  updatedAt DateTime @updatedAt @map("updatedAt")
+
+  RESERVES RESERVES[]
+  PET_SITTER_REVIEWS PET_SITTER_REVIEWS[]
+  PETS PETS[]
+
+  @@map("USER_MEMBERS")
+}
+
+
+model USER_PET_SITTERS {
+  petSitterId Int @id @default(autoincrement()) @map("petSitterId")
+  petSitterName String @map("petSitterName")
+  age Int @map("age")
+  selfIntro String @map("selfIntro")
+  availablePet AvailablePet @map("availablePet")
+  availableAddress String @map("availableAddress")
+  certificate String @map("certificate")
+  score Int @map("score")
+  imagePath String @map("imagePath")
+  createdAt DateTime @default(now()) @map("createdAt")
+  updatedAt DateTime @updatedAt @map("updatedAt")
+
+  RESERVES             RESERVES[]
+  PET_SITTER_REVIEWS   PET_SITTER_REVIEWS[]
+  AVAILABLE_DATES      AVAILABLE_DATES[]
+
+  @@map("USER_PET_SITTERS")
+}
+
+enum AvailablePet {
+  Dog
+  Cat
+}
+
+
+model PETS {
+  petId          Int      @id    @default(autoincrement())  
+  petName        String
+  petAge         Int
+  petSpecies     String
+  imagePath      String
+  createdAt      DateTime        @default(now())
+  updatedAt      DateTime        @updatedAt
+
+  userId         Int    
+
+  USER_MEMBER    USER_MEMBERS    @relation(fields: [userId], references: [userId], onDelete: Cascade)
+}
+
+model PET_SITTER_REVIEWS {
+  reviewId       Int       @id     @default(autoincrement())
+  petSitterId    Int   
+  userId         Int
+  title          String
+  content        String
+  score          Int
+  createdAt      DateTime          @default(now())
+  updatedAt      DateTime          @updatedAt
+
+  USER_MEMBER          USER_MEMBERS         @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  USER_PET_SITTER      USER_PET_SITTERS     @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
+}
+
+model AVAILABLE_DATES {
+  availableDateId    Int      @id    @default(autoincrement())      @map("userId")
+  reserveId  Int  @map("reserveId")
+  petSitterId  Int  @map("petSitterId")
+  status  Status  @default(inProgress)  @map("status")
+  availableDate  DateTime  @map("availableDate")
+  createdAt  DateTime @default(now()) @map("createdAt")
+  updatedAt  DateTime @updatedAt @map("updatedAt")
+
+  USER_PET_SITTER  USER_PET_SITTERS @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+  RESERVE  RESERVES @relation(fields : [reserveId], references : [reserveId], onDelete : Cascade)
+
+  @@map("AVAILABLE_DATE")
+  
+}
+
+model RESERVES {
+  reserveId       Int      @id    @default(autoincrement())  
+  timeId          Int
+  petSitterId     Int
+  userId          Int
+  status          Status
+  reserveStart    DateTime
+  reserveEnd      DateTime    
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  USER_MEMBER       USER_MEMBERS       @relation(fields : [userId], references : [userId], onDelete : Cascade)
+  AVAILABLE_DATES   AVAILABLE_DATES[]
+  USER_PET_SITTER   USER_PET_SITTERS   @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+
+}
+
+enum Status {
+  inProgress
+  Completed
+}
