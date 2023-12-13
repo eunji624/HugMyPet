@@ -22,7 +22,7 @@ async function signup() {
 		imagePath: imagePath,
 		address: address
 	};
-	console.log(typeof age);
+
 	// 서버로 데이터 전송
 	fetch('http://localhost:3000/api/sign-up/users', {
 		method: 'POST',

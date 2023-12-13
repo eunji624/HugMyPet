@@ -33,6 +33,11 @@ app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
+// 경로 '/'에서 실행
+app.get('/petsitter-sign-up', async (req, res) => {
+	res.render('../views/petSitter-sign-up.ejs');
+});
+
 app.listen(port, () => {
 	console.log(port, '번 포트가 열렸어요');
 });

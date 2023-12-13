@@ -73,7 +73,7 @@ export class AuthController {
 			}
 
 			const user = await this.AuthService.findByEmail(email);
-
+			console.log('user: ', user);
 			if (!user) {
 				return res.status(404).json({
 					success: false,
