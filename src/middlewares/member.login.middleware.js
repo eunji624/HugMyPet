@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
 import { AuthService } from '../service/auth.service.js';
+import { PetsitterAuthService } from '../service/petsitter.auth.service.js';
 
 export const needSignin = async (req, res, next) => {
 	const authService = new AuthService();
+	const petsitterAuthService = new PetsitterAuthService();
 	try {
 		const { authorization } = req.headers;
 		// headers로 하면 안 들어옴
@@ -25,10 +27,13 @@ export const needSignin = async (req, res, next) => {
 
 		const decodedPayload = jwt.verify(accessToken, 'mynameis');
 		const { memberId } = decodedPayload;
+		const { petsitterId } = decodedPayload;
 
-		const user = await authService.findByMemberId(memberId);
+		const member = await authService.findByMemberId(memberId);
+		const petsitter = await petsitterAuthService.findByPetsitterId(petsitterId);
 
-		res.locals.user = user;
+		res.locals.user = petsitter;
+		res.locals.user = member;
 
 		next();
 	} catch (error) {

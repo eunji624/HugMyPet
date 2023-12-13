@@ -81,7 +81,7 @@ export class AuthController {
 				});
 			}
 
-			const accessToken = jwt.sign({ userId: user.userId }, 'mynameis', {
+			const accessToken = jwt.sign({ memberId: user.memberId }, 'mynameis', {
 				expiresIn: '1h'
 			});
 			const isPasswordMatched = bcrypt.compareSync(password, user.password);
