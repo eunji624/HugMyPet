@@ -18,7 +18,7 @@ export class PetsitterScheduleController {
   setSchedules = async (req, res, next) => {
     try {
       const { dates } = req.body;
-      const petSitterId = 1
+      const { petSitterId } = res.locals.user;
 
       if (!dates) {
         throw Error("스케쥴을 입력해주세요.");
@@ -34,13 +34,14 @@ export class PetsitterScheduleController {
 
   updateSchedules = async (req, res, next) => {
     try {
-      const petSitterId = 1;
+      const { scheduleId } = req.params;
+      const { petSitterId } = res.locals.user;
 
-      if (!dates) {
-        throw Error("스케쥴을 입력해주세요.")
+      if (!scheduleId) {
+        throw Error("해당하는 스케쥴이 없습니다.")
       };
 
-      await this.petSitterScheduleService.updateSchedulesByDates(petSitterId);
+      await this.petSitterScheduleService.updateSchedulesById(petSitterId);
 
       return res.status(200).json({ success: "true", message: "스케쥴 업데이트에 성공했습니다." });
     } catch (err) {

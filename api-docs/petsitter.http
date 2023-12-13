@@ -1,14 +1,17 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNDU2MTczLCJleHAiOjE3MDI0NTk3NzN9.3xgKu5JXPvryrRFVTG-KFsf6OidhelBo_eaBS1tKt4g
+
 # 페이지 접속
 GET http://localhost:3020/
 
 ### 특정 시터 스케쥴 조회하기
-GET  http://localhost:3020/api/pet-sitters/1
+GET  http://localhost:3020/api/schedule/
 
 
 ### 특정 시터 스케쥴 추가하기
-POST  http://localhost:3020/api/pet-sitters
+POST  http://localhost:3020/api/schedule
 Content-Type: application/json
+Authorization: Bearer {{token}}
 
 {
-  "dates" : "2023-12-27,2023-12-25"
+  "dates" : "2023-12-1,2023-12-2"
 }
