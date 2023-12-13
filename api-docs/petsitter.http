@@ -1,5 +1,14 @@
 # 페이지 접속
 GET http://localhost:3020/
 
-###
+### 특정 시터 스케쥴 조회하기
 GET  http://localhost:3020/api/pet-sitters/1
+
+
+### 특정 시터 스케쥴 추가하기
+POST  http://localhost:3020/api/pet-sitters
+Content-Type: application/json
+
+{
+  "dates" : "2023-12-27,2023-12-25"
+}
