@@ -3,8 +3,8 @@ async function signup() {
 	const password = document.getElementById('password').value;
 	const confirmPassword = document.getElementById('confirmPassword').value;
 	const name = document.getElementById('name').value;
-	const age = document.getElementById('age').value;
-	const image = document.getElementById('image').value;
+	const age = parseInt(document.getElementById('age').value);
+	const imagePath = document.getElementById('imagePath').value;
 	const address = document.getElementById('address').value;
 
 	if (password !== confirmPassword) {
@@ -19,12 +19,12 @@ async function signup() {
 		password: password,
 		confirmPassword: confirmPassword,
 		age: age,
-		image: image,
+		imagePath: imagePath,
 		address: address
 	};
-
+	console.log(typeof age);
 	// 서버로 데이터 전송
-	fetch('http://localhost:3000/api/end-users/sign-up', {
+	fetch('http://localhost:3000/api/sign-up/users', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -33,11 +33,12 @@ async function signup() {
 	})
 		.then((response) => response.json())
 		.then((result) => {
+			console.log(result);
 			if (result.success) {
 				alert(`${result.message}`);
-				window.location.href = '/views/main.ejs';
+				window.location.href = 'main';
 			} else {
-				alert(`${result.errorMessage}`);
+				alert(`${result.message}`);
 				window.location.href = 'member-sign-up';
 			}
 		})

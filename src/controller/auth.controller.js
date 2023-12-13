@@ -81,14 +81,18 @@ export class AuthController {
 				});
 			}
 
-			const accessToken = jwt.sign({
-				memberId: user.memberId,
-				name: user.name,
-				email: user.email,
-				role: "User"
-			}, 'mynameis', {
-				expiresIn: '1h'
-			});
+			const accessToken = jwt.sign(
+				{
+					memberId: user.memberId,
+					name: user.name,
+					email: user.email,
+					role: 'User'
+				},
+				'mynameis',
+				{
+					expiresIn: '1h'
+				}
+			);
 			const isPasswordMatched = bcrypt.compareSync(password, user.password);
 			if (!isPasswordMatched) {
 				return res.status(400).json({

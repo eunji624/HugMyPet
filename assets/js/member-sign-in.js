@@ -9,7 +9,7 @@ async function signin() {
 	};
 
 	// 서버로 데이터 전송
-	fetch('http://localhost:3000/api/end-users/sign-in', {
+	fetch('http://localhost:3000/api/sign-in/users', {
 		method: 'POST',
 		headers: {
 			'Content-Type': 'application/json'
@@ -19,11 +19,10 @@ async function signin() {
 		.then((response) => response.json())
 		.then((result) => {
 			if (result.success) {
-				alert(`${result.message}`);
-				window.location.href = '/views/main.ejs';
+				alert(`로그인 성공.`);
+				window.location.href = 'main';
 			} else {
-				alert(`${result.errorMessage}`);
-				window.location.href = '/views/member-sign-up.ejs';
+				alert(`${result.message}`);
 			}
 		})
 		.catch((error) => {
