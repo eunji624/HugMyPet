@@ -13,7 +13,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "dates" : "2023-12-1,2023-12-2"
+  "dates" : "2025-2-30"
 }
 
 

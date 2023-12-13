@@ -9,9 +9,7 @@ export class PetsitterScheduleService {
     return schedules;
   };
 
-  setSchedulesByDates = async (dates, petSitterId) => {
-
-    const datesArr = dates.split(",");
+  setSchedulesByDates = async (datesArr, petSitterId) => {
 
     /* 기존에 등록한 날짜가 있을 경우 에러 반환 */
     const existDates = await Promise.all(datesArr.map(async (date) => {
