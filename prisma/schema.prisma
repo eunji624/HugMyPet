@@ -7,10 +7,10 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserMembers {
-  userId           Int                @id @default(autoincrement()) @map("userId")
+model Members {
+  memberId         Int                @id @default(autoincrement()) @map("memberId")
   email            String             @unique @map("email")
-  userName         String             @map("userName")
+  name             String             @map("name")
   age              Int                @map("age")
   password         String             @map("password")
   address          String             @map("address")
@@ -19,90 +19,90 @@ model UserMembers {
   updatedAt        DateTime           @updatedAt @map("updatedAt")
   PetSitterReviews PetSitterReviews[]
   Pets             Pets[]
-  Reserves         Reserves[]
+  Reservations     Reservations[]
 
-  @@map("UserMembers")
+  @@map("Members")
 }
 
-model UserPetSitters {
+model PetSitters {
   petSitterId        Int                  @id @default(autoincrement()) @map("petSitterId")
   email              String               @unique @map("email")
-  petSitterName      String               @map("petSitterName")
+  name               String               @map("name")
   age                Int                  @map("age")
   password           String               @map("password")
   selfIntro          String               @map("selfIntro")
   availablePet       AvailablePet         @default(Dog) @map("availablePet")
   availableAddress   String               @map("availableAddress")
   certificate        String               @map("certificate")
-  score              Int?                  @map("score")
+  score              Int?                 @map("score")
   imagePath          String               @map("imagePath")
   createdAt          DateTime             @default(now()) @map("createdAt")
   updatedAt          DateTime             @updatedAt @map("updatedAt")
   PetSitterReviews   PetSitterReviews[]
   PetSitterSchedules PetSitterSchedules[]
-  Reserves           Reserves[]
+  Reservations       Reservations[]
 
-  @@map("UserPetSitters")
+  @@map("PetSitters")
 }
 
 model Pets {
-  petId      Int         @id @default(autoincrement()) @map("petId")
-  petName    String      @map("petName")
-  petAge     Int         @map("petAge")
-  petSpecies String      @map("petSpecies")
-  imagePath  String      @map("imagePath")
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
-  userId     Int
-  UserMember UserMembers @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  petId     Int      @id @default(autoincrement()) @map("petId")
+  name      String   @map("name")
+  age       Int      @map("age")
+  species   String   @map("species")
+  imagePath String   @map("imagePath")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  memberId  Int
+  Member    Members  @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
 
-  @@index([userId], map: "Pets_userId_fkey")
+  @@index([memberId], map: "Pets_memberId_fkey")
 }
 
 model PetSitterReviews {
-  reviewId      Int            @id @default(autoincrement())
-  petSitterId   Int            @map("petSitterId")
-  userId        Int            @map("userId")
-  title         String         @map("title")
-  content       String         @map("content")
-  score         Int            @map("score")
-  createdAt     DateTime       @default(now())
-  updatedAt     DateTime       @updatedAt
-  UserPetSitter UserPetSitters @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
-  UserMember    UserMembers    @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  reviewId    Int        @id @default(autoincrement())
+  petSitterId Int        @map("petSitterId")
+  memberId    Int        @map("memberId")
+  title       String     @map("title")
+  content     String     @map("content")
+  score       Int        @map("score")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  Member      Members    @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
+  PetSitter   PetSitters @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
 
   @@index([petSitterId], map: "PetSitterReviews_petSitterId_fkey")
-  @@index([userId], map: "PetSitterReviews_userId_fkey")
+  @@index([memberId], map: "PetSitterReviews_memberId_fkey")
 }
 
-model Reserves {
+model Reservations {
   reserveId          Int                  @id @default(autoincrement())
   timeId             Int                  @map("timeId")
   petSitterId        Int                  @map("petSitterId")
-  userId             Int                  @map("userId")
+  memberId           Int                  @map("memberId")
   status             Status               @map("status")
   reserveStart       DateTime             @map("reserveStart")
   reserveEnd         DateTime             @map("reserveEnd")
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
   PetSitterSchedules PetSitterSchedules[]
-  UserPetSitters     UserPetSitters       @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
-  UserMembers        UserMembers          @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  Member             Members              @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
+  PetSitter          PetSitters           @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
 
-  @@index([petSitterId], map: "Reserves_petSitterId_fkey")
-  @@index([userId], map: "Reserves_userId_fkey")
+  @@index([petSitterId], map: "Reservations_petSitterId_fkey")
+  @@index([memberId], map: "Reservations_memberId_fkey")
 }
 
 model PetSitterSchedules {
-  scheduleId    Int            @id @default(autoincrement()) @map("userId")
-  reserveId     Int            @default(-1) @map("reserveId")
-  petSitterId   Int            @map("petSitterId")
-  status        Status         @default(inProgress) @map("status")
-  availableDate DateTime       @map("availableDate")
-  createdAt     DateTime       @default(now()) @map("createdAt")
-  updatedAt     DateTime       @updatedAt @map("updatedAt")
-  UserPetSitter UserPetSitters @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
-  Reserve       Reserves       @relation(fields: [reserveId], references: [reserveId], onDelete: Cascade)
+  scheduleId    Int          @id @default(autoincrement()) @map("scheduleId")
+  reserveId     Int          @default(-1) @map("reserveId")
+  petSitterId   Int          @map("petSitterId")
+  status        Status       @default(inProgress) @map("status")
+  availableDate DateTime     @map("availableDate")
+  createdAt     DateTime     @default(now()) @map("createdAt")
+  updatedAt     DateTime     @updatedAt @map("updatedAt")
+  PetSitter     PetSitters   @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
+  Reservation   Reservations @relation(fields: [reserveId], references: [reserveId], onDelete: Cascade)
 
   @@index([petSitterId], map: "PetSitterSchedules_petSitterId_fkey")
   @@index([reserveId], map: "PetSitterSchedules_reserveId_fkey")

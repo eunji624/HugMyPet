@@ -24,9 +24,9 @@ export const needSignin = async (req, res, next) => {
 		}
 
 		const decodedPayload = jwt.verify(accessToken, 'mynameis');
-		const { userId } = decodedPayload;
+		const { memberId } = decodedPayload;
 
-		const user = await authService.findByUserId(userId);
+		const user = await authService.findByMemberId(memberId);
 
 		res.locals.user = user;
 

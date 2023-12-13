@@ -3,7 +3,7 @@ import { prisma } from '../utils/prisma/index.js';
 export class PetsitterAuthRepository {
 	signUp = async (
 		email,
-		petSitterName,
+		name,
 		age,
 		password,
 		selfIntro,
@@ -13,10 +13,10 @@ export class PetsitterAuthRepository {
 		imagePath,
 		score
 	) => {
-		const newPetsitter = await prisma.userPetSitters.create({
+		const newPetsitter = await prisma.petSitters.create({
 			data: {
 				email,
-				petSitterName,
+				name,
 				age,
 				password,
 				selfIntro,
@@ -32,16 +32,16 @@ export class PetsitterAuthRepository {
 	};
 
 	findByEmail = async (email) => {
-		const user = await prisma.userPetSitters.findUnique({
+		const user = await prisma.petSitters.findUnique({
 			where: { email }
 		});
 
 		return user;
 	};
 
-	findByUserId = async (userId) => {
-		const user = await prisma.userPetSitters.findUnique({
-			where: { userId }
+	findByPetsitterId = async (petsitterId) => {
+		const user = await prisma.petSitters.findUnique({
+			where: { petsitterId }
 		});
 
 		return user;

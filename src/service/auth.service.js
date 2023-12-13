@@ -3,12 +3,12 @@ import { AuthRepository } from '../repository/auth.repository.js';
 export class AuthService {
 	AuthRepository = new AuthRepository();
 
-	signUp = async (email, userName, age, password, confirmPassword, imagePath, address) => {
-		const user = await this.AuthRepository.signUp(email, userName, age, password, confirmPassword, imagePath, address);
+	signUp = async (email, name, age, password, confirmPassword, imagePath, address) => {
+		const user = await this.AuthRepository.signUp(email, name, age, password, confirmPassword, imagePath, address);
 
 		return {
-			userId: user.userId,
-			userName: user.userName,
+			memberId: user.memberId,
+			name: user.name,
 			cretaedAt: user.createdAt,
 			updatedAt: user.updatedAt
 		};
@@ -20,8 +20,8 @@ export class AuthService {
 		return user;
 	};
 
-	findByUserId = async (userId) => {
-		const user = await this.AuthRepository.findByUserId(userId);
+	findByMemberId = async (memberId) => {
+		const user = await this.AuthRepository.findByMemberId(memberId);
 
 		return user;
 	};

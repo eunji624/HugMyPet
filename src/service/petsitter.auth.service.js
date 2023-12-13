@@ -5,7 +5,7 @@ export class PetsitterAuthService {
 
 	signUp = async (
 		email,
-		petSitterName,
+		name,
 		age,
 		password,
 		selfIntro,
@@ -15,9 +15,9 @@ export class PetsitterAuthService {
 		imagePath,
 		score
 	) => {
-		const user = await this.PetsitterAuthRepository.signUp(
+		const petsitter = await this.PetsitterAuthRepository.signUp(
 			email,
-			petSitterName,
+			name,
 			age,
 			password,
 			selfIntro,
@@ -29,28 +29,28 @@ export class PetsitterAuthService {
 		);
 
 		return {
-			petSitterId: user.petSitterId,
-			petSitterName: user.petSitterName,
-			selfIntro: user.selfIntro,
-			availablePet: user.availablePet,
-			availableAddress: user.availableAddress,
-			certificate: user.certificate,
-			score: user.score,
-			imagePath: user.imagePath,
-			cretaedAt: user.createdAt,
-			updatedAt: user.updatedAt
+			petSitterId: petsitter.petSitterId,
+			name: petsitter.name,
+			selfIntro: petsitter.selfIntro,
+			availablePet: petsitter.availablePet,
+			availableAddress: petsitter.availableAddress,
+			certificate: petsitter.certificate,
+			score: petsitter.score,
+			imagePath: petsitter.imagePath,
+			cretaedAt: petsitter.createdAt,
+			updatedAt: petsitter.updatedAt
 		};
 	};
 
 	findByEmail = async (email) => {
-		const user = await this.PetsitterAuthRepository.findByEmail(email);
+		const petsitter = await this.PetsitterAuthRepository.findByEmail(email);
 
-		return user;
+		return petsitter;
 	};
 
-	findByUserId = async (userId) => {
-		const user = await this.PetsitterAuthRepository.findByUserId(userId);
+	findByPetsitterId = async (petsitterId) => {
+		const petsitter = await this.PetsitterAuthRepository.findByPetsitterId(petsitterId);
 
-		return user;
+		return petsitter;
 	};
 }

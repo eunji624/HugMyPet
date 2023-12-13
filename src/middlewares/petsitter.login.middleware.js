@@ -24,9 +24,9 @@ export const needSignin = async (req, res, next) => {
 		}
 
 		const decodedPayload = jwt.verify(accessToken, 'mynameis');
-		const { userId } = decodedPayload;
+		const { petsitterId } = decodedPayload;
 
-		const user = await petsitterAuthService.findByUserId(userId);
+		const user = await petsitterAuthService.findByPetsitterId(petsitterId);
 
 		res.locals.user = user;
 

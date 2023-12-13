@@ -9,7 +9,7 @@ export class PetsitterAuthController {
 		try {
 			const {
 				email,
-				petSitterName,
+				name,
 				age,
 				password,
 				confirmPassword,
@@ -25,7 +25,7 @@ export class PetsitterAuthController {
 				!password ||
 				!age ||
 				!confirmPassword ||
-				!petSitterName ||
+				!name ||
 				!availableAddress ||
 				!availablePet ||
 				!certificate
@@ -73,9 +73,9 @@ export class PetsitterAuthController {
 			}
 			const hashedPassword = bcrypt.hashSync(password, 10);
 
-			const newUser = await this.PetsitterAuthService.signUp(
+			const newPetsitter = await this.PetsitterAuthService.signUp(
 				email,
-				petSitterName,
+				name,
 				age,
 				hashedPassword,
 				selfIntro,
@@ -88,7 +88,7 @@ export class PetsitterAuthController {
 			return res.status(201).json({
 				success: true,
 				message: '회원가입에 성공했습니다.',
-				data: newUser
+				data: newPetsitter
 			});
 		} catch (error) {
 			next(error); // error핸들링 미들웨어로 보낸다/

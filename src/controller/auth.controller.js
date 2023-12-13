@@ -7,9 +7,9 @@ export class AuthController {
 
 	signUp = async (req, res, next) => {
 		try {
-			const { email, userName, age, password, confirmPassword, imagePath, address } = req.body;
+			const { email, name, age, password, confirmPassword, imagePath, address } = req.body;
 
-			if (!email || !password || !age || !confirmPassword || !userName || !imagePath || !address) {
+			if (!email || !password || !age || !confirmPassword || !name || !imagePath || !address) {
 				return res.status(400).json({
 					success: false,
 					message: '빈칸을 채워주세요.'
@@ -49,7 +49,7 @@ export class AuthController {
 			}
 			const hashedPassword = bcrypt.hashSync(password, 10);
 
-			const newUser = await this.AuthService.signUp(email, userName, age, hashedPassword, imagePath, address);
+			const newUser = await this.AuthService.signUp(email, name, age, hashedPassword, imagePath, address);
 
 			return res.status(201).json({
 				success: true,
