@@ -24,5 +24,5 @@ app.use('/api', router);
 // app.use(ErrorHandler);
 
 app.listen(port, () => {
-  console.log(port, '번 포트가 열렸어요');
+	console.log(port, '번 포트가 열렸어요');
 });

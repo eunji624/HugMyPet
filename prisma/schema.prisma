@@ -1,6 +1,3 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
 generator client {
   provider = "prisma-client-js"
 }
@@ -10,41 +7,106 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model UserMembers {
-  userId      Int       @id   @default(autoincrement())   @map("userId")
-  userName    String                                      @map("userName")
-  age         Int                                         @map("age")
-  address     String                                      @map("address")
-  imagePath   String                                      @map("imagePath")
-  createdAt   DateTime        @default(now())             @map("createdAt")
-  updatedAt   DateTime        @updatedAt                  @map("updatedAt")
+model Members {
+  memberId         Int                @id @default(autoincrement()) @map("memberId")
+  email            String             @unique @map("email")
+  name             String             @map("name")
+  age              Int                @map("age")
+  password         String             @map("password")
+  address          String             @map("address")
+  imagePath        String             @map("imagePath")
+  createdAt        DateTime           @default(now()) @map("createdAt")
+  updatedAt        DateTime           @updatedAt @map("updatedAt")
+  PetSitterReviews PetSitterReviews[]
+  Pets             Pets[]
+  Reservations     Reservations[]
 
-  Reserves              Reserves[]
-  PetSitterReviews      PetSitterReviews[]
-  Pets                  Pets[]
-
-  @@map("UserMembers")
+  @@map("Members")
 }
 
+model PetSitters {
+  petSitterId        Int                  @id @default(autoincrement()) @map("petSitterId")
+  email              String               @unique @map("email")
+  name               String               @map("name")
+  age                Int                  @map("age")
+  password           String               @map("password")
+  selfIntro          String               @map("selfIntro")
+  availablePet       AvailablePet         @default(Dog) @map("availablePet")
+  availableAddress   String               @map("availableAddress")
+  certificate        String               @map("certificate")
+  score              Int?                 @map("score")
+  imagePath          String               @map("imagePath")
+  createdAt          DateTime             @default(now()) @map("createdAt")
+  updatedAt          DateTime             @updatedAt @map("updatedAt")
+  PetSitterReviews   PetSitterReviews[]
+  PetSitterSchedules PetSitterSchedules[]
+  Reservations       Reservations[]
 
-model UserPetSitters {
-  petSitterId          Int           @id       @default(autoincrement())   @map("petSitterId")
-  petSitterName        String                                              @map("petSitterName")
-  age                  Int                                                 @map("age")
-  selfIntro            String                                              @map("selfIntro")
-  availablePet         AvailablePet            @default(Dog)               @map("availablePet")
-  availableAddress     String                                              @map("availableAddress")
-  certificate          String                                              @map("certificate")
-  score                Int                                                 @map("score")
-  imagePath            String                                              @map("imagePath")
-  createdAt            DateTime                 @default(now())            @map("createdAt")
-  updatedAt            DateTime                 @updatedAt                 @map("updatedAt")
+  @@map("PetSitters")
+}
 
-  Reserves             Reserves[]
-  PetSitterReviews     PetSitterReviews[]
-  PetSitterSchedules   PetSitterSchedules[]
+model Pets {
+  petId     Int      @id @default(autoincrement()) @map("petId")
+  name      String   @map("name")
+  age       Int      @map("age")
+  species   String   @map("species")
+  imagePath String   @map("imagePath")
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  memberId  Int
+  Member    Members  @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
 
-  @@map("UserPetSitters")
+  @@index([memberId], map: "Pets_memberId_fkey")
+}
+
+model PetSitterReviews {
+  reviewId    Int        @id @default(autoincrement())
+  petSitterId Int        @map("petSitterId")
+  memberId    Int        @map("memberId")
+  title       String     @map("title")
+  content     String     @map("content")
+  score       Int        @map("score")
+  createdAt   DateTime   @default(now())
+  updatedAt   DateTime   @updatedAt
+  Member      Members    @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
+  PetSitter   PetSitters @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
+
+  @@index([petSitterId], map: "PetSitterReviews_petSitterId_fkey")
+  @@index([memberId], map: "PetSitterReviews_memberId_fkey")
+}
+
+model Reservations {
+  reserveId          Int                  @id @default(autoincrement())
+  timeId             Int                  @map("timeId")
+  petSitterId        Int                  @map("petSitterId")
+  memberId           Int                  @map("memberId")
+  status             Status               @map("status")
+  reserveStart       DateTime             @map("reserveStart")
+  reserveEnd         DateTime             @map("reserveEnd")
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
+  PetSitterSchedules PetSitterSchedules[]
+  Member             Members              @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
+  PetSitter          PetSitters           @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
+
+  @@index([petSitterId], map: "Reservations_petSitterId_fkey")
+  @@index([memberId], map: "Reservations_memberId_fkey")
+}
+
+model PetSitterSchedules {
+  scheduleId    Int          @id @default(autoincrement()) @map("scheduleId")
+  reserveId     Int          @default(-1) @map("reserveId")
+  petSitterId   Int          @map("petSitterId")
+  status        Status       @default(inProgress) @map("status")
+  availableDate DateTime     @map("availableDate")
+  createdAt     DateTime     @default(now()) @map("createdAt")
+  updatedAt     DateTime     @updatedAt @map("updatedAt")
+  PetSitter     PetSitters   @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
+  Reservation   Reservations @relation(fields: [reserveId], references: [reserveId], onDelete: Cascade)
+
+  @@index([petSitterId], map: "PetSitterSchedules_petSitterId_fkey")
+  @@index([reserveId], map: "PetSitterSchedules_reserveId_fkey")
+  @@map("PetSitterSchedules")
 }
 
 enum AvailablePet {
@@ -52,6 +114,8 @@ enum AvailablePet {
   Cat
 }
 
+<<<<<<< HEAD
+=======
 
 model Pets {
   petId          Int      @id    @default(autoincrement())    @map("petId")
@@ -114,6 +178,7 @@ model PetSitterSchedules {
   
 }
 
+>>>>>>> b62c449d47b546c524c0979bf002c76751c670d9
 enum Status {
   inProgress
   Completed
