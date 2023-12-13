@@ -93,22 +93,22 @@ model Reserves {
   updatedAt       DateTime        @updatedAt
 
   UserMembers            UserMembers            @relation(fields : [userId], references : [userId], onDelete : Cascade)
-  PetSitterSchedules     PetSitterSchedules[]
+  PetSitterSchedules     PetSitterSchedules     @relation(fields : [timeId], references : [scheduleId], onDelete : Cascade)
   UserPetSitters         UserPetSitters         @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
 
 }
 
 model PetSitterSchedules {
-  scheduleId         Int      @id      @default(autoincrement())     @map("userId")
-  reserveId          Int               @default(-1)                  @map("reserveId")
+  scheduleId         Int      @id      @default(autoincrement())     @map("scheduleId")
+  reserveId          Int?                                            @map("reserveId")
   petSitterId        Int                                             @map("petSitterId")
   status             Status            @default(inProgress)          @map("status")
   availableDate      DateTime                                        @map("availableDate")
   createdAt          DateTime          @default(now())               @map("createdAt")
-  updatedAt          DateTime          @updatedAt                    @map("updatedAt")
+  updatedAt          DateTime          @default(now())                    @map("updatedAt")
 
-  UserPetSitter      UserPetSitters  @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
-  Reserve            Reserves          @relation(fields : [reserveId], references : [reserveId], onDelete : Cascade)
+  UserPetSitter      UserPetSitters    @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+  Reserve            Reserves[]      
 
   @@map("PetSitterSchedules")
   

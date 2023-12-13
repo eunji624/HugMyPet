@@ -18,12 +18,13 @@ export class PetsitterScheduleController {
   setSchedules = async (req, res, next) => {
     try {
       const { dates } = req.body;
+      const petSitterId = 1
 
       if (!dates) {
         throw Error("스케쥴을 입력해주세요.");
       };
 
-      await this.petSitterScheduleService.setSchedulesByDate(dates);
+      await this.petSitterScheduleService.setSchedulesByDates(dates, petSitterId);
 
       return res.status(201).json({ success: "true", message: "스케쥴 등록에 성공했습니다." });
     } catch (err) {
