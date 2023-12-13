@@ -1,26 +1,28 @@
-import express from "express"
-import cookieParser from "cookie-parser";
+import dotenv from 'dotenv';
+import express from 'express';
+import cookieParser from 'cookie-parser';
+import path from 'path';
 
-import scheduleRouter from "./router/petsitter.schedule.router.js";
+import router from './routers/index.js';
 
-import dotenv from 'dotenv'; // .env 패키지를 사용하기 위해 불러오고 실행함
+// import ErrorHandler from './middlewares/ErrorHandler.js';
+
+const port = process.env.PORT;
+const app = express();
+const __dirname = path.resolve();
 dotenv.config();
 
-const app = express();
-const port = process.env.PORT;
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 
-// app.use('/', (req, res) => {
-//   res.send('HelloWorld');
-// });
+app.set('views', path.join(__dirname, 'src/views'));
+app.set('view engine', 'ejs');
+app.use(express.static(`${__dirname}/public`));
 
-app.use('/api', [scheduleRouter]);
-
+app.use('/api', router);
+// app.use(ErrorHandler);
 
 app.listen(port, () => {
-  console.log(port, '포트 연결 성공 !');
-})
-
+  console.log(port, '번 포트가 열렸어요');
+});

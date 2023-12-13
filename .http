@@ -1,0 +1,46 @@
+
+
+###테스트 데이터 넣기
+POST http://localhost:3010/api/pet-sitters/petSitter/post 
+Content-Type: application/json
+
+{
+  "petSitterName": "공공이",
+	"age": 22,
+	"selfIntro": "안녕하세요 저는 공공이가 좋아요",
+	"availablePet": "Dog",
+	"availableAddress": "서울 관악구 봉천동",
+	"certificate": "대한애견협회 1급 자격증",
+	"score": 9,
+	"imagePath": "알이아ㅓ"
+}
+
+
+#
+
+
+###펫시터 리스트 출력
+GET http://localhost:3010/api/pet-sitters/me
+Content-Type: application/json
+
+
+#
+
+###특정 펫시터 조회
+GET http://localhost:3010/api/pet-sitters/3
+Content-Type: application/json
+
+
+#
+
+###팻시터 리뷰 생성
+POST http://localhost:3010/api/pet-sitters/3/review
+Content-Type: application/json
+
+{
+	"petSitterId": 3,
+	"userId":2,
+	"title": "좋아요",
+	"content": "세심하게 배려해주셧어요",
+	"score": 8
+}
