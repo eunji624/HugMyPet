@@ -7,9 +7,9 @@ const authController = new AuthController();
 const router = express.Router();
 
 /* 유저 */
-router.post('/users', authController.signUp);
+router.post('/users', authController.signIn);
 
 /* 펫시터 */
-router.post('/pet-sitters', petsitterAuthController.signUp);
+router.post('/pet-sitters', petsitterAuthController.signIn);
 
 export default router;
