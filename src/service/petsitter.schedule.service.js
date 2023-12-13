@@ -28,25 +28,37 @@ export class PetsitterScheduleService {
   }
 
 
-  updateScheduleByscheduleId = async (scheduleId, petSitterId) => {
-    const currentSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
-    console.log('currentSchedule: ', currentSchedule);
+  updateScheduleByScheduleId = async (scheduleId, petSitterId) => {
+    const existSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
 
-    if (!currentSchedule) {
+    if (!existSchedule) {
       throw new Error("해당하는 스케쥴이 존재하지 않습니다.")
     };
 
-    if (currentSchedule.petSitterId !== petSitterId) {
+    if (existSchedule.petSitterId !== petSitterId) {
       throw new Error("권한이 없습니다.");
     };
 
-    const statusValue = currentSchedule.status === "inProgress" ? "Completed" : "inProgress";
+    const statusValue = existSchedule.status === "inProgress" ? "Completed" : "inProgress";
 
     await this.petSitterScheduleRepository.updateScheduleByscheduleId(scheduleId, petSitterId, statusValue);
 
   }
 
+  deleteScheduleByScheduleId = async (scheduleId, petSitterId) => {
+    const existSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
 
+    if (!existSchedule) {
+      throw new Error("해당하는 스케쥴이 존재하지 않습니다.")
+    };
+
+    if (existSchedule.petSitterId !== petSitterId) {
+      throw new Error("권한이 없습니다.");
+    };
+
+    await this.petSitterScheduleRepository.destroyScheduleByScheduleId(scheduleId, petSitterId);
+
+  }
 
 
 };

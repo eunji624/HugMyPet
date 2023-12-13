@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNDY0OTE1LCJleHAiOjE3MDI0Njg1MTV9.36szlB1VUof1-XONtAB21_2w9hbXTyxEUfGj6bLiC74
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNDY5MTYxLCJleHAiOjE3MDI0NzI3NjF9.wsvNfIkh-XJ9PkYHWOMMrJswD4koa_yM3bWshu08MHg
 # 페이지 접속
 GET http://localhost:3020/
 
@@ -20,5 +19,10 @@ Authorization: Bearer {{token}}
 
 ### 펫시터 스케쥴 수정하기
 PUT   http://localhost:3020/api/schedule/5
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### 펫시터 스케쥴 삭제하기
+DELETE http://localhost:3020/api/schedule/4
 Content-Type: application/json
 Authorization: Bearer {{token}}

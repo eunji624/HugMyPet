@@ -57,5 +57,13 @@ export class PetsitterScheduleRepository {
   }
 
 
+  destroyScheduleByScheduleId = async (scheduleId, petSitterId) => {
+    await prisma.PetSitterSchedules.delete({
+      where: {
+        scheduleId: +scheduleId,
+        petSitterId
+      }
+    })
+  }
 
 }
