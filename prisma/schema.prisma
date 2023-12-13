@@ -100,7 +100,7 @@ model Reserves {
 
 model PetSitterSchedules {
   scheduleId         Int      @id      @default(autoincrement())     @map("userId")
-  reserveId          Int                                             @map("reserveId")
+  reserveId          Int?                                            @map("reserveId")
   petSitterId        Int                                             @map("petSitterId")
   status             Status            @default(inProgress)          @map("status")
   availableDate      DateTime                                        @map("availableDate")
