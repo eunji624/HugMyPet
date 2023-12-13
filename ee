@@ -54,48 +54,31 @@ enum AvailablePet {
 
 
 model Pets {
-  petId          Int      @id    @default(autoincrement())    @map("petId")
-  petName        String                                       @map("petName")
-  petAge         Int                                          @map("petAge")
-  petSpecies     String                                       @map("petSpecies")
-  imagePath      String                                       @map("imagePath")
+  petId          Int      @id    @default(autoincrement())  
+  petName        String
+  petAge         Int
+  petSpecies     String
+  imagePath      String
   createdAt      DateTime        @default(now())
   updatedAt      DateTime        @updatedAt
 
-  userId         Int                                       
+  userId         Int    
 
   UserMember     UserMembers    @relation(fields: [userId], references: [userId], onDelete: Cascade)
 }
 
 model PetSitterReviews {
   reviewId       Int       @id     @default(autoincrement())
-  petSitterId    Int                                           @map("petSitterId")
-  userId         Int                                           @map("userId")
-  title          String                                        @map("title")
-  content        String                                        @map("content")
-  score          Int                                           @map("score")
+  petSitterId    Int   
+  userId         Int
+  title          String
+  content        String
+  score          Int
   createdAt      DateTime          @default(now())
   updatedAt      DateTime          @updatedAt
 
-  UserMember           UserMembers        @relation(fields: [userId], references: [userId], onDelete: Cascade)
+  UserMember           UserMembers         @relation(fields: [userId], references: [userId], onDelete: Cascade)
   UserPetSitter        UserPetSitters     @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
-}
-
-model Reserves {
-  reserveId       Int      @id    @default(autoincrement())  
-  timeId          Int                                           @map("timeId")   
-  petSitterId     Int                                           @map("petSitterId")  
-  userId          Int                                           @map("userId")   
-  status          Status                                        @map("status")  
-  reserveStart    DateTime                                      @map("reserveStart")  
-  reserveEnd      DateTime                                      @map("reserveEnd")  
-  createdAt       DateTime        @default(now())
-  updatedAt       DateTime        @updatedAt
-
-  UserMembers            UserMembers            @relation(fields : [userId], references : [userId], onDelete : Cascade)
-  PetSitterSchedules     PetSitterSchedules[]
-  UserPetSitters         UserPetSitters         @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
-
 }
 
 model PetSitterSchedules {
@@ -112,6 +95,23 @@ model PetSitterSchedules {
 
   @@map("PetSitterSchedules")
   
+}
+
+model Reserves {
+  reserveId       Int      @id    @default(autoincrement())  
+  timeId          Int
+  petSitterId     Int
+  userId          Int
+  status          Status
+  reserveStart    DateTime
+  reserveEnd      DateTime    
+  createdAt       DateTime        @default(now())
+  updatedAt       DateTime        @updatedAt
+
+  UserMembers            UserMembers       @relation(fields : [userId], references : [userId], onDelete : Cascade)
+  PetSitterSchedules     PetSitterSchedules[]
+  UserPetSitters         UserPetSitters   @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+
 }
 
 enum Status {
