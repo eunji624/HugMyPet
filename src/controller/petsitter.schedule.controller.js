@@ -32,7 +32,21 @@ export class PetsitterScheduleController {
     };
   };
 
+  updateSchedules = async (req, res, next) => {
+    try {
+      const petSitterId = 1;
 
+      if (!dates) {
+        throw Error("스케쥴을 입력해주세요.")
+      };
+
+      await this.petSitterScheduleService.updateSchedulesByDates(petSitterId);
+
+      return res.status(200).json({ success: "true", message: "스케쥴 업데이트에 성공했습니다." });
+    } catch (err) {
+      next(err)
+    };
+  }
 
 
 
