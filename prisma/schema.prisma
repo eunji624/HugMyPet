@@ -17,6 +17,8 @@ model Members {
   imagePath        String             @map("imagePath")
   createdAt        DateTime           @default(now()) @map("createdAt")
   updatedAt        DateTime           @updatedAt @map("updatedAt")
+
+
   PetSitterReviews PetSitterReviews[]
   Pets             Pets[]
   Reservations     Reservations[]
@@ -38,6 +40,8 @@ model PetSitters {
   imagePath          String               @map("imagePath")
   createdAt          DateTime             @default(now()) @map("createdAt")
   updatedAt          DateTime             @updatedAt @map("updatedAt")
+
+
   PetSitterReviews   PetSitterReviews[]
   PetSitterSchedules PetSitterSchedules[]
   Reservations       Reservations[]
@@ -54,9 +58,11 @@ model Pets {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   memberId  Int
+
+
   Member    Members  @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
 
-  @@index([memberId], map: "Pets_memberId_fkey")
+  @@map("Pets")
 }
 
 model PetSitterReviews {
@@ -68,16 +74,17 @@ model PetSitterReviews {
   score       Int        @map("score")
   createdAt   DateTime   @default(now())
   updatedAt   DateTime   @updatedAt
+
+
   Member      Members    @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
   PetSitter   PetSitters @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
 
-  @@index([petSitterId], map: "PetSitterReviews_petSitterId_fkey")
-  @@index([memberId], map: "PetSitterReviews_memberId_fkey")
+  @@map("PetSitterReviews")
 }
 
 model Reservations {
   reserveId          Int                  @id @default(autoincrement())
-  timeId             Int                  @map("timeId")
+  scheduleId         Int                  @map("scheduleId")
   petSitterId        Int                  @map("petSitterId")
   memberId           Int                  @map("memberId")
   status             Status               @map("status")
@@ -85,27 +92,26 @@ model Reservations {
   reserveEnd         DateTime             @map("reserveEnd")
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
-  PetSitterSchedules PetSitterSchedules[]
-  Member             Members              @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
-  PetSitter          PetSitters           @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
 
-  @@index([petSitterId], map: "Reservations_petSitterId_fkey")
-  @@index([memberId], map: "Reservations_memberId_fkey")
+  Member            Members            @relation(fields : [memberId], references : [memberId], onDelete : Cascade)
+  PetSitterSchedules     PetSitterSchedules     @relation(fields : [scheduleId], references : [scheduleId], onDelete : Cascade)
+  PetSitter         PetSitters         @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+
+  @@map("Reservations")
 }
 
 model PetSitterSchedules {
   scheduleId    Int          @id @default(autoincrement()) @map("scheduleId")
-  reserveId     Int          @default(-1) @map("reserveId")
+  reserveId     Int?         @map("reserveId")
   petSitterId   Int          @map("petSitterId")
   status        Status       @default(inProgress) @map("status")
   availableDate DateTime     @map("availableDate")
   createdAt     DateTime     @default(now()) @map("createdAt")
-  updatedAt     DateTime     @updatedAt @map("updatedAt")
-  PetSitter     PetSitters   @relation(fields: [petSitterId], references: [petSitterId], onDelete: Cascade)
-  Reservation   Reservations @relation(fields: [reserveId], references: [reserveId], onDelete: Cascade)
+  updatedAt     DateTime     @default(now()) @map("updatedAt")
 
-  @@index([petSitterId], map: "PetSitterSchedules_petSitterId_fkey")
-  @@index([reserveId], map: "PetSitterSchedules_reserveId_fkey")
+  PetSitter      PetSitters    @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+  Reservation            Reservations[]   
+
   @@map("PetSitterSchedules")
 }
 

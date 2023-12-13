@@ -1,0 +1,50 @@
+### 펫시터 회원가입 하기
+POST   http://localhost:3020/api/sign-up/pet-sitters
+Content-Type: application/json
+
+{
+  "email" : "test1@test.com",
+  "name" : "테스트1",
+  "age" : 19,
+  "selfIntro" : "반갑습니다.",
+  "availablePet" : "Dog",
+  "availableAddress" : "서울",
+  "certificate" : "없음",
+  "score" : "",
+  "imagePath" : "123123123",
+  "password" : "123456",
+  "confirmPassword" : "123456"
+}
+
+### 펫시터 로그인 하기
+POST  http://localhost:3020/api/sign-in/pet-sitters
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "password" : "123456"
+}
+
+
+### 일반회원 가입 하기
+POST   http://localhost:3020/api/sign-up/users
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "name" : "회원 테스트",
+  "age" : 19,
+  "address" : "서울",
+  "imagePath" : "123123123",
+  "password" : "123456",
+  "confirmPassword" : "123456"
+}
+
+### 일반회원 로그인 하기
+POST  http://localhost:3020/api/sign-in/users
+Content-Type: application/json
+
+{
+  "email" : "test@test.com",
+  "password" : "123456"
+}

@@ -107,6 +107,7 @@ export class PetsitterAuthController {
 			}
 
 			const user = await this.PetsitterAuthService.findByEmail(email);
+			console.log('user: ', user);
 
 			if (!user) {
 				return res.status(404).json({
@@ -115,7 +116,12 @@ export class PetsitterAuthController {
 				});
 			}
 
-			const accessToken = jwt.sign({ userId: user.userId }, 'mynameis', {
+			const accessToken = jwt.sign({
+				petSitterId: user.petSitterId,
+				name: user.name,
+				email: user.email,
+				role: "Pet-Sitter"
+			}, 'mynameis', {
 				expiresIn: '1h'
 			});
 			const isPasswordMatched = bcrypt.compareSync(password, user.password);

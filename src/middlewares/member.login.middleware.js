@@ -25,15 +25,15 @@ export const needSignin = async (req, res, next) => {
 			});
 		}
 
-		const decodedPayload = jwt.verify(accessToken, 'mynameis');
-		const { memberId } = decodedPayload;
-		const { petsitterId } = decodedPayload;
+		const user = jwt.verify(accessToken, 'mynameis');
+		console.log('user: ', user);
+		// const { memberId } = decodedPayload;
+		// const { petsitterId } = decodedPayload;
 
-		const member = await authService.findByMemberId(memberId);
-		const petsitter = await petsitterAuthService.findByPetsitterId(petsitterId);
+		// const member = await authService.findByMemberId(memberId);
+		// const petsitter = await petsitterAuthService.findByPetsitterId(petsitterId);
 
-		res.locals.user = petsitter;
-		res.locals.user = member;
+		res.locals.user = user;
 
 		next();
 	} catch (error) {
