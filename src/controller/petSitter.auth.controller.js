@@ -1,19 +1,43 @@
-import { AuthService } from '../service/auth.service.js';
+import { PetsitterAuthService } from '../service/petsitter.auth.service.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
 // import { JWT_ACCESS_TOKEN_SECRET, JWT_ACCESS_TOKEN_EXPIRES_IN } from '../constants/security.costant.js';
-export class AuthController {
-	AuthService = new AuthService();
+export class PetsitterAuthController {
+	PetsitterAuthService = new PetsitterAuthService();
 
 	signUp = async (req, res, next) => {
 		try {
-			const { email, userName, age, password, confirmPassword, imagePath, address } = req.body;
+			const {
+				email,
+				petSitterName,
+				age,
+				password,
+				confirmPassword,
+				selfIntro,
+				availablePet,
+				availableAddress,
+				certificate,
+				imagePath
+			} = req.body;
 
-			if (!email || !password || !age || !confirmPassword || !userName || !imagePath || !address) {
+			if (
+				!email ||
+				!password ||
+				!age ||
+				!confirmPassword ||
+				!petSitterName ||
+				!availableAddress ||
+				!availablePet ||
+				!certificate
+			) {
 				return res.status(400).json({
 					success: false,
 					message: '빈칸을 채워주세요.'
 				});
+			}
+
+			if (!imagePath) {
+				req.body.imagePath = 'lalala';
 			}
 
 			if (password !== confirmPassword) {
@@ -39,7 +63,7 @@ export class AuthController {
 				});
 			}
 
-			const existedUser = await this.AuthService.findByEmail(email);
+			const existedUser = await this.PetsitterAuthService.findByEmail(email);
 
 			if (existedUser) {
 				return res.status(400).json({
@@ -49,7 +73,17 @@ export class AuthController {
 			}
 			const hashedPassword = bcrypt.hashSync(password, 10);
 
-			const newUser = await this.AuthService.signUp(email, userName, age, hashedPassword, imagePath, address);
+			const newUser = await this.PetsitterAuthService.signUp(
+				email,
+				petSitterName,
+				age,
+				hashedPassword,
+				selfIntro,
+				availablePet,
+				availableAddress,
+				certificate,
+				imagePath
+			);
 
 			return res.status(201).json({
 				success: true,
@@ -72,7 +106,7 @@ export class AuthController {
 				});
 			}
 
-			const user = await this.AuthService.findByEmail(email);
+			const user = await this.PetsitterAuthService.findByEmail(email);
 
 			if (!user) {
 				return res.status(404).json({

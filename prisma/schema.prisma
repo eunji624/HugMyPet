@@ -34,7 +34,7 @@ model UserPetSitters {
   availablePet       AvailablePet         @default(Dog) @map("availablePet")
   availableAddress   String               @map("availableAddress")
   certificate        String               @map("certificate")
-  score              Int                  @map("score")
+  score              Int?                  @map("score")
   imagePath          String               @map("imagePath")
   createdAt          DateTime             @default(now()) @map("createdAt")
   updatedAt          DateTime             @updatedAt @map("updatedAt")
