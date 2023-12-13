@@ -21,6 +21,15 @@ export class PetsitterScheduleRepository {
     return schedules;
   }
 
-
+  addSchedulesByDates = async (dates, petSitterId) => {
+    await Promise.all(dates.map(async (date) => {
+      prisma.aVAILABLE_DATES.create({
+        data: {
+          petSitterId,
+          availableDate: date
+        }
+      });
+    }));
+  };
 
 }

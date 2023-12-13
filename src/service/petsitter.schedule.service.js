@@ -8,4 +8,11 @@ export class PetsitterScheduleService {
 
     return schedules;
   };
+
+  setSchedulesByDates = async (dates) => {
+
+    await this.petSitterScheduleRepository.addSchedulesByDates(dates)
+
+  }
+
 };
