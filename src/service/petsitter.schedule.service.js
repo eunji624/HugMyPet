@@ -3,8 +3,8 @@ import { PetsitterScheduleRepository } from "../repository/petsitter.schedule.re
 export class PetsitterScheduleService {
   petSitterScheduleRepository = new PetsitterScheduleRepository();
 
-  getSchedulesById = async (petSitterId) => {
-    const schedules = await this.petSitterScheduleRepository.findSchedulesById(petSitterId);
+  getSchedulesBypetSitterId = async (petSitterId) => {
+    const schedules = await this.petSitterScheduleRepository.findSchedulesByPetSitterId(petSitterId);
 
     return schedules;
   };
@@ -15,7 +15,7 @@ export class PetsitterScheduleService {
 
     /* 기존에 등록한 날짜가 있을 경우 에러 반환 */
     const existDates = await Promise.all(datesArr.map(async (date) => {
-      const schedules = await this.petSitterScheduleRepository.findSchedulesById(petSitterId);
+      const schedules = await this.petSitterScheduleRepository.findSchedulesByPetSitterId(petSitterId);
       return schedules.some(schedule => schedule.availableDate.toDateString() === new Date(date).toDateString());
     }));
 
@@ -26,5 +26,27 @@ export class PetsitterScheduleService {
     await this.petSitterScheduleRepository.addSchedulesByDates(datesArr, petSitterId)
 
   }
+
+
+  updateScheduleByscheduleId = async (scheduleId, petSitterId) => {
+    const currentSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
+    console.log('currentSchedule: ', currentSchedule);
+
+    if (!currentSchedule) {
+      throw new Error("해당하는 스케쥴이 존재하지 않습니다.")
+    };
+
+    if (currentSchedule.petSitterId !== petSitterId) {
+      throw new Error("권한이 없습니다.");
+    };
+
+    const statusValue = currentSchedule.status === "inProgress" ? "Completed" : "inProgress";
+
+    await this.petSitterScheduleRepository.updateScheduleByscheduleId(scheduleId, petSitterId, statusValue);
+
+  }
+
+
+
 
 };

@@ -7,7 +7,7 @@ export class PetsitterScheduleController {
     try {
       const { petSitterId } = req.params;
 
-      const schedule = await this.petSitterScheduleService.getSchedulesById(petSitterId);
+      const schedule = await this.petSitterScheduleService.getSchedulesBypetSitterId(petSitterId);
 
       return res.status(200).json({ success: true, message: "스케쥴 조회에 성공했습니다.", data: schedule });
     } catch (err) {
@@ -32,7 +32,7 @@ export class PetsitterScheduleController {
     };
   };
 
-  updateSchedules = async (req, res, next) => {
+  updateSchedule = async (req, res, next) => {
     try {
       const { scheduleId } = req.params;
       const { petSitterId } = res.locals.user;
@@ -41,7 +41,7 @@ export class PetsitterScheduleController {
         throw Error("해당하는 스케쥴이 없습니다.")
       };
 
-      await this.petSitterScheduleService.updateSchedulesById(petSitterId);
+      await this.petSitterScheduleService.updateScheduleByscheduleId(scheduleId, petSitterId);
 
       return res.status(200).json({ success: "true", message: "스케쥴 업데이트에 성공했습니다." });
     } catch (err) {
