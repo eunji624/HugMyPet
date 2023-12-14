@@ -7,10 +7,10 @@ const petsitterAuthController = new PetsitterAuthController();
 const authController = new AuthController();
 const router = express.Router();
 
-/* 유저 */
-router.delete('/', needSignin, authController.signOut);
-
 /* 펫시터 */
-router.delete('/', needSignin, petsitterAuthController.signOut);
+router.delete('/pet-sitters', needSignin, petsitterAuthController.signOut);
+
+/* 유저 */
+router.delete('/users', needSignin, authController.signOut);
 
 export default router;
