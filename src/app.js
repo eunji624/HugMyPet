@@ -54,7 +54,7 @@ app.get('/petsitter-my-profile', async (req, res) => {
 
 // 경로 '/'에서 실행
 app.get('/pet-sitter/:petsitterId', async (req, res) => {
-	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
+	res.render('../views/petsitter-detail.ejs', { includeHeader: true });
 });
 
 

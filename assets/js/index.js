@@ -20,7 +20,6 @@ const petSitters = await getTotalPetSitters();
 const spreadPetSittersCard = async (petSitters) => {
   const cardListDiv = $('#petsitter-cards-list');
   cardListDiv.empty(); // 카드를 뿌리기 전 초기화
-  console.log('petSitters: ', petSitters);
   petSitters.forEach((petSitter) => {
 
     const {
