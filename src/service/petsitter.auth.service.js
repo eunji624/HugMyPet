@@ -59,4 +59,13 @@ export class PetsitterAuthService {
 
 		return user;
 	};
+
+	myProfile = async (email) => {
+		const user = await this.PetsitterAuthRepository.findByEmail(email);
+
+		return {
+			email: user.email,
+			name: user.name
+		};
+	};
 }

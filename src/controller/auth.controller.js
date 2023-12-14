@@ -148,4 +148,17 @@ export class AuthController {
 			next(error);
 		}
 	};
+
+	myProfile = async (req, res, next) => {
+		try {
+			const user = await this.AuthService.myProfile(res.locals.user.email);
+
+			return res.status(200).json({
+				success: true,
+				message: { user }
+			});
+		} catch (error) {
+			next(error);
+		}
+	};
 }

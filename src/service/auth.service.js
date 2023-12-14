@@ -31,4 +31,13 @@ export class AuthService {
 
 		return user;
 	};
+
+	myProfile = async (email) => {
+		const user = await this.AuthRepository.findByEmail(email);
+
+		return {
+			email: user.email,
+			name: user.name
+		};
+	};
 }
