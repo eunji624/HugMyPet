@@ -7,7 +7,7 @@ export class PetsitterScheduleController {
     try {
       const { petSitterId } = req.params;
 
-      const schedule = await this.petSitterScheduleService.getSchedulesById(petSitterId);
+      const schedule = await this.petSitterScheduleService.getSchedulesBypetSitterId(petSitterId);
 
       return res.status(200).json({ success: true, message: "스케쥴 조회에 성공했습니다.", data: schedule });
     } catch (err) {
@@ -24,7 +24,22 @@ export class PetsitterScheduleController {
         throw Error("스케쥴을 입력해주세요.");
       };
 
-      await this.petSitterScheduleService.setSchedulesByDates(dates, petSitterId);
+      const datesArr = dates.split(",");
+
+      /* 해당일(오늘) 이전 날짜/30일 이후는 예약 가능 스케쥴로 등록 불가 */
+      datesArr.forEach(date => {
+        const currentDate = new Date();
+        const inputDate = new Date(date);
+
+        const thirtyDaysLater = new Date();
+        thirtyDaysLater.setDate(currentDate.getDate() + 30);
+
+        if (inputDate < currentDate || inputDate > thirtyDaysLater) {
+          throw new Error("과거 날짜이거나 30일 이후의 날짜는 스케쥴로 등록할 수 없습니다.");
+        };
+      });
+
+      await this.petSitterScheduleService.setSchedulesByDates(datesArr, petSitterId);
 
       return res.status(201).json({ success: "true", message: "스케쥴 등록에 성공했습니다." });
     } catch (err) {
@@ -32,16 +47,12 @@ export class PetsitterScheduleController {
     };
   };
 
-  updateSchedules = async (req, res, next) => {
+  updateSchedule = async (req, res, next) => {
     try {
       const { scheduleId } = req.params;
       const { petSitterId } = res.locals.user;
 
-      if (!scheduleId) {
-        throw Error("해당하는 스케쥴이 없습니다.")
-      };
-
-      await this.petSitterScheduleService.updateSchedulesById(petSitterId);
+      await this.petSitterScheduleService.updateScheduleByScheduleId(scheduleId, petSitterId);
 
       return res.status(200).json({ success: "true", message: "스케쥴 업데이트에 성공했습니다." });
     } catch (err) {
@@ -50,6 +61,17 @@ export class PetsitterScheduleController {
   }
 
 
+  deleteSchedule = async (req, res, next) => {
+    try {
+      const { scheduleId } = req.params;
+      const { petSitterId } = res.locals.user;
 
+      await this.petSitterScheduleService.deleteScheduleByScheduleId(scheduleId, petSitterId);
+
+      return res.status(200).json({ sucess: "true", message: "스케쥴 삭제에 성공했습니다." });
+    } catch (err) {
+      next(err);
+    }
+  }
 
 };

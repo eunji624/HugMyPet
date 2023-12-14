@@ -12,7 +12,4 @@ router.post('/users', authController.signUp);
 /* 펫시터 */
 router.post('/pet-sitters', petsitterAuthController.signUp);
 
-
-
-
 export default router;

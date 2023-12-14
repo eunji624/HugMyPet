@@ -1,9 +1,63 @@
-<!doctype html>
-<html lang="en">
+<html lang="ko">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Document</title>
+		<title>안아줘</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/index.css" />
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="module" src="/js/index.js"></script>
+		<script type="module" src="/js/login.js"></script>
 	</head>
-	<body></body>
+
+	<body>
+		<header class="header"><%- include('header.ejs') %></header>
+		<main>
+			<!-- 메인 보드 -->
+			<section id="main-title">
+				<div class="back"></div>
+				<div class="content">
+					<div class="title"></div>
+					<div class="over-view"></div>
+					<div class="petsitter-signup">
+						<button>펫시터 가입하기</button>
+					</div>
+				</div>
+			</section>
+
+			<!-- 정렬 및 검색창 -->
+			<section id="main-content">
+				<nav>
+					<ul>
+						<li data-sort="like">평점 순</li>
+						<li data-sort="view">조회순</li>
+					</ul>
+					<input type="text" placeholder="키워드로 검색해주세요." class="search-input" />
+				</nav>
+
+				<!-- 펫시터 카드 -->
+				<div class="content">
+					<div class="community-card">
+						<div class="card-thumbnail">
+							<a href="/detail/${project_id}">
+								<img
+									src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6e/Golde33443.jpg/560px-Golde33443.jpg"
+								/>
+							</a>
+						</div>
+						<div class="card-description">
+							<div class="card-title">
+								<a href="https://commons.wikimedia.org/wiki/File:Golde33443.jpg"> 안아줘 펫시터 1호 </a>
+							</div>
+							<div class="card-overview">펫시터 소개부분 입니다.</div>
+							<div class="card-footer">
+								<div class="card-score">평점입니다.</div>
+								<div class="card-info"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</body>
 </html>
