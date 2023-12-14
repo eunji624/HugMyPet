@@ -1,8 +1,10 @@
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 import { AuthService } from '../service/auth.service.js';
 import { PetsitterAuthService } from '../service/petsitter.auth.service.js';
+dotenv.config();
 
-export const needSignin = async (req, res, next) => {
+export const needSignIn = async (req, res, next) => {
 	const authService = new AuthService();
 	const petsitterAuthService = new PetsitterAuthService();
 	try {
@@ -24,16 +26,16 @@ export const needSignin = async (req, res, next) => {
 				message: 'AccessToken이 없습니다.'
 			});
 		}
-
-		const user = jwt.verify(accessToken, 'mynameis');
-		console.log('user: ', user);
+		console.log('accessToken', accessToken);
+		const userVerify = jwt.verify(accessToken, process.env.JWT_SECREAT);
+		console.log('userVerify: ', userVerify);
 		// const { memberId } = decodedPayload;
 		// const { petsitterId } = decodedPayload;
 
 		// const member = await authService.findByMemberId(memberId);
 		// const petsitter = await petsitterAuthService.findByPetsitterId(petsitterId);
 
-		res.locals.user = user;
+		res.locals.user = userVerify;
 
 		next();
 	} catch (error) {

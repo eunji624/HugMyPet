@@ -10,14 +10,11 @@ import ScheduleRouter from './petsitter.schedule.router.js';
 
 const router = express.Router();
 
-
 router.use('/sign-up', signUpRouter);
 router.use('/sign-in', signInRouter);
 
-
-
 router.use('/pet-sitters/', PetSittersRouter);
-router.use('/end-users', UsersRouter);
+router.use('/reservation', UsersRouter);
 router.use('/schedule', ScheduleRouter);
 
 export default router;

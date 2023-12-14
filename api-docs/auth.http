@@ -1,5 +1,5 @@
 ### 펫시터 회원가입 하기
-POST   http://localhost:3020/api/sign-up/pet-sitters
+POST   http://localhost:3010/api/sign-up/pet-sitters
 Content-Type: application/json
 
 {
@@ -17,17 +17,18 @@ Content-Type: application/json
 }
 
 ### 펫시터 로그인 하기
-POST  http://localhost:3020/api/sign-in/pet-sitters
+POST  http://localhost:3010/api/sign-in/pet-sitters
 Content-Type: application/json
 
 {
-  "email" : "test@test.com",
+  "email" : "test1@test.com",
   "password" : "123456"
 }
 
 
+
 ### 일반회원 가입 하기
-POST   http://localhost:3020/api/sign-up/users
+POST   http://localhost:3010/api/sign-up/users
 Content-Type: application/json
 
 {
@@ -40,8 +41,10 @@ Content-Type: application/json
   "confirmPassword" : "123456"
 }
 
+#
+
 ### 일반회원 로그인 하기
-POST  http://localhost:3020/api/sign-in/users
+POST  http://localhost:3010/api/sign-in/users
 Content-Type: application/json
 
 {
