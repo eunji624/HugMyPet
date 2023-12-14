@@ -1,0 +1,201 @@
+main {
+	width: 1680px;
+	margin: 0 auto;
+	padding-bottom: 10rem;
+}
+
+#main-title {
+	position: relative;
+	width: 100%;
+	padding: 10rem 0;
+	background-color: #e5e5e5;
+	z-index: 100;
+}
+
+#main-title .back {
+	content: '';
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.2;
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+}
+
+#main-title .content {
+	width: 80%;
+	margin: 0 auto;
+}
+
+#main-title .content .title {
+	font-size: 56px;
+}
+#main-title .content .sub-title {
+	font-size: 48px;
+	margin-top: 3rem;
+}
+#main-title .content .over-view {
+	font-size: 22px;
+	color: rgba(0, 0, 0, 0.8);
+	margin-top: 3rem;
+}
+
+#main-title .content .petsitter-signup button {
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	padding: 8px 48px;
+	font-size: 18px;
+	margin-top: 3rem;
+}
+
+#main-title .content .petsitter-signup button:hover {
+	background-color: #bcecff;
+	cursor: pointer;
+}
+
+#main-title .content .go-project button a {
+	color: #fff;
+}
+
+#main-content {
+	width: 95%;
+	margin: 0 auto;
+}
+
+#main-content nav {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	margin: 3rem 0;
+}
+
+#main-content nav ul {
+	display: flex;
+	width: 40%;
+	justify-content: space-between;
+}
+
+#main-content nav ul li {
+	margin-right: 4rem;
+	color: #595959;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+#main-content nav ul li:hover {
+	color: #00000093;
+	cursor: pointer;
+}
+
+#main-content nav ul li.active {
+	color: #000;
+}
+
+#main-content nav .search-input {
+	width: 50%;
+	padding: 0.55rem;
+	font-size: 16px;
+	border: 1px solid #595959;
+	outline: none;
+}
+
+#main-content .content {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+	margin-top: 3rem;
+}
+
+#main-content .content .community-card {
+	position: relative;
+	width: 733px;
+	height: 722px;
+	border: 1px solid #d9d9d9;
+	box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+	border-radius: 5px;
+	margin-bottom: 2rem;
+}
+
+#main-content .content .community-card:hover {
+	transition: all 1s ease;
+}
+
+#main-content .content .community-card .card-thumbnail {
+	background-color: #e5e5e5;
+	height: 55%;
+}
+
+#main-content .content .community-card .card-thumbnail img {
+	object-fit: cover;
+	border-radius: 5px 5px 0 0;
+}
+
+#main-content .content .community-card .card-description {
+	height: 45%;
+}
+
+#main-content .content .community-card .card-description .card-title {
+	font-size: 24px;
+	font-weight: bold;
+	padding: 2rem 2rem 1rem 2rem;
+}
+
+#main-content .content .community-card .card-description .card-title a {
+	color: #000;
+}
+
+#main-content .content .community-card .card-description .card-overview {
+	font-size: 18px;
+	margin-bottom: 1rem;
+	color: #938b8b;
+	padding: 1rem 2rem;
+}
+
+#main-content .content .community-card .card-description .card-footer {
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	box-sizing: border-box;
+	padding: 1rem 2rem;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-score {
+	display: flex;
+	align-items: center;
+	margin-bottom: 1.5rem;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-tech div {
+	background-color: #eac645;
+	border-radius: 5px;
+	margin-right: 1rem;
+	padding: 0.1rem 1.25rem;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-info {
+	display: flex;
+	justify-content: space-between;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-info .info-right {
+	display: flex;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-image {
+	display: flex;
+	align-items: center;
+	font-weight: 500;
+	gap: 8px;
+	margin-right: 1.25rem;
+}
+
+#main-content .content .community-card .card-description .card-footer .card-image svg {
+	width: 30px;
+	height: 30px;
+	object-fit: contain;
+}
