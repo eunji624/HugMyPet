@@ -1,5 +1,5 @@
 import express from 'express';
-import { needSignin } from '../middlewares/member.login.middleware.js';
+import { needSignIn } from '../middlewares/member.login.middleware.js';
 import { PetsitterAuthController } from '../controller/petSitter.auth.controller.js';
 import { AuthController } from '../controller/auth.controller.js';
 
@@ -8,9 +8,9 @@ const authController = new AuthController();
 const router = express.Router();
 
 /* 유저 */
-router.delete('/', needSignin, authController.signOut);
+router.delete('/', needSignIn, authController.signOut);
 
 /* 펫시터 */
-router.delete('/', needSignin, petsitterAuthController.signOut);
+router.delete('/', needSignIn, petsitterAuthController.signOut);
 
 export default router;
