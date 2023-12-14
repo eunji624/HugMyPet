@@ -25,24 +25,31 @@ app.use('/api', router);
 
 
 
-// 경로 '/'에서 실행
+
 app.get('/', async (req, res) => {
 	res.render('../views/main.ejs');
 });
 
-// 경로 '/'에서 실행
+
 app.get('/sign-in', async (req, res) => {
 	res.render('../views/sign-in.ejs');
 });
 
-// 경로 '/'에서 실행
 app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
-// 경로 '/'에서 실행
-app.get('/me/pet-sitters', async (req, res) => {
-	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
+
+app.get('/petsitter-sign-up', async (req, res) => {
+	res.render('../views/petSitter-sign-up.ejs');
+});
+
+app.get('/member-my-profile', async (req, res) => {
+	res.render('../views/member-my-profile.ejs');
+});
+
+app.get('/petsitter-my-profile', async (req, res) => {
+	res.render('../views/petSitter-my-profile.ejs');
 });
 
 // 경로 '/'에서 실행

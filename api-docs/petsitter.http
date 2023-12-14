@@ -1,22 +1,35 @@
+
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuDEiLCJlbWFpbCI6InRlc3QxQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI1MTg1MjIsImV4cCI6MTcwMjUyMjEyMn0.3oKJBuchM5tPhoSpghwkwX8KiYJPtSqW6j_cHlA8Okw
 
 # 페이지 접속
 GET http://localhost:3010/
 
 ### 특정 시터 스케쥴 조회하기
-GET  http://localhost:3010/api/schedule/
+GET  http://localhost:3020/api/schedule/1
+
 
 # 
 
-### 특정 시터 스케쥴 추가하기
-POST  http://localhost:3010/api/schedule
+
+### 펫시터 스케쥴 추가하기
+POST  http://localhost:3020/api/schedule
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
+
    "dates" : "2023-12-5,2023-12-8"
 }
 
-# {
-#   "dates" : "2023-12-13T10:19:10.861Z,2023-12-14T10:19:10.861Z"
-# }
+
+
+
+### 펫시터 스케쥴 수정하기
+PUT   http://localhost:3020/api/schedule/5
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+### 펫시터 스케쥴 삭제하기
+DELETE http://localhost:3020/api/schedule/4
+Content-Type: application/json
+Authorization: Bearer {{token}}
