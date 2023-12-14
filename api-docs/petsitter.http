@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNDY5MTYxLCJleHAiOjE3MDI0NzI3NjF9.wsvNfIkh-XJ9PkYHWOMMrJswD4koa_yM3bWshu08MHg
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNTE0MDM3LCJleHAiOjE3MDI1MTc2Mzd9.h4cLc9FKNjmDp-e-lXReCozcQKOF4_mYG2t8uhfvxsg
 # 페이지 접속
 GET http://localhost:3020/
 
@@ -13,7 +13,7 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "dates" : "2025-2-30"
+  "dates" : "2024-1-2, 2024-1-3"
 }
 
 

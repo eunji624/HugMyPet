@@ -7,8 +7,9 @@ main {
 #main-title {
 	position: relative;
 	width: 100%;
+	height: 650px;
 	padding: 10rem 0;
-	background-color: #e5e5e5;
+	background-color: transparent;
 	z-index: 100;
 }
 
@@ -17,7 +18,8 @@ main {
 	background-position: center;
 	background-repeat: no-repeat;
 	background-size: 100% 100%;
-	opacity: 0.2;
+	background-image: url('../Img/3.png');
+	border-radius: 30px;
 	position: absolute;
 	top: 0px;
 	left: 0px;
@@ -28,7 +30,7 @@ main {
 
 #main-title .content {
 	width: 80%;
-	margin: 0 auto;
+	margin: 200px 120px;
 }
 
 #main-title .content .title {
@@ -48,7 +50,7 @@ main {
 	border: 1px solid #82d9fa;
 	background-color: #82d9fa;
 	border-radius: 0.4rem;
-	padding: 8px 48px;
+	padding: 10px 45px;
 	font-size: 18px;
 	margin-top: 3rem;
 }

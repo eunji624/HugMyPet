@@ -19,9 +19,9 @@
 	margin-right: 3rem;
 }
 
-.h-left .logo-title {
-	font-size: 24px;
-	font-weight: bold;
+.h-left .logo-img {
+	width: 150px;
+	width: 150px;
 }
 
 .h-left .logo-title a {
@@ -35,39 +35,48 @@
 
 .h-right {
 	display: flex;
-}
-
-.h-right .l-btn {
-	margin-right: 1.2rem;
-}
-
-.h-right .l-btn button {
-	border: 1px solid #d64553;
-	border-radius: 0.4rem;
-	color: #d64553;
-}
-
-.h-right .l-btn button:hover {
-	border: 1px solid #c75b66;
-	background-color: #f1eaea;
-	cursor: pointer;
-}
-
-.h-right .r-btn button {
-	border: 1px solid #d64553;
-	background-color: #d64553;
-	border-radius: 0.4rem;
-	color: #fff;
-}
-
-.h-right .r-btn button:hover {
-	background-color: #a45e65;
-	cursor: pointer;
+	align-items: center;
 }
 
 .h-right button {
+	height: 60px;
 	padding: 10px 45px;
-	border: none;
-	background-color: transparent;
 	font-size: 15px;
+	margin-left: 15px;
+}
+
+.h-right .sign-in-btn {
+	border: 1px solid #feeb84;
+	background-color: #feeb84;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+.sign-in-btn:hover {
+	background-color: #fbf3c3;
+	cursor: pointer;
+}
+
+.h-right .sign-up-btn {
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+.sign-up-btn:hover {
+	background-color: #b6eaff;
+	cursor: pointer;
+}
+
+.h-right .petsitter-sign-in {
+	border: 1px solid #feeb84;
+	background-color: #feeb84;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+.petsitter-sign-in:hover {
+	background-color: #fbf3c3;
+	cursor: pointer;
 }
