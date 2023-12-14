@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			}
 
 			const accessToken = localStorage.getItem('accessToken');
-			const response = await fetch('http://localhost:3000/api/sign-out', {
+			const response = await fetch('http://localhost:3000/api/sign-out/users', {
 				method: 'DELETE',
 				headers: {
 					Authorization: `Bearer ${accessToken}`,

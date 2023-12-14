@@ -39,12 +39,4 @@ export class AuthRepository {
 
 		return user;
 	};
-
-	// myProfile = async (email) => {
-	// 	const user = await prisma.members.findUnique({
-	// 		where: { email }
-	// 	});
-
-	// 	return user;
-	// };
 }
