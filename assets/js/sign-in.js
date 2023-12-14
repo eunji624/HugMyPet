@@ -12,29 +12,33 @@ async function signIn() {
 	try {
 		const member = await fetch('http://localhost:3000/api/sign-in/users', {
 			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json'
-			},
+			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(userInput)
 		});
 		const memberResult = await member.json();
+
 		if (memberResult.success) {
 			alert(memberResult.message);
-			window.location.href = 'main';
+
+			const accessToken = memberResult.data.accessToken;
+			localStorage.setItem('accessToken', accessToken);
+			window.location.href = 'member-my-profile';
 			return;
 		} else {
 			try {
 				const petSitter = await fetch('http://localhost:3000/api/sign-in/pet-sitters', {
 					method: 'POST',
-					headers: {
-						'Content-Type': 'application/json'
-					},
+					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(userInput)
 				});
+
 				const petSitterResult = await petSitter.json();
 				if (petSitterResult.success) {
 					alert(petSitterResult.message);
-					window.location.href = 'main';
+
+					const accessToken = petSitterResult.data.accessToken;
+					localStorage.setItem('accessToken', accessToken);
+					window.location.href = 'petSitter-my-profile';
 					return;
 				} else {
 					alert(memberResult.message);

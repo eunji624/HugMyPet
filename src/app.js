@@ -39,6 +39,14 @@ app.get('/petsitter-sign-up', async (req, res) => {
 	res.render('../views/petSitter-sign-up.ejs');
 });
 
+app.get('/member-my-profile', async (req, res) => {
+	res.render('../views/member-my-profile.ejs');
+});
+
+app.get('/petsitter-my-profile', async (req, res) => {
+	res.render('../views/petSitter-my-profile.ejs');
+});
+
 app.listen(port, () => {
 	console.log(port, '번 포트가 열렸어요');
 });
