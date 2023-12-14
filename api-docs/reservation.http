@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIxdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNTYxNzUzLCJleHAiOjE3MDI1NjUzNTN9.hrmJq5z5VXnpKDhos5Zxry_7a2k663fGPWu4JfWIq2E
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIxdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNTYyMjk1LCJleHAiOjE3MDI1NjU4OTV9.b-LZYIjYtInO_9HMewA9uljzeQeLmvtGnXJnz3KZV8s
 
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
@@ -22,11 +22,13 @@ Content-Type: application/json
 GET http://localhost:3010/api/pet-sitters
 Content-Type: application/json
 
+
 #
 
 ###특정 펫시터 조회
-GET http://localhost:3010/api/reservation/1
+GET http://localhost:3010/api/reservation/2
 Content-Type: application/json
+
 
 # 
 
@@ -36,7 +38,7 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-23T00:00:00.000Z"]
+	"availableDate": ["2023-12-24T00:00:00.000Z"]
 }
 
 

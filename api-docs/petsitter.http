@@ -1,10 +1,11 @@
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MywibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI1NTgzMDYsImV4cCI6MTcwMjU2MTkwNn0.HmWtTR6FXuOnZ8L7y4RO6K4f-zcRlo1r2wYNLmGWm5o
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MiwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI1NjIzNDQsImV4cCI6MTcwMjU2NTk0NH0.kss7ixlLhvy4OM9QCQvk_Lh43S3DtDVnAlf7dvpwyBk
+
 # 페이지 접속
 GET http://localhost:3010/
 
 ### 특정 시터 스케쥴 조회하기
-GET  http://localhost:3010/api/schedule/1
+GET  http://localhost:3010/api/schedule/2
 
 
 # 
@@ -16,9 +17,12 @@ Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-
-   "dates" : "2024-1-5,2024-1-1"
+   "dates" : "2023-12-25,2023-12-24"
 }
+
+# {
+# 	"dates": "2023-12-23T00:00:00.000Z"
+# }
 
 
 
