@@ -92,9 +92,9 @@ model Reservations {
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
 
-  Member              Members             @relation(fields : [memberId], references : [memberId], onDelete : Cascade)
-  PetSitterSchedule   PetSitterSchedules  @relation(fields : [scheduleId], references : [scheduleId])
-  PetSitter           PetSitters          @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
+  Member            Members            @relation(fields : [memberId], references : [memberId], onDelete : Cascade)
+  PetSitterSchedule     PetSitterSchedules     @relation(fields : [scheduleId], references : [scheduleId])
+  PetSitter         PetSitters         @relation(fields : [petSitterId], references : [petSitterId], onDelete : Cascade)
 
   @@map("Reservations")
 }
@@ -104,7 +104,7 @@ model PetSitterSchedules {
   petSitterId   Int                                @map("petSitterId")
   status        Status       @default(inProgress)  @map("status")
   availableDate DateTime                           @map("availableDate")
-  memberId      Int?                                @map("memberId")
+  memberId      Int                                @map("memberId")
   createdAt     DateTime     @default(now())       @map("createdAt")
   updatedAt     DateTime     @default(now())       @map("updatedAt")
 

@@ -15,12 +15,14 @@ const router = express.Router();
 
 router.use('/sign-up', signUpRouter);
 router.use('/sign-in', signInRouter);
+
 router.use('/sign-out', signOutRouter);
 router.use('/my-profile', myProfileRouter);
 router.use('/logout', logoutRouter);
 
+
 router.use('/pet-sitters/', PetSittersRouter);
-router.use('/end-users', UsersRouter);
+router.use('/reservation', UsersRouter);
 router.use('/schedule', ScheduleRouter);
 
 export default router;

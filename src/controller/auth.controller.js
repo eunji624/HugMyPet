@@ -1,6 +1,9 @@
 import { AuthService } from '../service/auth.service.js';
 import bcrypt from 'bcrypt';
 import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+dotenv.config();
+
 // import { JWT_ACCESS_TOKEN_SECRET, JWT_ACCESS_TOKEN_EXPIRES_IN } from '../constants/security.costant.js';
 export class AuthController {
 	AuthService = new AuthService();
