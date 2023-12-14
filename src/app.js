@@ -23,6 +23,13 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api', router);
 // app.use(ErrorHandler);
 
+
+
+// 경로 '/'에서 실행
+app.get('/', async (req, res) => {
+	res.render('../views/main.ejs');
+});
+
 // 경로 '/'에서 실행
 app.get('/sign-in', async (req, res) => {
 	res.render('../views/sign-in.ejs');
@@ -33,6 +40,18 @@ app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
+// 경로 '/'에서 실행
+app.get('/me/pet-sitters', async (req, res) => {
+	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
+});
+
+// 경로 '/'에서 실행
+app.get('/pet-sitter/:petsitterId', async (req, res) => {
+	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
+});
+
+
 app.listen(port, () => {
 	console.log(port, '번 포트가 열렸어요');
 });
+

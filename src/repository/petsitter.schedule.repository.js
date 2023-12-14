@@ -1,7 +1,7 @@
 import { prisma } from '../utils/prisma/index.js';
 
 export class PetsitterScheduleRepository {
-  findSchedulesById = async (petSitterId) => {
+  findSchedulesByPetSitterId = async (petSitterId) => {
     const schedules = await prisma.PetSitterSchedules.findMany({
       where: {
         petSitterId: +petSitterId,
@@ -22,6 +22,15 @@ export class PetsitterScheduleRepository {
   };
 
 
+  findScheduleByScheduleId = async (scheduleId) => {
+    const schedule = await prisma.PetSitterSchedules.findFirst({
+      where: { scheduleId: +scheduleId }
+    })
+
+    return schedule;
+  }
+
+
   addSchedulesByDates = async (datesArr, petSitterId) => {
     await Promise.all(datesArr.map(async (date) => {
       await prisma.PetSitterSchedules.create({
@@ -32,5 +41,29 @@ export class PetsitterScheduleRepository {
       });
     }));
   };
+
+
+  updateScheduleByscheduleId = async (scheduleId, petSitterId, statusValue) => {
+    await prisma.PetSitterSchedules.update({
+      where: {
+        scheduleId: +scheduleId,
+        petSitterId
+      },
+      data: {
+        status: statusValue,
+        updatedAt: new Date()
+      }
+    })
+  }
+
+
+  destroyScheduleByScheduleId = async (scheduleId, petSitterId) => {
+    await prisma.PetSitterSchedules.delete({
+      where: {
+        scheduleId: +scheduleId,
+        petSitterId
+      }
+    })
+  }
 
 }
