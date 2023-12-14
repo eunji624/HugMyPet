@@ -45,6 +45,11 @@ app.get('/me/pet-sitters', async (req, res) => {
 	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
 });
 
+// 경로 '/'에서 실행
+app.get('/pet-sitter/:petsitterId', async (req, res) => {
+	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
+});
+
 
 app.listen(port, () => {
 	console.log(port, '번 포트가 열렸어요');

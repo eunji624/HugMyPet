@@ -15,22 +15,9 @@
 	align-items: center;
 }
 
-.h-left span {
-	margin-right: 3rem;
-}
-
 .h-left .logo-img {
 	width: 150px;
 	width: 150px;
-}
-
-.h-left .logo-title a {
-	color: #000;
-}
-
-.h-left .nav-item a {
-	color: #d64553;
-	font-size: 15px;
 }
 
 .h-right {
