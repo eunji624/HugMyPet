@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Pet-Sitter</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/detail.css" />
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="module" src="../../assets/js/"></script>
+	</head>
+	<body>
+		<header class="header"><%- include('header.ejs') %></header>
+		<main>
+			<!-- 프로필 보드 시작 -->
+			<div class="petsitter-profile-wrab">
+				<div class="pet-sitter-img-wrab">
+					<img src="../../assets/Img/6.png" alt="PetSitter-Img" class="petsitter-img" />
+				</div>
+				<div class="petsitter-info-wrab">
+					<div class="petsitter-info-top">
+						<div class="petsitter-name">이름입니다.</div>
+						<div class="petsitter-address">주소 입니다.</div>
+						<div class="available-pet-wrab">Dog</div>
+					</div>
+					<div class="petsitter-info-bottom">
+						<div class="petsitter-intro">여기에 자기소개가 들어갑니다.</div>
+					</div>
+				</div>
+			</div>
+			<!-- 프로필 보드 끝 -->
+			<!-- 예약(달력) 시작 -->
+			<div class="reservation-wrab">
+				<h2 class="reservation-title">펫시터에게 예약하기</h2>
+				<form class="input-dates-wrab">
+					<input type="date" placeholder="날짜를 클릭하세요 !" class="dates-input" />
+					<button class="dates-btn">예약하기</button>
+				</form>
+				<div class="reservation-calendar-wrab">
+					<div class="this-month"></div>
+					<div class="next-month"></div>
+				</div>
+			</div>
+			<!-- 예약(달력) 끝 -->
+
+			<!-- 댓글 시작 -->
+			<div class="detail-comments">
+				<h2 class="detail-comments-title">펫시터에 대한 후기를 남겨주세요</h2>
+				<form class="comment-input-box">
+					<input type="text" placeholder="후기를 남겨주세요 !" class="comment-input" />
+					<button class="comment-btn">등록하기</button>
+				</form>
+				<ul class="detail-comments-lists">
+					<!-- <li class="comment">
+            <h4 class="comment-user">아이디</h4>
+            <div class="comment-text">
+              이번 프로젝트는 아주 멋지네요. 앞으로가 기대됩니다.
+            </div>
+            <div class="comment-date">2023-11-21 09:30</div>
+          </li>
+          <li class="comment">
+            <h4 class="comment-user">아이디2</h4>
+            <div class="comment-text">
+              이번 프로젝트는 멋지지 않아요. 아쉽습니다.
+            </div>
+            <div class="comment-date">2023-11-21 09:30</div>
+          </li> -->
+				</ul>
+			</div>
+			<!-- 댓글 끝 -->
+		</main>
+	</body>
+</html>
