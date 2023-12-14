@@ -6,7 +6,7 @@ import { prisma } from '../utils/prisma/index.js';
 const router = express.Router();
 dotenv.config();
 //펫시터 리스트
-router.get('/me', async (req, res, next) => {
+router.get('/', async (req, res, next) => {
 	// //토큰을 어디로 줄건지 체크
 	// const { accessToken } = req.cookies.Authorization;
 
@@ -15,10 +15,10 @@ router.get('/me', async (req, res, next) => {
 	// const { userId } = jwtVerify;
 
 	//평점 좋은순으로 시터 보여줌
-	const petSittersData = await prisma.UserPetSitters.findMany({
+	const petSittersData = await prisma.PetSitters.findMany({
 		select: {
 			petSitterId: true,
-			petSitterName: true,
+			name: true,
 			// age: true,
 			// selfIntro: true,
 			availablePet: true,

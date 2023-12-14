@@ -24,9 +24,12 @@ app.use('/api', router);
 // app.use(ErrorHandler);
 
 
+
+
 app.get('/', async (req, res) => {
 	res.render('../views/main.ejs');
 });
+
 
 app.get('/sign-in', async (req, res) => {
 	res.render('../views/sign-in.ejs');
@@ -35,6 +38,7 @@ app.get('/sign-in', async (req, res) => {
 app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
+
 
 app.get('/petsitter-sign-up', async (req, res) => {
 	res.render('../views/petSitter-sign-up.ejs');
@@ -52,7 +56,6 @@ app.get('/petsitter-my-profile', async (req, res) => {
 app.get('/pet-sitter/:petsitterId', async (req, res) => {
 	res.render('../views/petsitter-profile.ejs', { includeHeader: true });
 });
-
 
 
 app.listen(port, () => {

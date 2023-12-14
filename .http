@@ -1,3 +1,4 @@
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIxdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNTU1OTUwLCJleHAiOjE3MDI1NTk1NTB9.uBhQQejCdXqijM4ryAqmdDEQktP51kQawGlfa3cwFO8
 
 
 ###테스트 데이터 넣기
@@ -18,17 +19,39 @@ Content-Type: application/json
 
 #
 
-
 ###펫시터 리스트 출력
-GET http://localhost:3010/api/pet-sitters/me
+GET http://localhost:3010/api/pet-sitters
 Content-Type: application/json
-
 
 #
 
 ###특정 펫시터 조회
-GET http://localhost:3010/api/pet-sitters/3
+GET http://localhost:3010/api/reservation/1
 Content-Type: application/json
+
+# 
+
+###펫시터 예약하기
+POST http://localhost:3010/api/reservation/contract/3
+Content-Type: application/json
+authorization: Bearer {{token}}
+
+{
+	"availableDate": ["2023-12-14T00:00:00.000Z"]
+}
+
+
+#
+###펫시터 예약 수정하기
+PATCH  http://localhost:3010/api/reservation/contract/3
+Content-Type: application/json
+authorization: Bearer {{token}}
+
+{
+	"availableDate": ["2023-12-10T00:00:00.000Z"]
+}
+
+
 
 
 #

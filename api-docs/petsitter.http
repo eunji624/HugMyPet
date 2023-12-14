@@ -1,20 +1,26 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNTE0MDM3LCJleHAiOjE3MDI1MTc2Mzd9.h4cLc9FKNjmDp-e-lXReCozcQKOF4_mYG2t8uhfvxsg
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MywibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QyQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI1NTgzMDYsImV4cCI6MTcwMjU2MTkwNn0.HmWtTR6FXuOnZ8L7y4RO6K4f-zcRlo1r2wYNLmGWm5o
 # 페이지 접속
-GET http://localhost:3020/
+GET http://localhost:3010/
 
 ### 특정 시터 스케쥴 조회하기
-GET  http://localhost:3020/api/schedule/1
+GET  http://localhost:3010/api/schedule/1
 
+
+# 
 
 
 ### 펫시터 스케쥴 추가하기
-POST  http://localhost:3020/api/schedule
+POST  http://localhost:3010/api/schedule
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
 {
-  "dates" : "2024-1-2, 2024-1-3"
+
+   "dates" : "2024-1-5,2024-1-1"
 }
+
+
 
 
 ### 펫시터 스케쥴 수정하기
