@@ -27,10 +27,10 @@ const getDetailPetsitterById = async (petSitterId) => {
 
 const petsitter = await getDetailPetsitterById(petSitterId);
 
-// if (!petsitter) {
-//   alert("존재하지 않는 펫시터 입니다.");
-//   window.location.href = "/";
-// };
+if (!petsitter) {
+  alert("존재하지 않는 펫시터 입니다.");
+  window.location.href = "/";
+};
 
 /* 펫시터 정보 HTML로 뿌리기 */
 const spreadPetSitterProfile = async (petsitter) => {
