@@ -25,4 +25,10 @@ export class AuthService {
 
 		return user;
 	};
+
+	signOut = async (email) => {
+		const user = await this.AuthRepository.signOut(email);
+
+		return user;
+	};
 }

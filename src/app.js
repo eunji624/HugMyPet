@@ -23,17 +23,18 @@ app.use('/assets', express.static(path.join(__dirname, 'assets')));
 app.use('/api', router);
 // app.use(ErrorHandler);
 
-// 경로 '/'에서 실행
+app.get('/main', async (req, res) => {
+	res.render('../views/main.ejs');
+});
+
 app.get('/sign-in', async (req, res) => {
 	res.render('../views/sign-in.ejs');
 });
 
-// 경로 '/'에서 실행
 app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
-// 경로 '/'에서 실행
 app.get('/petsitter-sign-up', async (req, res) => {
 	res.render('../views/petSitter-sign-up.ejs');
 });

@@ -73,7 +73,7 @@ export class AuthController {
 			}
 
 			const user = await this.AuthService.findByEmail(email);
-			console.log('user: ', user);
+
 			if (!user) {
 				return res.status(404).json({
 					success: false,
@@ -105,6 +105,44 @@ export class AuthController {
 				success: true,
 				message: '로그인에 성공했습니다.',
 				data: { accessToken }
+			});
+		} catch (error) {
+			next(error);
+		}
+	};
+
+	signOut = async (req, res, next) => {
+		try {
+			const { email, password } = req.body;
+
+			if (!password) {
+				return res.status(400).json({
+					success: false,
+					message: '비밀번호를 입력하세요.'
+				});
+			}
+
+			const user = await this.AuthService.findByEmail(email);
+
+			if (!user) {
+				return res.status(404).json({
+					success: false,
+					message: '사용자가 존재하지 않습니다.'
+				});
+			}
+
+			const isPasswordMatched = bcrypt.compareSync(password, user.password);
+			if (!isPasswordMatched) {
+				return res.status(400).json({
+					message: '비밀번호가 틀립니다.'
+				});
+			}
+
+			await this.AuthService.signOut(email);
+
+			return res.status(200).json({
+				success: true,
+				message: '회원탈퇴 완료'
 			});
 		} catch (error) {
 			next(error);

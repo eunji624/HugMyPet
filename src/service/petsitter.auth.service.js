@@ -53,4 +53,10 @@ export class PetsitterAuthService {
 
 		return petsitter;
 	};
+
+	signOut = async (email) => {
+		const user = await this.PetsitterAuthRepository.signOut(email);
+
+		return user;
+	};
 }
