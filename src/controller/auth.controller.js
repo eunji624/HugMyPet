@@ -91,7 +91,7 @@ export class AuthController {
 					email: user.email,
 					role: 'User'
 				},
-				'mynameis',
+				process.env.JWT_SECRET,
 				{
 					expiresIn: '1h'
 				}
