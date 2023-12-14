@@ -65,7 +65,10 @@ export class PetsitterAuthService {
 
 		return {
 			email: user.email,
-			name: user.name
+			name: user.name,
+			selfIntro: user.selfIntro,
+			certificate: user.certificate,
+			availableAddress: user.availableAddress
 		};
 	};
 }

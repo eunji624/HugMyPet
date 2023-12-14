@@ -8,9 +8,9 @@ const authController = new AuthController();
 const router = express.Router();
 
 /* 유저 */
-router.delete('/', needSignin, authController.signOut);
+router.post('/', needSignin, authController.logout);
 
 /* 펫시터 */
-router.delete('/', needSignin, petsitterAuthController.signOut);
+router.post('/', needSignin, petsitterAuthController.logout);
 
 export default router;

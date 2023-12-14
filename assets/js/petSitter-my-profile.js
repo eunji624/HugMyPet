@@ -19,6 +19,9 @@ async function myProfile() {
 			// 가져온 프로필 정보를 화면에 표시
 			document.getElementById('email').innerText = `이메일: ${profile.message.user.email}`;
 			document.getElementById('name').innerText = `이름: ${profile.message.user.name}`;
+			document.getElementById('selfIntro').innerText = `자기소개: ${profile.message.user.selfIntro}`;
+			document.getElementById('certificate').innerText = `자격증: ${profile.message.user.certificate}`;
+			document.getElementById('availableAddress').innerText = `가능 주소: ${profile.message.user.availableAddress}`;
 		} else {
 			console.error('프로필 정보를 불러오지 못 했다.');
 		}

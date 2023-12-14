@@ -111,9 +111,27 @@ export class AuthController {
 		}
 	};
 
+	logout = async (req, res, next) => {
+		const { authorization } = req.headers;
+
+		if (!authorization) {
+			return res.status(400).json({
+				success: false,
+				errorMessage: '현재 로그인된 계정이 없습니다.'
+			});
+		}
+
+		res.removeHeader('authorization');
+
+		res.status(200).json({
+			success: true,
+			message: '로그아웃 성공! 안녕히 가세요.'
+		});
+	};
+
 	signOut = async (req, res, next) => {
 		try {
-			const { email, password } = req.body;
+			const { password } = req.body;
 
 			if (!password) {
 				return res.status(400).json({
@@ -122,7 +140,7 @@ export class AuthController {
 				});
 			}
 
-			const user = await this.AuthService.findByEmail(email);
+			const user = await this.AuthService.findByEmail(res.locals.user.email);
 
 			if (!user) {
 				return res.status(404).json({
@@ -138,7 +156,7 @@ export class AuthController {
 				});
 			}
 
-			await this.AuthService.signOut(email);
+			await this.AuthService.signOut(res.locals.user.email);
 
 			return res.status(200).json({
 				success: true,
