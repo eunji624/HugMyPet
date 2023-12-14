@@ -31,6 +31,14 @@ export class PetsitterAuthRepository {
 		return newPetsitter;
 	};
 
+	signOut = async (email) => {
+		const user = await prisma.petSitters.delete({
+			where: { email }
+		});
+
+		return user;
+	};
+
 	findByEmail = async (email) => {
 		const user = await prisma.petSitters.findUnique({
 			where: { email }

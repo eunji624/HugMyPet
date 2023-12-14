@@ -16,6 +16,14 @@ export class AuthRepository {
 		return newUser;
 	};
 
+	signOut = async (email) => {
+		const user = await prisma.members.delete({
+			where: { email }
+		});
+
+		return user;
+	};
+
 	findByEmail = async (email) => {
 		const user = await prisma.members.findUnique({
 			where: { email }
@@ -31,4 +39,12 @@ export class AuthRepository {
 
 		return user;
 	};
+
+	// myProfile = async (email) => {
+	// 	const user = await prisma.members.findUnique({
+	// 		where: { email }
+	// 	});
+
+	// 	return user;
+	// };
 }

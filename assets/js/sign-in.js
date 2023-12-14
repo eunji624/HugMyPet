@@ -1,4 +1,4 @@
-async function signin() {
+async function signIn() {
 	const email = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
 
@@ -9,24 +9,46 @@ async function signin() {
 	};
 
 	// 서버로 데이터 전송
-	fetch('http://localhost:3000/api/end-users/sign-in', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(userInput)
-	})
-		.then((response) => response.json())
-		.then((result) => {
-			if (result.success) {
-				alert(`${result.message}`);
-				window.location.href = '/views/main.ejs';
-			} else {
-				alert(`${result.errorMessage}`);
-				window.location.href = '/views/member-sign-up.ejs';
-			}
-		})
-		.catch((error) => {
-			console.error('로그인 실패:', error);
+	try {
+		const member = await fetch('http://localhost:3000/api/sign-in/users', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify(userInput)
 		});
+		const memberResult = await member.json();
+
+		if (memberResult.success) {
+			alert(memberResult.message);
+
+			const accessToken = memberResult.data.accessToken;
+			localStorage.setItem('accessToken', accessToken);
+			window.location.href = 'member-my-profile';
+			return;
+		} else {
+			try {
+				const petSitter = await fetch('http://localhost:3000/api/sign-in/pet-sitters', {
+					method: 'POST',
+					headers: { 'Content-Type': 'application/json' },
+					body: JSON.stringify(userInput)
+				});
+
+				const petSitterResult = await petSitter.json();
+				if (petSitterResult.success) {
+					alert(petSitterResult.message);
+
+					const accessToken = petSitterResult.data.accessToken;
+					localStorage.setItem('accessToken', accessToken);
+					window.location.href = 'petSitter-my-profile';
+					return;
+				} else {
+					alert(memberResult.message);
+					return;
+				}
+			} catch (error) {
+				console.error('로그인 실패:', error);
+			}
+		}
+	} catch (error) {
+		console.error('로그인 실패:', error);
+	}
 }

@@ -53,4 +53,22 @@ export class PetsitterAuthService {
 
 		return petsitter;
 	};
+
+	signOut = async (email) => {
+		const user = await this.PetsitterAuthRepository.signOut(email);
+
+		return user;
+	};
+
+	myProfile = async (email) => {
+		const user = await this.PetsitterAuthRepository.findByEmail(email);
+
+		return {
+			email: user.email,
+			name: user.name,
+			selfIntro: user.selfIntro,
+			certificate: user.certificate,
+			availableAddress: user.availableAddress
+		};
+	};
 }
