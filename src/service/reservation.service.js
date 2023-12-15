@@ -19,6 +19,9 @@ export class ReservationService {
 				return schedule.availableDate.getTime() === new Date(scheduleDate).getTime();
 			});
 		});
+		console.log('stillPossibleSchedule', stillPossibleSchedule);
+
+		console.log('userSchedule', userSchedule);
 
 		if (!stillPossibleSchedule) throw new Error('이미 예약된 날짜입니다.');
 		if (stillPossibleSchedule.length !== userSchedule.length) {
