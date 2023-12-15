@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjEwODM3LCJleHAiOjE3MDI2MTQ0Mzd9.bzDSdw2uJ_rddl4vVc7hUEu6SB2ReTaH5HsU7Jl2gac
+@token =eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjE1MzE0LCJleHAiOjE3MDI2MTg5MTR9.aGX2ODlBLUj8msRSMZMEN3_IJvpHZBi9jbLJmqRNsWo
 
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
@@ -81,4 +81,17 @@ authorization: Bearer {{token}}
 	"title": "22좋아요",
 	"content": "22세심하게 배려해주셧어요",
 	"score": 6
+}
+
+#
+
+###팻시터 리뷰 수정
+POST http://localhost:3010/api/pet-sitters/review/3
+Content-Type: application/json
+authorization: Bearer {{token}}
+
+{
+	"title": "수정2_좋아요",
+	"content": "수정2_세심하게 배려해주셧어요",
+	"score": 10
 }

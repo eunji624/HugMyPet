@@ -8,4 +8,10 @@ export class ReviewService {
 
 		return createReview;
 	};
+
+	updateReview = async (petSitterId, memberId, reviewId, title, content, score) => {
+		const updateReview = await this.reviewRepository.updateReview(reviewId, title, content, score);
+
+		return updateReview;
+	};
 }

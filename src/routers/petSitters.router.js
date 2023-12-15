@@ -47,4 +47,7 @@ router.get('/', async (req, res, next) => {
 //펫시터에게 리뷰 작성
 router.post('/review/:petSitterId', needSignIn, reviewController.createReview);
 
+//펫시터에게 리뷰 수정
+router.post('/review/:petSitterId', needSignIn, reviewController.updateReview);
+
 export default router;

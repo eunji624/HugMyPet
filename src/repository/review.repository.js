@@ -15,4 +15,16 @@ export class ReviewRepository {
 		});
 		return createReview;
 	};
+
+	updateReview = async (reviewId, title, content, score) => {
+		const updateReview = await this.prisma.petSitterReviews.update({
+			where: { reviewId },
+			data: {
+				title,
+				content,
+				score
+			}
+		});
+		return updateReview;
+	};
 }
