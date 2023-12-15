@@ -16,6 +16,22 @@ export class ReviewRepository {
 		return createReview;
 	};
 
+	getPetSitterScore = async (petSitterId) => {
+		const getPetSitterScore = await this.prisma.petSitters.findFirst({
+			where: { petSitterId },
+			select: { score: true }
+		});
+		return getPetSitterScore;
+	};
+
+	updatePetSitterScore = async (petSitterId, scoreAvg) => {
+		const updatePetSitterScore = await this.prisma.petSitters.update({
+			where: { petSitterId },
+			data: { score: scoreAvg }
+		});
+		return updatePetSitterScore;
+	};
+
 	updateReview = async (reviewId, title, content, score) => {
 		const updateReview = await this.prisma.petSitterReviews.update({
 			where: { reviewId },

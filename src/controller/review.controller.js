@@ -3,6 +3,7 @@ export class ReviewController {
 		this.reviewService = reviewService;
 	}
 
+	//리뷰 작성하기
 	createReview = async (req, res, next) => {
 		try {
 			const { petSitterId } = req.params;
@@ -52,6 +53,7 @@ export class ReviewController {
 		}
 	};
 
+	//해당 펫시터 리뷰 전체 조회하기
 	findManyReview = async (req, res, next) => {
 		try {
 			const { petSitterId } = req.params;

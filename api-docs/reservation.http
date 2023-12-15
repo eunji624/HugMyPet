@@ -26,7 +26,7 @@ Content-Type: application/json
 #
 
 ###특정 펫시터 조회
-GET http://localhost:3010/api/reservation/2
+GET http://localhost:3010/api/reservation/3
 Content-Type: application/json
 
 
@@ -80,8 +80,9 @@ authorization: Bearer {{token}}
 {
 	"title": "22좋아요",
 	"content": "22세심하게 배려해주셧어요",
-	"score": 6
+	"score": 1
 }
+
 
 #
 

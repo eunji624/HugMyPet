@@ -6,7 +6,14 @@ export class ReviewService {
 	createReview = async (petSitterId, memberId, title, content, score) => {
 		const createReview = await this.reviewRepository.createReview(petSitterId, memberId, title, content, score);
 
-		return createReview;
+		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
+		const oldScore = getPetSitterScore.score;
+		if (oldScore === null) oldScore = 0;
+		console.log('oldScore', oldScore);
+		const scoreAvg = Math.round((score + oldScore) / 2);
+		console.log('scoreAvg', scoreAvg);
+		const modifyPetSitterScore = await this.reviewRepository.updatePetSitterScore(petSitterId, scoreAvg);
+		return [createReview, modifyPetSitterScore];
 	};
 
 	updateReview = async (reviewId, title, content, score) => {
