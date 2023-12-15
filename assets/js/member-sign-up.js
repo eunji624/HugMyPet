@@ -22,27 +22,28 @@ async function signup() {
 		imagePath: imagePath,
 		address: address
 	};
-
-	// 서버로 데이터 전송
-	fetch('http://localhost:3000/api/sign-up/users', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(userInfo)
-	})
-		.then((response) => response.json())
-		.then((result) => {
-			console.log(result);
-			if (result.success) {
-				alert(`${result.message}`);
-				window.location.href = 'main';
-			} else {
-				alert(`${result.message}`);
-				window.location.href = 'member-sign-up';
-			}
-		})
-		.catch((error) => {
-			console.error('회원가입 실패:', error);
+	try {
+		// 서버로 데이터 전송
+		const memberSignUp = await fetch('http://localhost:3000/api/sign-up/users', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(userInfo)
 		});
+
+		const memberSignUpResult = await memberSignUp.json();
+
+		if (memberSignUpResult.success) {
+			alert(memberSignUpResult.message);
+
+			window.location.href = '/';
+			return;
+		} else {
+			alert(memberSignUpResult.message);
+			return;
+		}
+	} catch (error) {
+		console.error('회원가입 실패:', error);
+	}
 }

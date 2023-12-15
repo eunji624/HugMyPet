@@ -1,6 +1,8 @@
 <html lang="ko">
 	<head>
 		<script type="module" src="../../assets/js/header.js"></script>
+		<script type="module" src="../../assets/js/sign-in.js" defer></script>
+		<script type="module" src="../../assets/js/logout.js" defer></script>
 		<link rel="stylesheet" type="text/css" href="../../assets/css/header.css" />
 		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
 	</head>
@@ -13,9 +15,23 @@
 			</span>
 		</div>
 		<div class="h-right">
-			<button class="sign-in-btn">로그인</button>
-			<button class="sign-up-btn">회원가입</button>
-			<button class="petsitter-sign-in">펫시터 로그인</button>
+			<button id="logout_btn">로그아웃</button>
+			<a href="/sign-in">
+				<button class="sign-in-btn">로그인</button>
+			</a>
+			<a href="/member-sign-up">
+				<button class="sign-up-btn">회원가입</button>
+			</a>
+			<a href="/sign-in">
+				<button class="petsitter-sign-in">펫시터 로그인</button>
+			</a>
+			<a href="/member-my-profile">
+				<button class="member-my-profile-btn">내 정보 조회</button>
+			</a>
+
+			<a href="/petsitter-my-profile">
+				<button class="petsitter-my-profile-btn">펫시터 정보 조회</button>
+			</a>
 		</div>
 	</div>
 </html>

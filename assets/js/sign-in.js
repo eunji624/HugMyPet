@@ -8,10 +8,10 @@ async function signIn() {
 		password: password
 	};
 
-	// 서버로 데이터 전송
 	try {
 		const member = await fetch('http://localhost:3000/api/sign-in/users', {
 			method: 'POST',
+			Accept: 'application/json',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(userInput)
 		});
@@ -22,12 +22,14 @@ async function signIn() {
 
 			const accessToken = memberResult.data.accessToken;
 			localStorage.setItem('accessToken', accessToken);
-			window.location.href = 'member-my-profile';
+
+			window.location.href = '/';
 			return;
 		} else {
 			try {
 				const petSitter = await fetch('http://localhost:3000/api/sign-in/pet-sitters', {
 					method: 'POST',
+					Accept: 'application/json',
 					headers: { 'Content-Type': 'application/json' },
 					body: JSON.stringify(userInput)
 				});
@@ -38,7 +40,8 @@ async function signIn() {
 
 					const accessToken = petSitterResult.data.accessToken;
 					localStorage.setItem('accessToken', accessToken);
-					window.location.href = 'petSitter-my-profile';
+
+					window.location.href = '/';
 					return;
 				} else {
 					alert(memberResult.message);
@@ -52,3 +55,37 @@ async function signIn() {
 		console.error('로그인 실패:', error);
 	}
 }
+
+const hideBtn = () => {
+	document.addEventListener('DOMContentLoaded', () => {
+		const signUpButton = document.querySelector('.sign-up-btn');
+		const petsitterSignUpButton = document.querySelector('#petsitter-signup-btn');
+		const memberMyProfileButton = document.querySelector('.member-my-profile-btn');
+		const petsitterMyProfileButton = document.querySelector('.petsitter-my-profile-btn');
+		const petsitterSignInButton = document.querySelector('.petsitter-sign-in');
+		const memberSignInButton = document.querySelector('.sign-in-btn');
+		const logoutButton = document.querySelector('#logout_btn');
+
+		let accessToken = localStorage.getItem('accessToken');
+
+		if (accessToken) {
+			signUpButton.style.display = 'none';
+			petsitterSignUpButton.style.display = 'none';
+			memberMyProfileButton.style.display = 'block';
+			petsitterMyProfileButton.style.display = 'block';
+			petsitterSignInButton.style.display = 'none';
+			memberSignInButton.style.display = 'none';
+			logoutButton.style.display = 'block';
+		} else {
+			signUpButton.style.display = 'block';
+			petsitterSignUpButton.style.display = 'block';
+			memberMyProfileButton.style.display = 'none';
+			petsitterMyProfileButton.style.display = 'none';
+			petsitterSignInButton.style.display = 'block';
+			memberSignInButton.style.display = 'block';
+			logoutButton.style.display = 'none';
+		}
+	});
+};
+
+hideBtn();
