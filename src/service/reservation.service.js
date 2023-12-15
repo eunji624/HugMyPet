@@ -81,4 +81,10 @@ export class ReservationService {
 
 		return deleteReservation;
 	};
+
+	getReservationInfo = async (memberId) => {
+		const getReservationInfo = await this.reservationRepository.getReservationInfo(memberId);
+
+		return getReservationInfo;
+	};
 }

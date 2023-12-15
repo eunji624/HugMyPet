@@ -39,6 +39,18 @@ export class ReservationController {
 		}
 	};
 
+	reservationCheck = async (req, res, next) => {
+		try {
+			const { memberId } = res.locals.user;
+
+			const getReservationInfo = await this.reservationService.getReservationInfo(+memberId);
+			res.status(200).json({ success: true, message: '예약하신 정보를 확인합니다.', data: getReservationInfo });
+		} catch (err) {
+			console.log(err);
+			next(err);
+		}
+	};
+
 	// modifyReservationPetSitter = async (req, res, next) => {
 	// 	try {
 	// 		const { petSitterId } = req.params;

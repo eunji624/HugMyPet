@@ -67,4 +67,12 @@ export class ReservationRepository {
 		});
 		return scheduleModifyCancel;
 	};
+
+	//유저의 현재 예약 조회
+	getReservationInfo = async (memberId) => {
+		const getReservationInfo = await this.prisma.reservations.findMany({
+			where: { memberId }
+		});
+		return getReservationInfo;
+	};
 }
