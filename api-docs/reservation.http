@@ -73,13 +73,12 @@ authorization: Bearer {{token}}
 #
 
 ###팻시터 리뷰 생성
-POST http://localhost:3010/api/pet-sitters/3/review
+POST http://localhost:3010/api/pet-sitters/review/3
 Content-Type: application/json
+authorization: Bearer {{token}}
 
 {
-	"petSitterId": 3,
-	"userId":2,
-	"title": "좋아요",
-	"content": "세심하게 배려해주셧어요",
-	"score": 8
+	"title": "22좋아요",
+	"content": "22세심하게 배려해주셧어요",
+	"score": 6
 }

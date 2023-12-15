@@ -1,10 +1,20 @@
 import express from 'express';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
-import { prisma } from '../utils/prisma/index.js';
 
+import { prisma } from '../utils/prisma/index.js';
+import { ReviewController } from '../controller/review.controller.js';
+import { ReviewService } from '../service/review.service.js';
+import { ReviewRepository } from '../repository/review.repository.js';
+
+import { needSignIn } from '../middlewares/member.login.middleware.js';
 const router = express.Router();
 dotenv.config();
+
+const reviewRepository = new ReviewRepository(prisma);
+const reviewService = new ReviewService(reviewRepository);
+const reviewController = new ReviewController(reviewService);
+
 //펫시터 리스트
 router.get('/', async (req, res, next) => {
 	// //토큰을 어디로 줄건지 체크
@@ -33,5 +43,8 @@ router.get('/', async (req, res, next) => {
 	});
 	res.status(200).json({ success: 'true', data: petSittersData });
 });
+
+//펫시터에게 리뷰 작성
+router.post('/review/:petSitterId', needSignIn, reviewController.createReview);
 
 export default router;
