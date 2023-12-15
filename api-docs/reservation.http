@@ -94,7 +94,7 @@ authorization: Bearer {{token}}
 {
 	"title": "수정2_좋아요",
 	"content": "수정2_세심하게 배려해주셧어요",
-	"score": 10
+	"score": 7
 }
 
 #
