@@ -24,7 +24,7 @@ async function signup() {
 	};
 	try {
 		// 서버로 데이터 전송
-		const memberSignUp = await fetch('http://localhost:3000/api/sign-up/users', {
+		const memberSignUp = await fetch('api/sign-up/users', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
