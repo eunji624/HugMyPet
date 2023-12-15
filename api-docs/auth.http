@@ -3,7 +3,7 @@ POST   http://localhost:3010/api/sign-up/pet-sitters
 Content-Type: application/json
 
 {
-  "email" : "test2@test.com",
+  "email" : "test3@test.com",
   "name" : "테스트2",
   "age" : 19,
   "selfIntro" : "반갑습니다.",
@@ -22,7 +22,7 @@ POST  http://localhost:3010/api/sign-in/pet-sitters
 Content-Type: application/json
 
 {
-  "email" : "test2@test.com",
+  "email" : "test3@test.com",
   "password" : "123456"
 }
 
@@ -34,7 +34,7 @@ POST   http://localhost:3010/api/sign-up/users
 Content-Type: application/json
 
 {
-  "email" : "2test@test.com",
+  "email" : "3test@test.com",
   "name" : "1회원 테스트",
   "age" : 19,
   "address" : "서울",
@@ -45,12 +45,13 @@ Content-Type: application/json
 
 #
 
+
 ### 일반회원 로그인 하기
 POST  http://localhost:3010/api/sign-in/users
 Content-Type: application/json
 
 {
-  "email" : "1test@test.com",
+  "email" : "3test@test.com",
   "password" : "123456"
 }
 
