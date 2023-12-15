@@ -59,6 +59,7 @@ export class ReservationController {
 		}
 	};
 
+	//특정 펫시터 정보조회
 	findFirstPetSitterData = async (req, res, next) => {
 		try {
 			const { petSitterId } = req.params;

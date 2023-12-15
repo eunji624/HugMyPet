@@ -6,6 +6,7 @@ export class PetSittersController {
 	findPetSitterList = async (req, res, next) => {
 		try {
 			const petSittersData = await this.petSittersService.petSittersData();
+
 			res.status(200).json({ success: 'true', data: petSittersData });
 		} catch (err) {
 			console.log(err);
