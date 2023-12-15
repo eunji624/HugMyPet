@@ -1,3 +1,5 @@
+import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar } from '../../assets/js/calendar.js'
+
 /* 현재 위치에서 펫시터 아이디 구하기 */
 const getPetsitterIdByPath = () => {
   const path = window.location.pathname;
@@ -72,3 +74,29 @@ const spreadPetSitterProfile = async (petsitter) => {
 };
 
 spreadPetSitterProfile(petsitter);
+
+
+/* 예약이 가능한 날짜를 가져오는 부분 */
+const getAvailableDatesBypetSitterId = async (petSitterId) => {
+  try {
+    const result = await fetch(`/api/schedule/${petSitterId}`, {
+      method: 'GET'
+    })
+      .then(res => res.json())
+      .catch(err => err)
+    console.log(result);
+
+    return result.data;
+
+  } catch (err) {
+    console.error(err);
+  };
+};
+
+const petSitterSchedules = await getAvailableDatesBypetSitterId(petSitterId)
+const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
+
+
+drawThisMonthAvailableDatesCalendar(availableDates);
+drawNextMonthAvailableDatesCalendar(availableDates);
+
