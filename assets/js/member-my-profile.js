@@ -9,8 +9,10 @@ async function myProfile() {
 	});
 	const data = await response.json();
 
-	document.getElementById('email').innerText = `이메일: ${data.message.user.email}`;
-	document.getElementById('name').innerText = `이름: ${data.message.user.name}`;
+	// document.getElementById('email').innerText = `이메일: ${data.message.user.email}`;
+	// document.getElementById('name').innerText = `이름: ${data.message.user.name}`;
+
+	console.log('data==>', data);
 }
 
 myProfile();

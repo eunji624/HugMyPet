@@ -27,8 +27,12 @@ app.get('/', async (req, res) => {
 	res.render('../views/main.ejs');
 });
 
-app.get('/sign-in', async (req, res) => {
-	res.render('../views/sign-in.ejs');
+app.get('/user-sign-in', async (req, res) => {
+	res.render('../views/user-sign-in.ejs');
+});
+
+app.get('/petSitter-sign-in', async (req, res) => {
+	res.render('../views/petSitter-sign-in.ejs');
 });
 
 app.get('/member-sign-up', async (req, res) => {

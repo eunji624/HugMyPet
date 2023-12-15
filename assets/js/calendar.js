@@ -1,5 +1,6 @@
 /* 달력을 그려주는 함수 */
 export function drawThisMonthAvailableDatesCalendar(availableDates) {
+
   const today = new Date();
   const thisMonth = new Date(today.getFullYear(), today.getMonth(), today.getDate());
 
@@ -145,7 +146,3 @@ export const getSummitDates = async () => {
     chosenDateElement.css('background-color', isAlreadySelected ? '' : '#93e1ff');
   };
 };
-
-
-
-

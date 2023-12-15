@@ -9,47 +9,25 @@ async function signIn() {
 	};
 
 	try {
-		const member = await fetch('api/sign-in/users', {
+		const petSitter = await fetch('api/sign-in/pet-sitters', {
 			method: 'POST',
 			Accept: 'application/json',
 			headers: { 'Content-Type': 'application/json' },
 			body: JSON.stringify(userInput)
 		});
-		const memberResult = await member.json();
 
-		if (memberResult.success) {
-			alert(memberResult.message);
+		const petSitterResult = await petSitter.json();
+		if (petSitterResult.success) {
+			alert(petSitterResult.message);
 
-			const accessToken = memberResult.data.accessToken;
+			const accessToken = petSitterResult.data.accessToken;
 			localStorage.setItem('accessToken', accessToken);
 
 			window.location.href = '/';
 			return;
 		} else {
-			try {
-				const petSitter = await fetch('api/sign-in/pet-sitters', {
-					method: 'POST',
-					Accept: 'application/json',
-					headers: { 'Content-Type': 'application/json' },
-					body: JSON.stringify(userInput)
-				});
-
-				const petSitterResult = await petSitter.json();
-				if (petSitterResult.success) {
-					alert(petSitterResult.message);
-
-					const accessToken = petSitterResult.data.accessToken;
-					localStorage.setItem('accessToken', accessToken);
-
-					window.location.href = '/';
-					return;
-				} else {
-					alert(memberResult.message);
-					return;
-				}
-			} catch (error) {
-				console.error('로그인 실패:', error);
-			}
+			alert(memberResult.message);
+			return;
 		}
 	} catch (error) {
 		console.error('로그인 실패:', error);

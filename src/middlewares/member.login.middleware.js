@@ -27,6 +27,7 @@ export const needSignIn = async (req, res, next) => {
 			});
 		}
 
+
 		const userVerify = jwt.verify(accessToken, process.env.JWT_SECRET);
 
 		// const { memberId } = decodedPayload;

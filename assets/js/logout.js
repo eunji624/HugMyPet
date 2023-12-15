@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 					Accept: 'application/json'
 				}
 			});
+			console.log('respose', respose);
 			const data = await response.json();
 			if (data.success) {
 				localStorage.removeItem('accessToken');

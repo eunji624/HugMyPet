@@ -25,10 +25,11 @@ export class AuthRepository {
 	};
 
 	findByEmail = async (email) => {
+		console.log('email', email);
 		const user = await prisma.members.findUnique({
 			where: { email }
 		});
-
+		console.log('서비스user', user);
 		return user;
 	};
 
