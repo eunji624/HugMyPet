@@ -52,7 +52,7 @@ const spreadPetSitterProfile = async (petsitter) => {
   const profilePath = imagePath // 나중에 순서 바꾸기
     ? '../../assets/Img/6.png' : `https://nbcamp-bukkit.s3.ap-northeast-2.amazonaws.com/${images_path.split(',')[0]}`
 
-  const petsitterScore = score === null ? 0 : score;
+  const petsitterScore = score === null ? 0 : score; //나중에 추가하기
 
   profileDiv.append(
     `<div class="pet-sitter-img-wrab">
