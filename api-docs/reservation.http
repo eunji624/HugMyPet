@@ -86,7 +86,7 @@ authorization: Bearer {{token}}
 #
 
 ###팻시터 리뷰 수정
-POST http://localhost:3010/api/pet-sitters/review/3
+PATCH  http://localhost:3010/api/pet-sitters/review/3
 Content-Type: application/json
 authorization: Bearer {{token}}
 
@@ -95,3 +95,11 @@ authorization: Bearer {{token}}
 	"content": "수정2_세심하게 배려해주셧어요",
 	"score": 10
 }
+
+#
+
+###팻시터 리뷰 삭제
+DELETE http://localhost:3010/api/pet-sitters/review/3
+Content-Type: application/json
+authorization: Bearer {{token}}
+

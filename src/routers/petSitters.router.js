@@ -44,10 +44,13 @@ router.get('/', async (req, res, next) => {
 	res.status(200).json({ success: 'true', data: petSittersData });
 });
 
-//펫시터에게 리뷰 작성
+//리뷰 작성
 router.post('/review/:petSitterId', needSignIn, reviewController.createReview);
 
-//펫시터에게 리뷰 수정
-router.post('/review/:petSitterId', needSignIn, reviewController.updateReview);
+//리뷰 수정
+router.patch('/review/:petSitterId', needSignIn, reviewController.updateReview);
+
+//리뷰 삭제
+// router.delete('/review/:petSitterId', needSignIn, reviewController.deleteReview);
 
 export default router;
