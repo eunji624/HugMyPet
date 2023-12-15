@@ -3,6 +3,24 @@ export class ReservationRepository {
 		this.prisma = prisma;
 	}
 
+	//펫시터 데이터 조회
+	findFirstPetSitterData = async (petSitterId) => {
+		const petSitterData = this.prisma.petSitters.findFirst({
+			where: { petSitterId },
+			select: {
+				email: true,
+				name: true,
+				selfIntro: true,
+				availablePet: true,
+				availableAddress: true,
+				certificate: true,
+				score: true,
+				imagePath: true
+			}
+		});
+		return petSitterData;
+	};
+
 	findAllPossibleSchedule = async (petSitterId) => {
 		const petSitterPossibleSchedule = this.prisma.petSitterSchedules.findMany({
 			where: {

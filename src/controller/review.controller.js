@@ -6,7 +6,8 @@ export class ReviewController {
 	//리뷰 작성하기
 	createReview = async (req, res, next) => {
 		try {
-			const { petSitterId } = req.params;
+			// const { petSitterId } = req.params;
+			const { petSitterId } = req.query;
 			const { memberId } = res.locals.user;
 			const { title, content, score } = req.body;
 
@@ -19,17 +20,27 @@ export class ReviewController {
 		}
 	};
 
+	//해당 펫시터 리뷰 전체 조회하기
+	findManyReview = async (req, res, next) => {
+		try {
+			// const { petSitterId } = req.params;
+			const { petSitterId } = req.query;
+
+			const petSitterReviews = await this.reviewService.findManyReview(+petSitterId);
+			res.status(200).json({ success: true, message: '펫 시터 후기 조회에 성공했습니다.', data: petSitterReviews });
+		} catch (err) {
+			console.log(err);
+			next(err);
+		}
+	};
+
 	//리뷰 수정하기
 	updateReview = async (req, res, next) => {
 		try {
-			const { petSitterId } = req.params;
+			const { reviewId } = req.params;
 			const { title, content, score } = req.body;
-			// const { title, content, score, reviewId } = req.body;
 
-			//해당 리뷰의 수정버튼 클릭시 해당 div에 숨겨놓았던 reviewId 값이 들어옵니다.
-			const reviewId = 2;
-
-			const updateReview = await this.reviewService.updateReview(+petSitterId, +reviewId, title, content, score);
+			const updateReview = await this.reviewService.updateReview(+reviewId, title, content, score);
 			res.status(200).json({ success: true, message: '펫 시터 후기 수정에 성공했습니다.', data: updateReview });
 		} catch (err) {
 			console.log(err);
@@ -41,26 +52,10 @@ export class ReviewController {
 	deleteReview = async (req, res, next) => {
 		try {
 			const { title, content, score } = req.body;
-			// const { title, content, score, reviewId } = req.body;
-
-			//해당 리뷰의 수정버튼 클릭시 해당 div에 숨겨놓았던 reviewId 값이 들어옵니다.
-			const reviewId = 3;
+			const { reviewId } = req.params;
 
 			const deleteReview = await this.reviewService.deleteReview(+reviewId, title, content, score);
 			res.status(200).json({ success: true, message: '펫 시터 후기 삭제에 성공했습니다.', data: deleteReview });
-		} catch (err) {
-			console.log(err);
-			next(err);
-		}
-	};
-
-	//해당 펫시터 리뷰 전체 조회하기
-	findManyReview = async (req, res, next) => {
-		try {
-			const { petSitterId } = req.params;
-
-			const petSitterReviews = await this.reviewService.findManyReview(+petSitterId);
-			res.status(200).json({ success: true, message: '펫 시터 후기 조회에 성공했습니다.', data: petSitterReviews });
 		} catch (err) {
 			console.log(err);
 			next(err);

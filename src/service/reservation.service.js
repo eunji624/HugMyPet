@@ -3,6 +3,12 @@ export class ReservationService {
 		this.reservationRepository = reservationRepository;
 	}
 
+	findFirstPetSitterData = async (petSitterId) => {
+		const petSitterData = await this.reservationRepository.findFirstPetSitterData(petSitterId);
+
+		return petSitterData;
+	};
+
 	reservationPetSitter = async (petSitterId, userSchedule, memberId) => {
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
