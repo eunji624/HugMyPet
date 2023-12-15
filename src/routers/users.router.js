@@ -55,5 +55,5 @@ router.get('/:petSitterId', async (req, res, next) => {
 router.post('/contract/:petSitterId', needSignIn, reservationController.reservationPetSitter);
 
 //펫시터 수정하기
-router.patch('/contract/:petSitterId', needSignIn, reservationController.modifyReservationPetSitter);
+// router.patch('/contract/:petSitterId', needSignIn, reservationController.modifyReservationPetSitter);
 export default router;
