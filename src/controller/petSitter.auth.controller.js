@@ -107,7 +107,6 @@ export class PetsitterAuthController {
 			}
 
 			const user = await this.PetsitterAuthService.findByEmail(email);
-			console.log('user: ', user);
 
 			if (!user) {
 				return res.status(404).json({

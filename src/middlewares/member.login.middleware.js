@@ -26,9 +26,10 @@ export const needSignIn = async (req, res, next) => {
 				message: 'AccessToken이 없습니다.'
 			});
 		}
-		console.log('accessToken', accessToken);
-		const userVerify = jwt.verify(accessToken, process.env.JWT_SECREAT);
-		console.log('userVerify: ', userVerify);
+
+
+		const userVerify = jwt.verify(accessToken, process.env.JWT_SECRET);
+
 		// const { memberId } = decodedPayload;
 		// const { petsitterId } = decodedPayload;
 
