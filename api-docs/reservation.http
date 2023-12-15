@@ -1,21 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjMzNzE1LCJleHAiOjE3MDI2MzczMTV9.tV7Wuai6ypRubMy4hwvkXB1Xb6nhWT4AHG0VjYlL1FA
-
-# 
-
-###테스트 데이터 넣기
-POST http://localhost:3010/api/pet-sitters/petSitter/post 
-Content-Type: application/json
-
-{
-  "petSitterName": "공공이",
-	"age": 22,
-	"selfIntro": "안녕하세요 저는 공공이가 좋아요",
-	"availablePet": "Dog",
-	"availableAddress": "서울 관악구 봉천동",
-	"certificate": "대한애견협회 1급 자격증",
-	"score": 9,
-	"imagePath": "알이아ㅓ"
-}
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjM4NDIwLCJleHAiOjE3MDI2NDIwMjB9.f9J9cqK1uhgYnkOKZwgMjXW43AbeVE0puF9bM2XmJE0
 
 
 #

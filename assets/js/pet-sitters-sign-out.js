@@ -18,7 +18,7 @@ async function signOut() {
 
 		const accessToken = localStorage.getItem('accessToken');
 		const response = await fetch(
-			'http://localhost:3000/api/sign-out/pet-sitters',
+			'api/sign-out/pet-sitters',
 			{
 				method: 'DELETE',
 				headers: {

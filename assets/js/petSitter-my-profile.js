@@ -1,6 +1,6 @@
 async function myProfile() {
 	const accessToken = localStorage.getItem('accessToken');
-	const response = await fetch(`http://localhost:3000/api/my-profile/pet-sitters`, {
+	const response = await fetch(`api/my-profile/pet-sitters`, {
 		method: 'GET',
 		headers: {
 			Authorization: `Bearer ${accessToken}`,

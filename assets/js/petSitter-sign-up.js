@@ -30,7 +30,7 @@ async function signup() {
 	};
 	try {
 		// 서버로 데이터 전송
-		const petsitterSignUp = await fetch('http://localhost:3000/api/sign-up/pet-sitters', {
+		const petsitterSignUp = await fetch('api/sign-up/pet-sitters', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'

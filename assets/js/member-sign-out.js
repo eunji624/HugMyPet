@@ -18,7 +18,7 @@ async function signOut() {
 		}
 
 		const accessToken = localStorage.getItem('accessToken');
-		const response = await fetch('http://localhost:3000/api/sign-out/users', {
+		const response = await fetch('api/sign-out/users', {
 			method: 'DELETE',
 			headers: {
 				Authorization: `Bearer ${accessToken}`,

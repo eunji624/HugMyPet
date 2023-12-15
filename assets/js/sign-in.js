@@ -1,3 +1,6 @@
+// import dotenv from 'dotenv';
+// dotenv.config();
+// const port = process.env.PORT;
 async function signIn() {
 	const email = document.getElementById('email').value;
 	const password = document.getElementById('password').value;
@@ -9,7 +12,7 @@ async function signIn() {
 	};
 
 	try {
-		const member = await fetch('http://localhost:3000/api/sign-in/users', {
+		const member = await fetch('api/sign-in/users', {
 			method: 'POST',
 			Accept: 'application/json',
 			headers: { 'Content-Type': 'application/json' },
@@ -27,7 +30,7 @@ async function signIn() {
 			return;
 		} else {
 			try {
-				const petSitter = await fetch('http://localhost:3000/api/sign-in/pet-sitters', {
+				const petSitter = await fetch('api/sign-in/pet-sitters', {
 					method: 'POST',
 					Accept: 'application/json',
 					headers: { 'Content-Type': 'application/json' },
