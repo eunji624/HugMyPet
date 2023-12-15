@@ -1,4 +1,7 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6NCwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QzQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI2MDgwODQsImV4cCI6MTcwMjYxMTY4NH0.ayuBLtp3hqYH161aXgtXkELGdbcSbKD832TgL-Cfoaw
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjI0Njc5LCJleHAiOjE3MDI2MjgyNzl9.70P7jffN9Ib8Zyg-Cy3wLktrWXbISsV7sjzvoXtfptU
+
+
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
 Content-Type: application/json
@@ -25,7 +28,7 @@ Content-Type: application/json
 #
 
 ###특정 펫시터 조회
-GET http://localhost:3010/api/reservation/2
+GET http://localhost:3010/api/reservation/3
 Content-Type: application/json
 
 
@@ -37,7 +40,7 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-24T00:00:00.000Z", "2023-12-26T00:00:00.000Z"]
+	"availableDate": ["2023-12-24T00:00:00.000Z", "2023-12-25T00:00:00.000Z"]
 }
 
 
@@ -57,26 +60,55 @@ authorization: Bearer {{token}}
 
 #
 ###펫시터 예약 삭제하기
-PATCH  http://localhost:3010/api/reservation/contract/3
+DELETE  http://localhost:3010/api/reservation/contract/3
 Content-Type: application/json
 authorization: Bearer {{token}}
 
-{
-	"availableDate": ["2023-12-25T00:00:00.000Z"]
-}
 
+###펫시터 현재 예약 조회하기
+GET  http://localhost:3010/api/reservation/contract/check
+Content-Type: application/json
+authorization: Bearer {{token}}
 
 
 #
 
 ###팻시터 리뷰 생성
-POST http://localhost:3010/api/pet-sitters/3/review
+POST http://localhost:3010/api/pet-sitters/reviews?petSitterId=2
 Content-Type: application/json
+authorization: Bearer {{token}}
 
 {
-	"petSitterId": 3,
-	"userId":2,
-	"title": "좋아요",
-	"content": "세심하게 배려해주셧어요",
-	"score": 8
+	"title": "22좋아요",
+	"content": "22세심하게 배려해주셧어요",
+	"score": 1
 }
+
+
+#
+
+###팻시터 리뷰 수정
+PATCH  http://localhost:3010/api/pet-sitters/reviews/22
+Content-Type: application/json
+authorization: Bearer {{token}}
+
+{
+	"title": "수정2_좋아요",
+	"content": "수정2_세심하게 배려해주셧어요",
+	"score": 10
+}
+
+#
+
+###팻시터 리뷰 삭제
+DELETE http://localhost:3010/api/pet-sitters/reviews/22
+Content-Type: application/json
+authorization: Bearer {{token}}
+
+#
+
+###팻시터 리뷰 보여주기
+GET http://localhost:3010/api/pet-sitters/reviews?petSitterId=2
+Content-Type: application/json
+authorization: Bearer {{token}}
+

@@ -3,6 +3,12 @@ export class ReservationService {
 		this.reservationRepository = reservationRepository;
 	}
 
+	findFirstPetSitterData = async (petSitterId) => {
+		const petSitterData = await this.reservationRepository.findFirstPetSitterData(petSitterId);
+
+		return petSitterData;
+	};
+
 	reservationPetSitter = async (petSitterId, userSchedule, memberId) => {
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
@@ -67,9 +73,24 @@ export class ReservationService {
 		});
 	};
 
-	// deleteReservation = async (memberId, petSitterId) => {
-	// 	const deleteReservation = await this.reservationRepository.deleteReservation(memberId, petSitterId);
+	deleteReservation = async (memberId, petSitterId) => {
+		//해당 유저가 예약한 모든 데이터 추출
+		const userReservationSchedule = await this.reservationRepository.findAllUserReservationSchedule(+memberId);
 
-	// 	const scheduleModifyCancel = await this.reservationRepository.updateSchedule;
-	// };
+		//해당 유저 예약 스케줄 삭제하기
+		const deleteReservation = await this.reservationRepository.deleteReservation(memberId, petSitterId);
+
+		//펫시터 스케줄 수정하기
+		userReservationSchedule.map(async (e) => {
+			await this.reservationRepository.updateSchedule(memberId, +e.scheduleId);
+		});
+
+		return deleteReservation;
+	};
+
+	getReservationInfo = async (memberId) => {
+		const getReservationInfo = await this.reservationRepository.getReservationInfo(memberId);
+
+		return getReservationInfo;
+	};
 }
