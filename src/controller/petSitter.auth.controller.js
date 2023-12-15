@@ -123,7 +123,7 @@ export class PetsitterAuthController {
 					email: user.email,
 					role: 'Pet-Sitter'
 				},
-				process.env.JWT_SECREAT,
+				process.env.JWT_SECRET,
 				{
 					expiresIn: '1h'
 				}

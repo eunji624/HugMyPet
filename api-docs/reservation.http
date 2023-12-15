@@ -1,4 +1,11 @@
+<<<<<<< HEAD
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjMzNzE1LCJleHAiOjE3MDI2MzczMTV9.tV7Wuai6ypRubMy4hwvkXB1Xb6nhWT4AHG0VjYlL1FA
+=======
+
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjI4ODEwLCJleHAiOjE3MDI2MzI0MTB9.9_dAAN9MzayPW1aPLQ8QqIwmBoPympy03yjzDgsDfWM
+>>>>>>> da75e7e747b0c01e58ec76d17352bb70a82e7b3b
+
+
 
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
