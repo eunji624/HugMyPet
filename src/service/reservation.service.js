@@ -66,4 +66,10 @@ export class ReservationService {
 			const scheduleModifyCancel = await this.reservationRepository.updateSchedule();
 		});
 	};
+
+	// deleteReservation = async (memberId, petSitterId) => {
+	// 	const deleteReservation = await this.reservationRepository.deleteReservation(memberId, petSitterId);
+
+	// 	const scheduleModifyCancel = await this.reservationRepository.updateSchedule;
+	// };
 }
