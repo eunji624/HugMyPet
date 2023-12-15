@@ -1,7 +1,6 @@
 
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MywibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QzQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI2Mzg1MDIsImV4cCI6MTcwMjY0MjEwMn0.JwUwgshIMWN91TdysMqOOhM4zMFC2H8WRyxiAFD20Do
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6NCwibmFtZSI6Iu2FjOyKpO2KuDIiLCJlbWFpbCI6InRlc3QzQHRlc3QuY29tIiwicm9sZSI6IlBldC1TaXR0ZXIiLCJpYXQiOjE3MDI2NTgwNzksImV4cCI6MTcwMjY2MTY3OX0.9-2Zi5iISWW-Jja35Lhfp0AlOtcfn0CWzFH1Yjue6fo
 
 # 페이지 접속
 GET http://localhost:3010/
@@ -44,4 +43,9 @@ Authorization: Bearer {{token}}
 
 DELETE http://localhost:3010/api/schedule/3
 Content-Type: application/json
+Authorization: Bearer {{token}}
+
+
+### 펫시터 프로필 정보 조회하기 
+GET http://localhost:3010/api/my-profile/pet-sitters
 Authorization: Bearer {{token}}
