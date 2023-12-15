@@ -34,24 +34,4 @@ router.get('/', async (req, res, next) => {
 	res.status(200).json({ success: 'true', data: petSittersData });
 });
 
-//펫시터 생성 테스트데이터용
-router.post('/petSitter/post', async (req, res, next) => {
-	const { petSitterName, age, selfIntro, availablePet, availableAddress, certificate, score, imagePath } = req.body;
-
-	const postDonePetSitter = await prisma.UserPetSitters.create({
-		data: {
-			petSitterName,
-			age,
-			selfIntro,
-			availablePet,
-			availableAddress,
-			certificate,
-			score,
-			imagePath
-		}
-	});
-
-	res.status(200).json({ data: postDonePetSitter });
-});
-
 export default router;
