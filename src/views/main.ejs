@@ -7,9 +7,7 @@
 		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
 		<link rel="stylesheet" type="text/css" href="../../assets/css/index.css" />
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-		<script type="module" src="/js/index.js"></script>
-		<script type="module" src="/js/login.js"></script>
-
+		<script type="module" src="../../assets/js/index.js"></script>
 	</head>
 
 	<body>
@@ -22,7 +20,9 @@
 					<div class="title"></div>
 					<div class="over-view"></div>
 					<div class="petsitter-signup">
-						<button>펫시터 가입하기</button>
+						<a href="/petsitter-sign-up">
+							<button id="petsitter-signup-btn">펫시터 가입하기</button>
+						</a>
 					</div>
 				</div>
 			</section>
@@ -38,8 +38,8 @@
 				</nav>
 
 				<!-- 펫시터 카드 -->
-				<div class="content">
-					<div class="community-card">
+				<ul class="content" id="petsitter-cards-list">
+					<!-- <li class="community-card">
 						<div class="card-thumbnail">
 							<a href="/detail/${project_id}">
 								<img
@@ -57,8 +57,8 @@
 								<div class="card-info"></div>
 							</div>
 						</div>
-					</div>
-				</div>
+					</li> -->
+				</ul>
 			</section>
 		</main>
 	</body>
