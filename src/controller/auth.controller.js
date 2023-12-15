@@ -102,8 +102,8 @@ export class AuthController {
 					message: '비밀번호가 틀립니다.'
 				});
 			}
-			res.header('authorization', `Bearer ${accessToken}`);
-
+			// res.header('authorization', `Bearer ${accessToken}`);
+			res.cookie('authorization', `Bearer ${accessToken}`);
 			return res.status(200).json({
 				success: true,
 				message: '로그인에 성공했습니다.',
