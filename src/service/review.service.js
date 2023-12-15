@@ -3,28 +3,28 @@ export class ReviewService {
 		this.reviewRepository = reviewRepository;
 	}
 
+	//리뷰 평점 평균 구하는 함수입니다.
+	async getPetSitterScore(petSitterId, score) {
+		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
+		const oldScore = getPetSitterScore.score;
+		const scoreAvg = Math.round((score + oldScore) / 2);
+
+		return await this.reviewRepository.updatePetSitterScore(petSitterId, scoreAvg);
+	}
+
+	//리뷰를 생성합니다.
 	createReview = async (petSitterId, memberId, title, content, score) => {
 		const createReview = await this.reviewRepository.createReview(petSitterId, memberId, title, content, score);
 
-		//현재 펫시터의 평균평점 가져오기
-		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
-		let oldScore = getPetSitterScore.score;
-		if (oldScore === null) oldScore = 0;
-		const scoreAvg = Math.round((score + oldScore) / 2);
+		const modifyPetSitterScore = await this.getPetSitterScore(+petSitterId, score);
 
-		const modifyPetSitterScore = await this.reviewRepository.updatePetSitterScore(petSitterId, scoreAvg);
 		return [createReview, modifyPetSitterScore];
 	};
 
 	updateReview = async (reviewId, title, content, score) => {
 		const updateReview = await this.reviewRepository.updateReview(reviewId, title, content, score);
 
-		//현재 펫시터의 평균평점 가져오기
-		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
-		const oldScore = getPetSitterScore.score;
-		const scoreAvg = Math.round((score + oldScore) / 2);
-
-		const modifyPetSitterScore = await this.reviewRepository.updatePetSitterScore(petSitterId, scoreAvg);
+		const modifyPetSitterScore = await this.getPetSitterScore(+updateReview.petSitterId, score);
 
 		return [updateReview, modifyPetSitterScore];
 	};

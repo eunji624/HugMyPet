@@ -3,6 +3,7 @@ export class ReservationService {
 		this.reservationRepository = reservationRepository;
 	}
 
+	//특정 펫시터 정보 조회
 	findFirstPetSitterData = async (petSitterId) => {
 		const petSitterData = await this.reservationRepository.findFirstPetSitterData(petSitterId);
 
