@@ -9,9 +9,15 @@ export class ReviewService {
 		return createReview;
 	};
 
-	updateReview = async (petSitterId, memberId, reviewId, title, content, score) => {
+	updateReview = async (reviewId, title, content, score) => {
 		const updateReview = await this.reviewRepository.updateReview(reviewId, title, content, score);
 
 		return updateReview;
+	};
+
+	deleteReview = async (reviewId, title, content, score) => {
+		const deleteReview = await this.reviewRepository.deleteReview(reviewId, title, content, score);
+
+		return deleteReview;
 	};
 }

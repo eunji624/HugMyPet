@@ -51,6 +51,6 @@ router.post('/review/:petSitterId', needSignIn, reviewController.createReview);
 router.patch('/review/:petSitterId', needSignIn, reviewController.updateReview);
 
 //리뷰 삭제
-// router.delete('/review/:petSitterId', needSignIn, reviewController.deleteReview);
+router.delete('/review/:petSitterId', needSignIn, reviewController.deleteReview);
 
 export default router;

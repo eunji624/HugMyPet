@@ -27,4 +27,11 @@ export class ReviewRepository {
 		});
 		return updateReview;
 	};
+
+	deleteReview = async (reviewId, title, content, score) => {
+		const deleteReview = this.prisma.petSitterReviews.delete({
+			where: { reviewId }
+		});
+		return deleteReview;
+	};
 }
