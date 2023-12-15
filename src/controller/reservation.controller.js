@@ -26,18 +26,18 @@ export class ReservationController {
 		}
 	};
 
-	// deleteReservationPetSitter = async (req, res, next) => {
-	// 	try {
-	// 		const { memberId } = req.user.locals;
-	// 		const { petSitterId } = req.params;
+	deleteReservationPetSitter = async (req, res, next) => {
+		try {
+			const { memberId } = res.locals.user;
+			const { petSitterId } = req.params;
 
-	// 		const deleteReservation = await this.reservationService.deleteReservation(+memberId, +petSitterId);
-	// 		res.status(201).json({ success: true, message: '펫 시터 예약이 취소되었습니다.' });
-	// 	} catch (err) {
-	// 		console.log(err);
-	// 		next(err);
-	// 	}
-	// };
+			const deleteReservation = await this.reservationService.deleteReservation(+memberId, +petSitterId);
+			res.status(201).json({ success: true, message: '펫 시터 예약이 취소되었습니다.' });
+		} catch (err) {
+			console.log(err);
+			next(err);
+		}
+	};
 
 	// modifyReservationPetSitter = async (req, res, next) => {
 	// 	try {

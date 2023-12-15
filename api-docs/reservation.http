@@ -1,4 +1,5 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNTk4OTI0LCJleHAiOjE3MDI2MDI1MjR9.h08uFu7mxw3LDPjFRxxGRBcqCQ5CD5gkKFXqzZwNa8o
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjEwODM3LCJleHAiOjE3MDI2MTQ0Mzd9.bzDSdw2uJ_rddl4vVc7hUEu6SB2ReTaH5HsU7Jl2gac
+
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
 Content-Type: application/json
@@ -57,13 +58,10 @@ authorization: Bearer {{token}}
 
 #
 ###펫시터 예약 삭제하기
-PATCH  http://localhost:3010/api/reservation/contract/3
+DELETE  http://localhost:3010/api/reservation/contract/3
 Content-Type: application/json
 authorization: Bearer {{token}}
 
-{
-	"availableDate": ["2023-12-25T00:00:00.000Z"]
-}
 
 
 
