@@ -4,23 +4,64 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../../assets/js/member-sign-up.js"></script>
-		<title>회원가입</title>
+		<link rel="stylesheet" href="../../assets/css/signup.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<title>유저 회원가입</title>
 	</head>
 	<body>
-		<label for="email" name="email">이메일:</label>
-		<input type="email" id="email" placeholder="이메일을 입력하세요." />
-		<label for="password" name="password">비밀번호:</label>
-		<input type="password" id="password" placeholder="비밀번호를 입력하세요." />
-		<label for="confirmPassword" name="confirmPassword">비밀번호 확인:</label>
-		<input type="password" id="confirmPassword" placeholder="비밀번호를 입력하세요." />
-		<label for="name" name="name">이름:</label>
-		<input type="text" id="name" placeholder="이름을 입력하세요." />
-		<label for="age" name="age">나이:</label>
-		<input type="number" id="age" placeholder="나이를 입력하세요." />
-		<label for="imagePath" name="imagePath">이미지:</label>
-		<input type="text" id="imagePath" placeholder="이미지를 입력하세요." />
-		<label for="address" name="address">주소:</label>
-		<input type="text" id="address" placeholder="주소를 입력하세요." />
-		<button type="button" onclick="signup()">회원가입</button>
+		<div class="sign-up-container">
+			<div id="gif-box">
+				<img
+					src="https://images.unsplash.com/photo-1702559558083-b2e3193ddc07?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8"
+					alt=""
+				/>
+			</div>
+			<form id="signup-form">
+				<label>
+					<h2>유저 회원가입</h2>
+				</label>
+				<label class="input-wrap">
+					<span>* Email</span>
+					<input type="email" id="email" />
+				</label>
+				<label class="input-wrap">
+					<span>* password</span>
+					<input type="password" id="password" />
+				</label>
+				<label class="input-wrap">
+					<span>* password</span>
+					<input type="password" id="confirmPassword" />
+				</label>
+				<label class="input-wrap">
+					<span>* Name</span>
+					<input type="text" id="name" />
+				</label>
+				<label class="input-wrap">
+					<span>* Age</span>
+					<input type="number" id="age" />
+				</label>
+				<label class="input-wrap">
+					<span>* Image</span>
+					<input type="text" id="imagePath" />
+				</label>
+				<label class="input-wrap">
+					<span>* address</span>
+					<input type="text" id="address" />
+				</label>
+				<button
+					type="button"
+					class="btn btn-outline-secondary login-btn"
+					style="width: 28%; height: 40px"
+					onclick="signup()"
+				>
+					회원가입
+				</button>
+			</form>
+		</div>
 	</body>
 </html>

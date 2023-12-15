@@ -67,3 +67,55 @@
 	background-color: #fbf3c3;
 	cursor: pointer;
 }
+
+#logout_btn:hover {
+	background-color: #fbf3c3;
+	cursor: pointer;
+}
+
+.h-right #logout_btn {
+	border: 1px solid #ff9d1c;
+	background-color: #ff9d1c;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+.member-my-profile-btn:hover {
+	background-color: #fbf3c3;
+	cursor: pointer;
+}
+
+.h-right .member-my-profile-btn {
+	border: 1px solid #feeb84;
+	background-color: #feeb84;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+.petsitter-my-profile-btn:hover {
+	background-color: #fbf3c3;
+	cursor: pointer;
+}
+
+.h-right .petsitter-my-profile-btn {
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	color: black;
+}
+
+#logout_btn {
+	display: none;
+}
+
+.sign-out-btn:hover {
+	cursor: pointer;
+}
+
+.sign-out-btn {
+	display: none;
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	color: black;
+}

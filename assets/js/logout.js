@@ -1,6 +1,6 @@
-document.addEventListener('DOMContentLoaded', () => {
-	const button = document.getElementById('logout_btn');
+const button = document.getElementById('logout_btn');
 
+document.addEventListener('DOMContentLoaded', () => {
 	button.addEventListener('click', async () => {
 		try {
 			const accessToken = localStorage.getItem('accessToken');
@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			if (data.success) {
 				localStorage.removeItem('accessToken');
 				alert('로그아웃 완료');
-				window.location.href = 'sign-in';
+				window.location.href = '/';
 			} else {
 				alert('로그인이 된 계정이 없습니다.');
 				window.location.href = 'sign-in';
