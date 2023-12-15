@@ -27,23 +27,28 @@ async function signOut() {
 					'Content-Type': 'application/json'
 				},
 				body: JSON.stringify({ password })
-			},
-			(window.location.href = '/'),
-			alert('회원탈퇴 완료'),
-			localStorage.removeItem('accessToken')
+			}
+			// (window.location.href = '/'),
+			// alert('회원탈퇴 완료'),
+			// localStorage.removeItem('accessToken')
 		);
-		// const data = await response.json();
+		const data = await response.json();
 
-		// if (data.success) {
-		// 	alert('회원탈퇴 완료');
-		// 	localStorage.removeItem('accessToken');
-		// 	window.location.href = '/';
-		// 	return;
-		// } else {
-		// 	alert('비밀번호가 다릅니다.');
-		// 	return;
-		// }
+		if (data.success) {
+			alert('회원탈퇴 완료');
+			localStorage.removeItem('accessToken');
+			window.location.href = '/';
+			return;
+		} else {
+			alert('비밀번호가 다릅니다.');
+			return;
+		}
 	} catch (error) {
 		console.error(error);
 	}
 }
+
+const btn = document.querySelector('.sign-out-btn');
+btn.addEventListener('click', () => {
+	signOut();
+});

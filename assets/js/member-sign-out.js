@@ -18,33 +18,32 @@ async function signOut() {
 		}
 
 		const accessToken = localStorage.getItem('accessToken');
-		const response = await fetch(
-			'http://localhost:3000/api/sign-out/users',
-			{
-				method: 'DELETE',
-				headers: {
-					Authorization: `Bearer ${accessToken}`,
-					Accept: 'application/json',
-					'Content-Type': 'application/json'
-				},
-				body: JSON.stringify({ password })
+		const response = await fetch('http://localhost:3000/api/sign-out/users', {
+			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${accessToken}`,
+				Accept: 'application/json',
+				'Content-Type': 'application/json'
 			},
-			(window.location.href = '/'),
-			alert('회원탈퇴 완료'),
-			localStorage.removeItem('accessToken')
-		);
+			body: JSON.stringify({ password })
+		});
 
-		// const data = await response.json();
+		const data = await response.json();
 
-		// if (data.success) {
-		// 	alert('회원탈퇴 완료');
-		// 	localStorage.removeItem('accessToken');
-		// 	window.location.href = '/';
-		// } else {
-		// 	alert('비밀번호가 다릅니다.');
-		// 	return;
-		// }
+		if (data.success) {
+			alert('회원탈퇴 완료');
+			localStorage.removeItem('accessToken');
+			window.location.href = '/';
+		} else {
+			alert('비밀번호가 다릅니다.');
+			return;
+		}
 	} catch (error) {
 		console.error(error);
 	}
 }
+
+const btn = document.querySelector('.sign-out-btn');
+btn.addEventListener('click', () => {
+	signOut();
+});

@@ -3,8 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="../../assets/js/member-my-profile.js"></script>
-		<script src="../../assets/js/member-sign-out.js"></script>
+		<script type="module" src="../../assets/js/member-my-profile.js " defer></script>
+		<script type="module" src="../../assets/js/member-sign-out.js" defer></script>
 		<link rel="stylesheet" href="../../assets/css/member-my-profile.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
@@ -27,12 +27,10 @@
 			<form id="my-profile-form">
 				<div id="email"></div>
 				<div id="name"></div>
-				<button id="signOut_btn" class="btn btn-outline-secondary" style="width: 40%; height: 40px" onclick="signOut()">
+				<!-- <button id="signOut_btn" class="btn btn-outline-secondary" style="width: 40%; height: 40px" onclick="signOut()">
 					회원탈퇴
-				</button>
+				</button> -->
 			</form>
 		</div>
-
-		<!-- <input type="text" name="password" id="password" /> -->
 	</body>
 </html>

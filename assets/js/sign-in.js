@@ -65,6 +65,7 @@ const hideBtn = () => {
 		const petsitterSignInButton = document.querySelector('.petsitter-sign-in');
 		const memberSignInButton = document.querySelector('.sign-in-btn');
 		const logoutButton = document.querySelector('#logout_btn');
+		const signOutButton = document.querySelector('.sign-out-btn');
 
 		let accessToken = localStorage.getItem('accessToken');
 
@@ -76,6 +77,7 @@ const hideBtn = () => {
 			petsitterSignInButton.style.display = 'none';
 			memberSignInButton.style.display = 'none';
 			logoutButton.style.display = 'block';
+			signOutButton.style.display = 'block';
 		} else {
 			signUpButton.style.display = 'block';
 			petsitterSignUpButton.style.display = 'block';
