@@ -87,7 +87,7 @@ model Reservations {
   scheduleId         Int      @unique     @map("scheduleId")
   petSitterId        Int                  @map("petSitterId")
   memberId           Int                  @map("memberId")
-  reservationDate    DateTime             @map("reservationDate")
+  reservationDate    DateTime  @db.Date   @map("reservationDate")
   status             Status               @map("status")
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
@@ -103,7 +103,7 @@ model PetSitterSchedules {
   scheduleId    Int          @id   @default(autoincrement()) @map("scheduleId")
   petSitterId   Int                                @map("petSitterId")
   status        Status       @default(inProgress)  @map("status")
-  availableDate DateTime                           @map("availableDate")
+  availableDate DateTime     @db.Date              @map("availableDate")
   memberId      Int?                                @map("memberId")
   createdAt     DateTime     @default(now())       @map("createdAt")
   updatedAt     DateTime     @default(now())       @map("updatedAt")

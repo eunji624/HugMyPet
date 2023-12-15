@@ -27,7 +27,7 @@ export const needSignIn = async (req, res, next) => {
 			});
 		}
 		console.log('accessToken', accessToken);
-		const userVerify = jwt.verify(accessToken, process.env.JWT_SECRET);
+		const userVerify = jwt.verify(accessToken, process.env.JWT_SECREAT);
 		console.log('userVerify: ', userVerify);
 		// const { memberId } = decodedPayload;
 		// const { petsitterId } = decodedPayload;
