@@ -36,7 +36,7 @@ export class AuthService {
 		console.log('email', email);
 
 		const user = await this.AuthRepository.findByEmail(email);
-		console.log('user', user);
+
 		return {
 			email: user.email,
 			name: user.name
