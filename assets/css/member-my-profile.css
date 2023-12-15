@@ -1,0 +1,25 @@
+body {
+	display: flex;
+	height: 100vh;
+	margin: 0;
+}
+
+.container {
+	margin: 4rem auto 0 auto;
+	display: flex;
+	width: fit-content;
+	height: 45%;
+	padding: 2rem;
+	border: 1px solid #d9d9d9;
+	margin-top: 13.5%;
+	border: 1px solid #82d9fa;
+}
+
+#my-profile-form {
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 0;
+	margin-left: 2rem;
+}

@@ -1,9 +1,16 @@
-<!doctype html>
+<!-- <!doctype html>
 <html lang="ko">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../../assets/js/petSitter-sign-up.js"></script>
+		<link rel="stylesheet" href="../../assets/css/signup.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
 		<title>회원가입</title>
 	</head>
 	<body>
@@ -38,5 +45,85 @@
 		<input type="text" id="availableAddress" placeholder="가능한 주소를 입력하세요." />
 
 		<button type="button" onclick="signup()">회원가입</button>
+	</body>
+</html> -->
+
+<!doctype html>
+<html lang="ko">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<script src="../../assets/js/petSitter-sign-up.js"></script>
+		<link rel="stylesheet" href="../../assets/css/signup.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+		<title>펫시터 회원가입</title>
+	</head>
+	<body>
+		<div class="sign-up-container">
+			<div id="gif-box">
+				<img
+					src="https://images.unsplash.com/photo-1702559558083-b2e3193ddc07?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwzfHx8ZW58MHx8fHx8"
+					alt=""
+				/>
+			</div>
+			<form id="signup-form">
+				<label>
+					<h2>펫시터 회원가입</h2>
+				</label>
+				<label class="input-wrap">
+					<span>* Email</span>
+					<input type="email" id="email" />
+				</label>
+				<label class="input-wrap">
+					<span>* password</span>
+					<input type="password" id="password" />
+				</label>
+				<label class="input-wrap">
+					<span>* password</span>
+					<input type="password" id="confirmPassword" />
+				</label>
+				<label class="input-wrap">
+					<span>* Name</span>
+					<input type="text" id="name" />
+				</label>
+				<label class="input-wrap">
+					<span>* Age</span>
+					<input type="number" id="age" />
+				</label>
+				<label class="input-wrap">
+					<span>* Image</span>
+					<input type="text" id="imagePath" />
+				</label>
+				<label class="input-wrap">
+					<span>* selfIntro</span>
+					<input type="text" id="selfIntro" />
+				</label>
+				<label class="input-wrap">
+					<span>* availableAddress</span>
+					<input type="text" id="availableAddress" />
+				</label>
+				<label class="input-wrap">
+					<span>* availablePet</span>
+					<input type="text" id="availablePet" />
+				</label>
+				<label class="input-wrap">
+					<span>* certificate </span>
+					<input type="text" id="certificate" />
+				</label>
+				<button
+					type="button"
+					class="btn btn-outline-secondary login-btn"
+					style="width: 28%; height: 40px"
+					onclick="signup()"
+				>
+					회원가입
+				</button>
+			</form>
+		</div>
 	</body>
 </html>

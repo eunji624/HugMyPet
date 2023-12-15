@@ -14,7 +14,7 @@ async function signup() {
 		alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 		return;
 	}
-
+	console.log('haha');
 	// 서버로 전송할 데이터 생성
 	const petsitterInfo = {
 		name: name,
@@ -28,27 +28,28 @@ async function signup() {
 		selfIntro: selfIntro,
 		certificate: certificate
 	};
-	console.log(petsitterInfo);
-	// 서버로 데이터 전송
-	fetch('http://localhost:3000/api/sign-up/pet-sitters', {
-		method: 'POST',
-		headers: {
-			'Content-Type': 'application/json'
-		},
-		body: JSON.stringify(petsitterInfo)
-	})
-		.then((response) => response.json())
-		.then((result) => {
-			console.log(result);
-			if (result.success) {
-				alert(`${result.message}`);
-				window.location.href = 'main';
-			} else {
-				alert(`${result.message}`);
-				window.location.href = 'petsitter-sign-up';
-			}
-		})
-		.catch((error) => {
-			console.error('회원가입 실패:', error);
+	try {
+		// 서버로 데이터 전송
+		const petsitterSignUp = await fetch('http://localhost:3000/api/sign-up/pet-sitters', {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify(petsitterInfo)
 		});
+
+		const petsitterSignUpResult = await petsitterSignUp.json();
+
+		if (petsitterSignUpResult.success) {
+			alert(petsitterSignUpResult.message);
+
+			window.location.href = '/';
+			return;
+		} else {
+			alert(petsitterSignUpResult.message);
+			return;
+		}
+	} catch (error) {
+		console.error('회원가입 실패:', error);
+	}
 }

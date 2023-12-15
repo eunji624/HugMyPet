@@ -68,6 +68,7 @@
 .this-month {
 	width: 45%;
 	background-color: #feeb84;
+	border-radius: 25px;
 }
 
 .next-month {

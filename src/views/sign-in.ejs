@@ -4,14 +4,51 @@
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../../assets/js/sign-in.js"></script>
+		<link rel="stylesheet" href="../../assets/css/login.css" />
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
 		<title>로그인</title>
 	</head>
 	<body>
-		<label for="email" name="email">이메일:</label>
-		<input type="email" id="email" placeholder="이메일을 입력하세요." />
-		<label for="password" name="password">비밀번호:</label>
-		<input type="password" id="password" placeholder="비밀번호를 입력하세요." />
-		<button type="button" onclick="signIn()">로그인</button>
-		<!-- 가나다라마바사 -->
+		<div class="login_container">
+			<div id="gif-box">
+				<div>
+					<img
+						src="https://plus.unsplash.com/premium_photo-1700567963303-1b83673c52a4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
+						alt=""
+					/>
+				</div>
+			</div>
+			<form id="login-form">
+				<label class="loginInput-wrap1">
+					<h1>Hello,</h1>
+					<h2>로그인을 하세요!</h2>
+				</label>
+				<label class="loginInput-wrap">
+					<span>* Email</span>
+					<input type="email" id="email" class="input" />
+				</label>
+				<label class="loginInput-wrap">
+					<span>* Password</span>
+					<input type="password" id="password" class="input" />
+				</label>
+				<div class="row">
+					<div class="col text-center" id="button_margin">
+						<button
+							onclick="signIn()"
+							type="button"
+							class="btn btn-outline-secondary login-btn"
+							style="width: 28%; height: 40px"
+						>
+							로그인
+						</button>
+					</div>
+				</div>
+			</form>
+		</div>
 	</body>
 </html>
