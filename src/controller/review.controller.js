@@ -51,4 +51,16 @@ export class ReviewController {
 			next(err);
 		}
 	};
+
+	findManyReview = async (req, res, next) => {
+		try {
+			const { petSitterId } = req.params;
+
+			const petSitterReviews = await this.reviewService.findManyReview(+petSitterId);
+			res.status(200).json({ success: true, message: '펫 시터 후기 조회에 성공했습니다.', data: petSitterReviews });
+		} catch (err) {
+			console.log(err);
+			next(err);
+		}
+	};
 }

@@ -20,4 +20,10 @@ export class ReviewService {
 
 		return deleteReview;
 	};
+
+	findManyReview = async (petSitterId) => {
+		const findManyReview = await this.reviewRepository.findManyReview(petSitterId);
+
+		return findManyReview;
+	};
 }

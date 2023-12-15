@@ -103,3 +103,10 @@ DELETE http://localhost:3010/api/pet-sitters/review/3
 Content-Type: application/json
 authorization: Bearer {{token}}
 
+#
+
+###팻시터 리뷰 보여주기
+GET http://localhost:3010/api/pet-sitters/review/3
+Content-Type: application/json
+authorization: Bearer {{token}}
+

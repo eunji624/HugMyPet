@@ -53,4 +53,7 @@ router.patch('/review/:petSitterId', needSignIn, reviewController.updateReview);
 //리뷰 삭제
 router.delete('/review/:petSitterId', needSignIn, reviewController.deleteReview);
 
+//리뷰 조회하기
+router.get('/review/:petSitterId', needSignIn, reviewController.findManyReview);
+
 export default router;

@@ -34,4 +34,11 @@ export class ReviewRepository {
 		});
 		return deleteReview;
 	};
+
+	findManyReview = async (petSitterId) => {
+		const findManyReview = this.prisma.petSitterReviews.findMany({
+			where: { petSitterId }
+		});
+		return findManyReview;
+	};
 }
