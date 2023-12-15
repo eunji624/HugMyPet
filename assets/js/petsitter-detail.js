@@ -1,4 +1,6 @@
 import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar } from '../../assets/js/calendar.js'
+import { getAccessToken } from './token.js';
+console.log('이것은 토큰이에요 !!!!!!!!!!!!!', getAccessToken());
 
 /* 현재 위치에서 펫시터 아이디 구하기 */
 const getPetsitterIdByPath = () => {
@@ -14,7 +16,7 @@ const petSitterId = getPetsitterIdByPath();
 const getDetailPetsitterById = async (petSitterId) => {
   try {
     const result = await fetch(`/api/reservation/${petSitterId}`, {
-      method: 'GET'
+      method: 'GET',
     })
       .then(res => res.json())
       .catch(err => err)
@@ -93,9 +95,42 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
   };
 };
 
+
+/* 예약하는 함수 */
+const setReservationByPetSitterIdAndDates = async (petSitterId) => {
+  try {
+
+    const token = getAccessToken();
+    console.log('token: ', token);
+    if (!token) {
+      alert('로그인 후 이용 가능합니다.');
+    };
+
+    const inputDates = $('.dates-input').val();
+    console.log('inputDates: ', inputDates);
+
+    await fetch(`/api/reservation/contract/${petSitterId}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify({ availableDate: [inputDates] })
+    });
+
+  } catch (err) {
+    console.error(err)
+
+  }
+}
+
+/* 예약하기 버튼 클릭 시 예약 함수 실행 */
+$('.dates-btn').on('click', await setReservationByPetSitterIdAndDates(petSitterId))
+
+
+
 const petSitterSchedules = await getAvailableDatesBypetSitterId(petSitterId)
 const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
-
 
 drawThisMonthAvailableDatesCalendar(availableDates);
 drawNextMonthAvailableDatesCalendar(availableDates);

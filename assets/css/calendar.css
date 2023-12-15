@@ -63,7 +63,7 @@
 	width: calc(100% / 7);
 	text-align: left;
 	color: #999;
-	font-size: 12px;
+	font-size: 20px;
 	text-align: center;
 	border-radius: 5px;
 }
@@ -72,6 +72,7 @@
 	display: flex;
 	flex-flow: wrap;
 	height: 90%;
+	font-size: large;
 }
 
 .sec_cal .cal_wrap .next-dates {
@@ -89,11 +90,7 @@
 }
 
 .sec_cal .cal_wrap .day.disable {
-	color: #ddd;
-}
-
-.day.current._active._on {
-	background-color: #cbf0ff;
+	color: #cbcbcb;
 }
 
 .day.current._active {

@@ -32,18 +32,12 @@ export function drawThisMonthAvailableDatesCalendar(availableDates) {
   }
   // 이번달
   for (let i = 1; i <= nextDate; i++) {
-    calendar.append(`<div class="day current" id=${currentYear}-${currentMonth + 1}-${i}>` + i + '</div>');
+    let newDate = i < 10 ? `0${i}` : i;
+    calendar.append(`<div class="day current" id=${currentYear}-${currentMonth + 1}-${newDate}>` + i + '</div>');
   }
   // 다음달
   for (let i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
     calendar.append('<div class="day next disable">' + i + '</div>');
-  }
-
-  // 오늘 날짜 표기
-  if (today.getMonth() == currentMonth) {
-    const todayDate = today.getDate();
-    const currentMonthDate = $('.dates .current');
-    currentMonthDate.eq(todayDate - 1).addClass('today');
   }
 
 
@@ -52,7 +46,10 @@ export function drawThisMonthAvailableDatesCalendar(availableDates) {
     $(`#${date}`).addClass('_active');
   })
 
-  $('.day.current._active').on('click', function () { $(this).toggleClass('_on'); })
+  $('.day.current._active').on('click', function () {
+    $(this).toggleClass('_on');
+    getSummitDates()
+  })
 };
 
 
@@ -92,7 +89,6 @@ export function drawNextMonthAvailableDatesCalendar(availableDates) {
 
   // 지난달
   for (let i = prevDate - prevDay + 1; i <= prevDate; i++) {
-    i = i.length === 2 ? i : `0${i}`;
     calendar.append('<div class="nextmonth day prev disable">' + i + '</div>');
   }
   // 이번달
@@ -102,15 +98,54 @@ export function drawNextMonthAvailableDatesCalendar(availableDates) {
   }
   // 다음달
   for (let i = 1; i <= (7 - nextDay == 7 ? 0 : 7 - nextDay); i++) {
-    i = i.length === 2 ? i : `0${i}`;
     calendar.append('<div class="nextmonth day next disable">' + i + '</div>');
   }
-
 
   /* 예약 가능 날짜 활성화 하기 */
   availableDates.forEach(date => {
     $(`#${date}`).addClass('_active');
   })
 
-  $('.day.current._active').on('click', function () { $(this).toggleClass('_on'); })
+  $('.nextmonth.day.current._active').on('click', function () {
+    $(this).toggleClass('_on');
+    getSummitDates()
+  })
 };
+
+
+/* 활성화 된 날짜 클릭 시 Input에 날짜들 올리기 */
+export const getSummitDates = async () => {
+  // 기존 입력란의 값을 가져오기
+  let currentInputValue = $('.dates-input').val();
+
+  // _on 클래스를 가진 요소의 ID 값 가져오기
+  let chosenDateElement = $('._on');
+
+  // 선택된 날짜가 있는지 확인
+  if (chosenDateElement.length > 0) {
+    let chosenDate = chosenDateElement.attr('id');
+
+    // 이미 선택된 날짜인지 확인
+    let isAlreadySelected = currentInputValue && currentInputValue.includes(chosenDate);
+
+    // 이미 선택된 날짜라면 제거, 아니라면 추가
+    let newInputValue = isAlreadySelected
+      ? currentInputValue.replace(chosenDate, '').replace(/\s*,\s*$/, '').replace(/^\s*,\s*/, '')
+      : currentInputValue
+        ? `${currentInputValue}, ${chosenDate}`
+        : chosenDate;
+
+    // 입력란에 누적된 값을 설정
+    $('.dates-input').val(newInputValue);
+
+    // _on 클래스를 토글하여 선택 상태 해제
+    chosenDateElement.toggleClass('_on');
+
+    // 선택된 날짜에 대한 배경색 변경
+    chosenDateElement.css('background-color', isAlreadySelected ? '' : '#93e1ff');
+  };
+};
+
+
+
+

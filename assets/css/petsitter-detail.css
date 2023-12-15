@@ -47,8 +47,8 @@
 
 .reservation-wrab {
 	width: 1680px;
-	height: 800px;
-	margin: 0 auto;
+	height: 1000px;
+	margin: 0 auto 50px;
 	display: flex;
 	flex-direction: column;
 }
@@ -59,7 +59,7 @@
 }
 
 .reservation-calendar-wrab {
-	height: 90%;
+	height: 100%;
 	display: flex;
 	flex-direction: row;
 	justify-content: space-around;
@@ -73,7 +73,8 @@
 
 .next-month {
 	width: 45%;
-	background-color: #e5e5e5;
+	background-color: #d1e6ee;
+	border-radius: 25px;
 }
 
 .input-dates-wrab {
@@ -85,10 +86,11 @@
 
 .dates-input {
 	height: 50px;
-	width: 500px;
+	width: 700px;
 	border: none;
 	border-bottom: 1px solid #c5c5c5;
 	outline: none;
+	font-size: 20px;
 }
 
 .dates-btn {
@@ -99,7 +101,7 @@
 	color: black;
 	height: 50px;
 	padding: 10px 45px;
-	font-size: 15px;
+	font-size: 20px;
 	margin-left: 15px;
 }
 
