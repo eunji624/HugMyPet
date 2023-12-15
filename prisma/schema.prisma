@@ -104,7 +104,7 @@ model PetSitterSchedules {
   petSitterId   Int                                @map("petSitterId")
   status        Status       @default(inProgress)  @map("status")
   availableDate DateTime     @db.Date              @map("availableDate")
-  memberId      Int?                                @map("memberId")
+  memberId      Int?                               @map("memberId")
   createdAt     DateTime     @default(now())       @map("createdAt")
   updatedAt     DateTime     @default(now())       @map("updatedAt")
 

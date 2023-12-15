@@ -1,143 +1,139 @@
 body {
-  display: flex; /* Flexbox를 활성화합니다. */
-  height: 100vh; /* 높이를 뷰포트의 100%로 설정합니다. */
-  margin: 0; /* 바디의 마진을 0으로 설정합니다. */
-  align-items: stretch; /* Flex 아이템들이 컨테이너를 꽉 채우도록 합니다. */
+	display: flex; /* Flexbox를 활성화합니다. */
+	height: 100vh; /* 높이를 뷰포트의 100%로 설정합니다. */
+	margin: 0; /* 바디의 마진을 0으로 설정합니다. */
+	align-items: stretch; /* Flex 아이템들이 컨테이너를 꽉 채우도록 합니다. */
 }
 
 .sign-up-container {
-  margin: 5% auto 0 auto;
-  display: flex;
-  width: fit-content;
-  padding: 2rem;
-  border: 1px solid #d9d9d9;
-  height: 620px;
+	margin: 5% auto 0 auto;
+	display: flex;
+	width: fit-content;
+	padding: 2rem;
+	height: 800px;
+	border: solid 1px #82d9fa;
 }
 
 .other-container {
-  margin: 8% auto 0px 0px;
+	margin: 8% auto 0px 0px;
 }
 
-
-
 .input-wrap {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #d9d9d9;
-  padding: 0.8%;
-  border-radius: 10px;
-  width: 360px;
-  max-height: 70px;
-  margin-bottom: 1rem;
+	display: flex;
+	flex-direction: column;
+	border: 1px solid #d9d9d9;
+	padding: 0.8%;
+	border-radius: 10px;
+	width: 360px;
+	max-height: 70px;
+	margin-bottom: 1rem;
 }
 
 .input-wrap span {
-  font-size: 11.5px;
-  color: #9f9f9e;
-  width: 100%;
+	font-size: 11.5px;
+	color: #9f9f9e;
+	width: 100%;
 }
 
 .input-wrap input {
-  border: none;
-  outline: none;
-  width: 100%;
-  font-size: 16px;
+	border: none;
+	outline: none;
+	width: 100%;
+	font-size: 16px;
 }
 
-.input-wrap div{
-  display: flex;
-  flex-direction: column;
-  flex: 1;
+.input-wrap div {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
-.input-wrap label{
-  width: 100%;
+.input-wrap label {
+	width: 100%;
 }
 
-
-
-.input-wrap.email{
-  width: 100%;
-  flex-direction: row;
-  display: flex;
+.input-wrap.email {
+	width: 100%;
+	flex-direction: row;
+	display: flex;
 }
-.input-wrap.email input{
-  width: 260px;
+.input-wrap.email input {
+	width: 260px;
 }
-.input-wrap.email button{
-  width: 60px;
+.input-wrap.email button {
+	width: 60px;
 }
 
-.input-wrap.email-check{
-  width: 100%;
-  flex-direction: row;
-  display: flex;
-  margin-bottom: 0;
+.input-wrap.email-check {
+	width: 100%;
+	flex-direction: row;
+	display: flex;
+	margin-bottom: 0;
 }
-.input-wrap.email-check input{
-  width: 260px;
+.input-wrap.email-check input {
+	width: 260px;
 }
-.input-wrap.email-check button{
-  width: 60px;
-}
-
-.email-check-wrap{
-  margin-bottom: 1rem;
+.input-wrap.email-check button {
+	width: 60px;
 }
 
-.check-message{
-  font-size: 11.5px;
-  margin-top: 0.3rem;
+.email-check-wrap {
+	margin-bottom: 1rem;
 }
 
-.check-message.error{
-  color: red;
+.check-message {
+	font-size: 11.5px;
+	margin-top: 0.3rem;
 }
 
-.check-message.success{
-  color: lightblue;
+.check-message.error {
+	color: red;
 }
 
-.email-check-wrap.disabled{
-  margin-bottom: 0;
+.check-message.success {
+	color: lightblue;
 }
 
-.email-check-wrap.disabled .input-wrap.email-check{
-  border: none;
-  margin: 0;
-  padding: 0;
-  height: 0px;
+.email-check-wrap.disabled {
+	margin-bottom: 0;
 }
 
-.email-check-wrap.disabled .input-wrap.email-check  input{
-  display: none;
+.email-check-wrap.disabled .input-wrap.email-check {
+	border: none;
+	margin: 0;
+	padding: 0;
+	height: 0px;
 }
 
-.email-check-wrap.disabled .input-wrap.email-check  span{
-  display: none;
+.email-check-wrap.disabled .input-wrap.email-check input {
+	display: none;
 }
 
-.email-check-wrap.disabled .input-wrap.email-check button{
-  display: none;
+.email-check-wrap.disabled .input-wrap.email-check span {
+	display: none;
 }
 
-.password-check-wrap{
-  margin-bottom: 1rem;
+.email-check-wrap.disabled .input-wrap.email-check button {
+	display: none;
 }
 
-.password-check-wrap .input-wrap{
-  margin-bottom: 0;
+.password-check-wrap {
+	margin-bottom: 1rem;
+}
+
+.password-check-wrap .input-wrap {
+	margin-bottom: 0;
 }
 
 #button_margin {
-  display: flex;
+	display: flex;
 }
 
 #signup-form {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 0;
-  margin-left: 4rem;
-  height: 100%;
+	flex: 1;
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 0;
+	margin-left: 4rem;
+	height: 100%;
 }

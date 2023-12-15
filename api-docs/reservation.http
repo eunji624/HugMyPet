@@ -1,4 +1,7 @@
+
 @token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjI4ODEwLCJleHAiOjE3MDI2MzI0MTB9.9_dAAN9MzayPW1aPLQ8QqIwmBoPympy03yjzDgsDfWM
+
+
 
 ###테스트 데이터 넣기
 POST http://localhost:3010/api/pet-sitters/petSitter/post 
