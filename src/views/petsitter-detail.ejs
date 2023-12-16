@@ -84,24 +84,36 @@
 			<div class="detail-comments">
 				<h2 class="detail-comments-title">펫시터에 대한 후기를 남겨주세요</h2>
 				<form class="comment-input-box">
+					<div class="select-score-box">
+						<label for="score-select">평점 선택</label>
+						<select id="score-select" name="score">
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+							<option value="5">5</option>
+						</select>
+					</div>
 					<input type="text" placeholder="후기를 남겨주세요 !" class="comment-input" />
 					<button class="comment-btn">등록하기</button>
 				</form>
 				<ul class="detail-comments-lists">
-					<!-- <li class="comment">
-            <h4 class="comment-user">아이디</h4>
-            <div class="comment-text">
-              이번 프로젝트는 아주 멋지네요. 앞으로가 기대됩니다.
-            </div>
-            <div class="comment-date">2023-11-21 09:30</div>
-          </li>
-          <li class="comment">
-            <h4 class="comment-user">아이디2</h4>
-            <div class="comment-text">
-              이번 프로젝트는 멋지지 않아요. 아쉽습니다.
-            </div>
-            <div class="comment-date">2023-11-21 09:30</div>
-          </li> -->
+					<li class="comment">
+						<div class="id-score">
+							<h4 class="comment-user">아이디</h4>
+							<div class="comment-score">5</div>
+						</div>
+						<div class="comment-text">이번 프로젝트는 아주 멋지네요. 앞으로가 기대됩니다.</div>
+						<div class="comment-date">2023-11-21 09:30</div>
+					</li>
+					<li class="comment">
+						<div class="id-score">
+							<h4 class="comment-user">아이디</h4>
+							<div class="comment-score">5</div>
+						</div>
+						<div class="comment-text">이번 프로젝트는 아주 멋지네요. 앞으로가 기대됩니다.</div>
+						<div class="comment-date">2023-11-21 09:30</div>
+					</li>
 				</ul>
 			</div>
 			<!-- 댓글 끝 -->

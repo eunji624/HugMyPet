@@ -3,12 +3,11 @@ export class ReviewRepository {
 		this.prisma = prisma;
 	}
 
-	createReview = async (petSitterId, memberId, title, content, score) => {
+	createReview = async (petSitterId, memberId, content, score) => {
 		const createReview = await this.prisma.petSitterReviews.create({
 			data: {
 				petSitterId,
 				memberId,
-				title,
 				content,
 				score
 			}
@@ -32,11 +31,10 @@ export class ReviewRepository {
 		return updatePetSitterScore;
 	};
 
-	updateReview = async (reviewId, title, content, score) => {
+	updateReview = async (reviewId, content, score) => {
 		const updateReview = await this.prisma.petSitterReviews.update({
 			where: { reviewId },
 			data: {
-				title,
 				content,
 				score
 			}
@@ -44,7 +42,7 @@ export class ReviewRepository {
 		return updateReview;
 	};
 
-	deleteReview = async (reviewId, title, content, score) => {
+	deleteReview = async (reviewId) => {
 		const deleteReview = this.prisma.petSitterReviews.delete({
 			where: { reviewId }
 		});
