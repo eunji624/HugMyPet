@@ -1,4 +1,9 @@
-import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar } from '../../assets/js/calendar.js'
+import {
+	drawThisMonthAvailableDatesCalendar,
+	drawNextMonthAvailableDatesCalendar,
+	toDeactivateAvailableDates,
+	toDeactivateAvailableNextMonthDates
+} from '../../assets/js/calendar.js'
 import { getAccessToken } from './token.js';
 
 const token = getAccessToken();
@@ -32,6 +37,7 @@ if (!petsitter) {
 
 /* 펫시터 정보 HTML로 뿌리기 */
 const spreadPetSitterProfile = async (petsitter) => {
+	console.log('petsitter: ', petsitter);
 	const profileDiv = $(".petsitter-profile-wrab");
 	profileDiv.empty();
 
@@ -90,47 +96,50 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
 };
 
 
-/* 예약하는 함수 */
-const setReservationByPetSitterIdAndDates = async (petSitterId) => {
+
+
+/* 스케쥴 추가하기 달력 관련 함수 */
+const petSitterSchedules = await getAvailableDatesBypetSitterId(petsitter.petSitterId)
+const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
+
+// 이번달 달력 그려주기
+drawThisMonthAvailableDatesCalendar(availableDates);
+// 이번달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기 
+toDeactivateAvailableDates(availableDates);
+// 다음달 달력 그려주기
+drawNextMonthAvailableDatesCalendar(availableDates);
+// 다음달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기
+toDeactivateAvailableNextMonthDates(availableDates);
+
+
+/* 스케쥴 추가하기 */
+const addReservationSchedule = async () => {
 	try {
-
 		const token = getAccessToken();
-		console.log('token: ', token);
 		if (!token) {
-			return alert('로그인 후 이용 가능합니다.');
-		};
+			alert('로그인 후 이용 가능합니다.');
+			window.location.href = "/petsitter-sign-in";
+		}
 
-		const inputDates = $('.dates-input').val();
-		console.log('inputDates: ', inputDates);
+		const inputDates = $('.dates-input.add-dates').val();
 
-		await fetch(`/api/reservation/contract/${petSitterId}`, {
+		const result = await fetch('/api/schedule', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
 				Authorization: `Bearer ${token}`
 			},
-			body: JSON.stringify({ availableDate: [inputDates] })
+			body: JSON.stringify({ dates: inputDates })
 		});
-
-		alert("예약에 성공했습니다.");
-
 	} catch (err) {
-		console.error(err)
-
+		console.error(err);
 	}
+
 }
 
-/* 예약하기 버튼 클릭 시 예약 함수 실행 */
-$('.dates-btn').on('click', async (event) => {
+/* 추가하기 버튼 클릭 시 스케쥴 추가 함수 실행 */
+$('.dates-add-btn').on('click', async (event) => {
 	event.preventDefault();
-	await setReservationByPetSitterIdAndDates(petSitterId);
+	await addReservationSchedule();
 	location.reload();
 });
-
-
-
-const petSitterSchedules = await getAvailableDatesBypetSitterId(petSitterId)
-const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
-
-drawThisMonthAvailableDatesCalendar(availableDates);
-drawNextMonthAvailableDatesCalendar(availableDates);

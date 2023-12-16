@@ -32,14 +32,15 @@ export class PetsitterScheduleRepository {
 
 
   addSchedulesByDates = async (datesArr, petSitterId) => {
-    await Promise.all(datesArr.map(async (date) => {
+    for (const date of datesArr) {
+      console.log("레포지토리입니다.", new Date(date));
       await prisma.PetSitterSchedules.create({
         data: {
           petSitterId,
           availableDate: new Date(date),
         },
       });
-    }));
+    }
   };
 
 

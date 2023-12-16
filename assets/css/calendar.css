@@ -97,3 +97,8 @@
 	background: rgb(242 242 242);
 	cursor: pointer;
 }
+
+.day.current._available {
+	background: rgb(242 242 242);
+	cursor: pointer;
+}

@@ -18,13 +18,15 @@ export class PetsitterScheduleController {
 	setSchedules = async (req, res, next) => {
 		try {
 			const { dates } = req.body;
+			console.log('프론트에서 어떻게 받는지 보고 싶네요 : ', dates);
 			const { petSitterId } = res.locals.user;
 
 			if (!dates) {
 				throw Error('스케쥴을 입력해주세요.');
 			}
 
-			const datesArr = dates.split(',');
+			const datesArr = dates.split(', ');
+			console.log('컨트롤러의 데이터 어레이 입니다. ', datesArr);
 
 			/* 해당일(오늘) 이전 날짜/30일 이후는 예약 가능 스케쥴로 등록 불가 */
 			datesArr.forEach((date) => {
