@@ -5,7 +5,7 @@ import { registerValidation } from '../middlewares/joiValidation.js';
 const petsitterAuthController = new PetsitterAuthController();
 const authController = new AuthController();
 const router = express.Router();
-
+// merge
 /* 유저 */
 router.post('/users', authController.signUp);
 
