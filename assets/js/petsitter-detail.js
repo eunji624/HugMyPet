@@ -103,7 +103,7 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
     const token = getAccessToken();
     console.log('token: ', token);
     if (!token) {
-      alert('로그인 후 이용 가능합니다.');
+      return alert('로그인 후 이용 가능합니다.');
     };
 
     const inputDates = $('.dates-input').val();
@@ -118,6 +118,8 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
       body: JSON.stringify({ availableDate: [inputDates] })
     });
 
+    alert("예약에 성공했습니다.");
+
   } catch (err) {
     console.error(err)
 
@@ -125,7 +127,11 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
 }
 
 /* 예약하기 버튼 클릭 시 예약 함수 실행 */
-$('.dates-btn').on('click', await setReservationByPetSitterIdAndDates(petSitterId))
+$('.dates-btn').on('click', async (event) => {
+  event.preventDefault();
+  await setReservationByPetSitterIdAndDates(petSitterId);
+  location.reload();
+});
 
 
 

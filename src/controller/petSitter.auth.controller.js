@@ -122,7 +122,7 @@ export class PetsitterAuthController {
 					email: user.email,
 					role: 'Pet-Sitter'
 				},
-				process.env.JWT_SECREAT,
+				process.env.JWT_SECRET,
 				{
 					expiresIn: '1h'
 				}
@@ -207,7 +207,8 @@ export class PetsitterAuthController {
 
 			return res.status(200).json({
 				success: true,
-				message: { user }
+				message: "정보 조회에 성공했습니다.",
+				data: user
 			});
 		} catch (error) {
 			next(error);

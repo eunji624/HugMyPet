@@ -1,39 +1,132 @@
 <!doctype html>
-<html lang="ko">
+<html lang="en">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script src="../../assets/js/petSitter-my-profile.js" defer></script>
-		<script src="../../assets/js/pet-sitters-sign-out.js" defer></script>
-		<link rel="stylesheet" href="../../assets/css/member-my-profile.css" />
-		<link
-			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-			rel="stylesheet"
-			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
-			crossorigin="anonymous"
-		/>
-		<title>펫시터 정보 조회</title>
+		<title>Pet-Sitter</title>
+		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/petsitter-detail.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/calendar.css" />
+		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+		<script type="module" src="../../assets/js/petSitter-my-profile.js"></script>
 	</head>
 	<body>
-		<div class="container">
-			<div id="gif-box">
-				<div>
-					<img
-						src="https://plus.unsplash.com/premium_photo-1700567963303-1b83673c52a4?w=400&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHx8"
-						alt=""
-					/>
+		<header class="header"><%- include('header.ejs') %></header>
+		<main>
+			<!-- 프로필 보드 시작 -->
+			<div class="petsitter-profile-wrab">
+				<!-- <div class="pet-sitter-img-wrab">
+					<img src="../../assets/Img/6.png" alt="PetSitter-Img" class="petsitter-img" />
+				</div>
+				<div class="petsitter-info-wrab">
+					<div class="petsitter-info-top">
+						<div class="petsitter-name">이름입니다.</div>
+						<div class="petsitter-address">주소 입니다.</div>
+						<div class="available-pet-wrab">Dog</div>
+					</div>
+					<div class="petsitter-info-bottom">
+						<div class="petsitter-intro">여기에 자기소개가 들어갑니다.</div>
+					</div>
+				</div> -->
+			</div>
+			<!-- 프로필 보드 끝 -->
+			<!-- 스케쥴 추가 시작 -->
+			<div class="reservation-wrab">
+				<h2 class="reservation-title">예약 가능 스케쥴 추가하기</h2>
+				<form class="input-dates-wrab">
+					<input type="text" placeholder="날짜를 클릭하세요 !" class="dates-input" readonly />
+					<button class="dates-btn">추가하기</button>
+				</form>
+				<div class="reservation-calendar-wrab">
+					<div class="this-month">
+						<div class="sec_cal">
+							<div class="cal_nav">
+								<div class="year-month"></div>
+							</div>
+							<div class="cal_wrap">
+								<div class="days">
+									<div class="day">MON</div>
+									<div class="day">TUE</div>
+									<div class="day">WED</div>
+									<div class="day">THU</div>
+									<div class="day">FRI</div>
+									<div class="day">SAT</div>
+									<div class="day">SUN</div>
+								</div>
+								<div class="dates"></div>
+							</div>
+						</div>
+					</div>
+					<div class="next-month">
+						<div class="sec_cal">
+							<div class="cal_nav">
+								<div class="next-year-month"></div>
+							</div>
+							<div class="cal_wrap">
+								<div class="days">
+									<div class="day">MON</div>
+									<div class="day">TUE</div>
+									<div class="day">WED</div>
+									<div class="day">THU</div>
+									<div class="day">FRI</div>
+									<div class="day">SAT</div>
+									<div class="day">SUN</div>
+								</div>
+								<div class="next-dates"></div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<form id="my-profile-form">
-				<div id="email"></div>
-				<div id="name"></div>
-				<div id="selfIntro"></div>
-				<div id="certificate"></div>
-				<div id="availableAddress"></div>
-				<!-- <button id="signOut_btn" class="btn btn-outline-secondary" style="width: 40%; height: 40px" onclick="signOut()">
-					회원탈퇴
-				</button> -->
-			</form>
-		</div>
+			<!-- 스케쥴 삭제 시작-->
+			<div class="reservation-wrab">
+				<h2 class="reservation-title">예약 가능 스케쥴 삭제하기</h2>
+				<form class="input-dates-wrab">
+					<input type="text" placeholder="날짜를 클릭하세요 !" class="dates-input" readonly />
+					<button class="dates-btn">삭제하기</button>
+				</form>
+				<div class="reservation-calendar-wrab">
+					<div class="this-month">
+						<div class="sec_cal">
+							<div class="cal_nav">
+								<div class="year-month"></div>
+							</div>
+							<div class="cal_wrap">
+								<div class="days">
+									<div class="day">MON</div>
+									<div class="day">TUE</div>
+									<div class="day">WED</div>
+									<div class="day">THU</div>
+									<div class="day">FRI</div>
+									<div class="day">SAT</div>
+									<div class="day">SUN</div>
+								</div>
+								<div class="dates"></div>
+							</div>
+						</div>
+					</div>
+					<div class="next-month">
+						<div class="sec_cal">
+							<div class="cal_nav">
+								<div class="next-year-month"></div>
+							</div>
+							<div class="cal_wrap">
+								<div class="days">
+									<div class="day">MON</div>
+									<div class="day">TUE</div>
+									<div class="day">WED</div>
+									<div class="day">THU</div>
+									<div class="day">FRI</div>
+									<div class="day">SAT</div>
+									<div class="day">SUN</div>
+								</div>
+								<div class="next-dates"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- 달력 끝 -->
+		</main>
 	</body>
 </html>
