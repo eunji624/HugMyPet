@@ -5,7 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<title>Pet-Sitter</title>
 		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
-		<link rel="stylesheet" type="text/css" href="../../assets/css/petsitter-detail.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/petsitter-profile.css" />
 		<link rel="stylesheet" type="text/css" href="../../assets/css/calendar.css" />
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 		<script type="module" src="../../assets/js/petSitter-my-profile.js"></script>
@@ -32,7 +32,7 @@
 			<!-- 프로필 보드 끝 -->
 			<!-- 스케쥴 추가 시작 -->
 			<div class="reservation-wrab">
-				<h2 class="reservation-title">예약 가능 스케쥴 추가하기</h2>
+				<h2 class="reservation-add-title">예약 가능 스케쥴 추가하기</h2>
 				<form class="input-dates-wrab">
 					<input type="text" placeholder="날짜를 클릭하세요 !" class="dates-input add-dates" readonly />
 					<button class="dates-add-btn">추가하기</button>
@@ -80,10 +80,10 @@
 			</div>
 			<!-- 스케쥴 삭제 시작-->
 			<div class="reservation-wrab">
-				<h2 class="reservation-title">예약 가능 스케쥴 삭제하기</h2>
+				<h2 class="reservation-delete-title">예약 가능 스케쥴 삭제하기</h2>
 				<form class="input-dates-wrab">
-					<input type="text" placeholder="날짜를 클릭하세요 !" class="dates-input" readonly />
-					<button class="dates-btn">삭제하기</button>
+					<input type="text" placeholder="날짜를 클릭하세요 !" class="dates-input delete-dates" readonly />
+					<button class="dates-btn delete">삭제하기</button>
 				</form>
 				<div class="reservation-calendar-wrab">
 					<div class="this-month">
@@ -101,7 +101,7 @@
 									<div class="day">SAT</div>
 									<div class="day">SUN</div>
 								</div>
-								<div class="dates"></div>
+								<div class="dates-delete"></div>
 							</div>
 						</div>
 					</div>
@@ -120,7 +120,7 @@
 									<div class="day">SAT</div>
 									<div class="day">SUN</div>
 								</div>
-								<div class="next-dates"></div>
+								<div class="next-dates-delete"></div>
 							</div>
 						</div>
 					</div>

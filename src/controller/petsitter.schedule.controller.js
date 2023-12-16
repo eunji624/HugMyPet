@@ -36,7 +36,7 @@ export class PetsitterScheduleController {
 				const thirtyDaysLater = new Date();
 				thirtyDaysLater.setDate(currentDate.getDate() + 30);
 
-				if (inputDate < currentDate || inputDate > thirtyDaysLater) {
+				if (inputDate + 1 < currentDate || inputDate > thirtyDaysLater) {
 					throw new Error('과거 날짜이거나 30일 이후의 날짜는 스케쥴로 등록할 수 없습니다.');
 				}
 			});
@@ -64,10 +64,11 @@ export class PetsitterScheduleController {
 
 	deleteSchedule = async (req, res, next) => {
 		try {
-			const { scheduleId } = req.params;
+			const { scheduleIds } = req.body;
+			console.log('컨트롤러에서는 어떤 식? ', scheduleIds);
 			const { petSitterId } = res.locals.user;
 
-			await this.petSitterScheduleService.deleteScheduleByScheduleId(scheduleId, petSitterId);
+			await this.petSitterScheduleService.deleteScheduleByScheduleId(scheduleIds, petSitterId);
 
 			return res.status(200).json({ sucess: 'true', message: '스케쥴 삭제에 성공했습니다.' });
 		} catch (err) {

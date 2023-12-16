@@ -1,8 +1,12 @@
 import {
 	drawThisMonthAvailableDatesCalendar,
 	drawNextMonthAvailableDatesCalendar,
-	toDeactivateAvailableDates,
-	toDeactivateAvailableNextMonthDates
+	toActivateAddThisMonthDates,
+	toActivateAddNextMonthDates,
+	drawThisMontDelteDatesCalendar,
+	toActivateDeleteDates,
+	drawNextMonthDeleteDatesCalendar,
+	toActivateDeleteNextMonthDates
 } from '../../assets/js/calendar.js'
 import { getAccessToken } from './token.js';
 
@@ -96,20 +100,22 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
 };
 
 
-
-
 /* 스케쥴 추가하기 달력 관련 함수 */
 const petSitterSchedules = await getAvailableDatesBypetSitterId(petsitter.petSitterId)
+console.log('petSitterSchedules: ', petSitterSchedules);
+
 const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
 
-// 이번달 달력 그려주기
-drawThisMonthAvailableDatesCalendar(availableDates);
-// 이번달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기 
-toDeactivateAvailableDates(availableDates);
-// 다음달 달력 그려주기
-drawNextMonthAvailableDatesCalendar(availableDates);
-// 다음달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기
-toDeactivateAvailableNextMonthDates(availableDates);
+// 수정용 이번달 달력 그려주기
+drawThisMonthAvailableDatesCalendar();
+// 이번달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기 (수정)
+toActivateAddThisMonthDates(availableDates);
+
+// 수정용 다음달 달력 그려주기
+drawNextMonthAvailableDatesCalendar();
+// 다음달 달력에서 추가 가능한 날 표기하고, 클릭 시 인풋에 넣기 (수정)
+toActivateAddNextMonthDates(availableDates);
+
 
 
 /* 스케쥴 추가하기 */
@@ -123,7 +129,7 @@ const addReservationSchedule = async () => {
 
 		const inputDates = $('.dates-input.add-dates').val();
 
-		const result = await fetch('/api/schedule', {
+		await fetch('/api/schedule', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json',
@@ -141,5 +147,72 @@ const addReservationSchedule = async () => {
 $('.dates-add-btn').on('click', async (event) => {
 	event.preventDefault();
 	await addReservationSchedule();
+	location.reload();
+});
+
+
+
+// 삭제용 이번달 달력 그려주기
+drawThisMontDelteDatesCalendar()
+toActivateDeleteDates(petSitterSchedules)
+
+// 삭제용 다음달 달력 그려주기
+drawNextMonthDeleteDatesCalendar()
+toActivateDeleteNextMonthDates(petSitterSchedules)
+
+
+/* 선택한 날짜의 id 값을 찾는 함수 */
+const selectedScheduleIds = []; // 선택한 날짜의 scheduleId를 저장할 배열
+
+
+$('._delete').on('click', function () {
+	const scheduleId = $(this).data('schedule-id');
+
+	// 이미 선택된 날짜인지 확인
+	const isSelected = selectedScheduleIds.includes(scheduleId);
+
+	if (isSelected) {
+		// 이미 선택된 날짜를 다시 클릭하여 해제할 경우 배열에서 제거
+		const index = selectedScheduleIds.indexOf(scheduleId);
+		if (index !== -1) {
+			selectedScheduleIds.splice(index, 1);
+		}
+	} else {
+		// 선택되지 않은 날짜를 클릭하여 선택할 경우 배열에 추가
+		selectedScheduleIds.push(scheduleId);
+	}
+	console.log('selectedScheduleIds: ', selectedScheduleIds);
+})
+
+
+
+/* 스케쥴 삭제하기 */
+const deleteReservationSchedule = async (selectedScheduleIds) => {
+	console.log('프론트에서 이거 넘겨줍니다. ', selectedScheduleIds);
+	try {
+		const token = getAccessToken();
+		if (!token) {
+			alert('로그인 후 이용 가능합니다.');
+			window.location.href = "/petsitter-sign-in";
+		}
+
+		await fetch('/api/schedule', {
+			method: 'DELETE',
+			headers: {
+				'Content-Type': 'application/json',
+				Authorization: `Bearer ${token}`
+			},
+			body: JSON.stringify({ scheduleIds: selectedScheduleIds })
+		});
+	} catch (err) {
+		console.error(err);
+	}
+
+}
+
+/* 삭제하기 버튼 클릭 시 스케쥴 추가 함수 실행 */
+$('.dates-btn.delete').on('click', async (event) => {
+	event.preventDefault();
+	await deleteReservationSchedule(selectedScheduleIds);
 	location.reload();
 });

@@ -19,7 +19,7 @@ scheduleRouter.put('/:scheduleId', petSitterScheduleController.updateSchedule);
 
 
 /* 스케쥴 삭제하기 */
-scheduleRouter.delete('/:scheduleId', petSitterScheduleController.deleteSchedule);
+scheduleRouter.delete('/', petSitterScheduleController.deleteSchedule);
 
 
 /* 스케쥴 삭제하기 */
