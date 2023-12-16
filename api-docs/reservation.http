@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6Iu2ajOybkCDthYzsiqTtirgiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwMjc0NDM3NCwiZXhwIjoxNzAyNzQ3OTc0fQ.GgUTRXMKdWzsgxv_ikUHDwGCIJ5SkC7M-6XxszIrg94
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6Iu2ajOybkCDthYzsiqTtirgiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwMjc0OTE0OSwiZXhwIjoxNzAyNzUyNzQ5fQ.1mk3BfaS1qHOCzXQqvpLaiYkzX3ROhgda2V32FHval0
 
 ###펫시터 리스트 출력
 GET http://localhost:3010/api/pet-sitters
@@ -74,7 +73,6 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"title": "수정2_좋아요",
 	"content": "수정2_세심하게 배려해주셧어요",
 	"score": 1
 }

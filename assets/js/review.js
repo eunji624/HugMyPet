@@ -249,3 +249,19 @@ export const editComment = async (commentElement, reviewId) => {
     commentElement.find('.edit-comment-btn, .delete-comment-btn').show();
   });
 };
+
+
+// 댓글 삭제하는 함수
+export const deleteComment = async function (reviewId, commentElement) {
+  try {
+    await fetch(`/api/pet-sitters/reviews/${reviewId}`, {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Bearer ${getAccessToken()}`,
+      },
+    });
+    commentElement.remove(); // 댓글 삭제 후 화면에서도 제거
+  } catch (error) {
+    console.error(error);
+  }
+};
