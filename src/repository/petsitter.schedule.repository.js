@@ -32,14 +32,14 @@ export class PetsitterScheduleRepository {
 
 
   addSchedulesByDates = async (datesArr, petSitterId) => {
-    await Promise.all(datesArr.map(async (date) => {
+    for (const date of datesArr) {
       await prisma.PetSitterSchedules.create({
         data: {
           petSitterId,
           availableDate: new Date(date),
         },
       });
-    }));
+    }
   };
 
 
@@ -57,13 +57,15 @@ export class PetsitterScheduleRepository {
   }
 
 
-  destroyScheduleByScheduleId = async (scheduleId, petSitterId) => {
-    await prisma.PetSitterSchedules.delete({
-      where: {
-        scheduleId: +scheduleId,
-        petSitterId
-      }
-    })
+  destroyScheduleByScheduleId = async (scheduleIds, petSitterId) => {
+    for (const scheduleId of scheduleIds) {
+      await prisma.PetSitterSchedules.delete({
+        where: {
+          scheduleId: +scheduleId,
+          petSitterId
+        }
+      })
+    }
   }
 
 }

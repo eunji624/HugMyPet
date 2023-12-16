@@ -10,20 +10,29 @@ export class ReservationService {
 		return petSitterData;
 	};
 
+
 	reservationPetSitter = async (petSitterId, userSchedule, memberId) => {
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
 
-		const stillPossibleSchedule = petSitterPossibleSchedule.filter((schedule) => {
-			return userSchedule.some((scheduleDate) => {
-				return schedule.availableDate.getTime() === new Date(scheduleDate).getTime();
-			});
-		});
+		const stillPossibleSchedule = [];
+
+		for (const schedule of petSitterPossibleSchedule) {
+			const available = userSchedule[0].split(', ');
+			for (const scheduleDate of available) {
+				const test = scheduleDate + 'T00:00:00.000Z';
+				// console.log('a=>', schedule.availableDate.toISOString());
+				// console.log('b=>', test);
+
+				if (schedule.availableDate.toISOString() === test) {
+					stillPossibleSchedule.push(schedule);
+				}
+			}
+		}
+
+		console.log('stillPossibleSchedule', stillPossibleSchedule);
 
 		if (!stillPossibleSchedule) throw new Error('이미 예약된 날짜입니다.');
-		if (stillPossibleSchedule.length !== userSchedule.length) {
-			throw new Error('이미 예약된 날짜입니다.');
-		}
 
 		let successReservation = [];
 		await Promise.all(
@@ -31,7 +40,7 @@ export class ReservationService {
 				//예약테이블에 데이터 넣기
 				const newReservation = await this.reservationRepository.createReservation(
 					possibleSchedule.availableDate,
-					possibleSchedule.scheduleId,
+					+possibleSchedule.scheduleId,
 					memberId,
 					petSitterId
 				);
@@ -92,6 +101,14 @@ export class ReservationService {
 	getReservationInfo = async (memberId) => {
 		const getReservationInfo = await this.reservationRepository.getReservationInfo(memberId);
 
+		const getPetSitterName = await this.reservationRepository.findFirstPetSitterData(getReservationInfo.petSitterId);
+		getReservationInfo.map((e) => {
+			e.petSitterName = getPetSitterName.name;
+		});
+		// const checkReservation = {
+		// 	...getReservationInfo,
+		// 	petSitterName: getPetSitterName.name
+		// };
 		return getReservationInfo;
 	};
 }

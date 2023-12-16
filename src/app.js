@@ -31,8 +31,8 @@ app.get('/petsitter-sign-in', async (req, res) => {
 	res.render('../views/petsitter-sign-in.ejs');
 });
 
-app.get('/member-sign-in', async (req, res) => {
-	res.render('../views/member-sign-in.ejs');
+app.get('/user-sign-in', async (req, res) => {
+	res.render('../views/user-sign-in.ejs');
 });
 
 app.get('/member-sign-up', async (req, res) => {

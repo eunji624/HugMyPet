@@ -15,12 +15,16 @@ model Members {
   password         String             @map("password")
   address          String             @map("address")
   imagePath        String             @map("imagePath")
+  petName          String?            @map("petName")
+  petAge           Int?               @map("petAge")
+  petSpecies       String?            @map("petSpecies")
+  petImagePath     String?            @map("petImagePath")
   createdAt        DateTime           @default(now()) @map("createdAt")
   updatedAt        DateTime           @updatedAt @map("updatedAt")
 
 
+
   PetSitterReviews PetSitterReviews[]
-  Pets             Pets[]
   Reservations     Reservations[]
 
   @@map("Members")
@@ -47,22 +51,6 @@ model PetSitters {
   Reservations       Reservations[]
 
   @@map("PetSitters")
-}
-
-model Pets {
-  petId     Int      @id @default(autoincrement()) @map("petId")
-  name      String   @map("name")
-  age       Int      @map("age")
-  species   String   @map("species")
-  imagePath String   @map("imagePath")
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  memberId  Int
-
-
-  Member    Members  @relation(fields: [memberId], references: [memberId], onDelete: Cascade)
-
-  @@map("Pets")
 }
 
 model PetSitterReviews {

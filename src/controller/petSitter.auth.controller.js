@@ -107,7 +107,6 @@ export class PetsitterAuthController {
 			}
 
 			const user = await this.PetsitterAuthService.findByEmail(email);
-			console.log('user: ', user);
 
 			if (!user) {
 				return res.status(404).json({
@@ -208,7 +207,8 @@ export class PetsitterAuthController {
 
 			return res.status(200).json({
 				success: true,
-				message: { user }
+				message: "정보 조회에 성공했습니다.",
+				data: user
 			});
 		} catch (error) {
 			next(error);

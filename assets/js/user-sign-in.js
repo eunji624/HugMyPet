@@ -16,7 +16,7 @@ async function memberSignIn() {
 			body: JSON.stringify(userInput)
 		});
 		const memberResult = await member.json();
-
+		console.log('memberResult', memberResult);
 		if (memberResult.success) {
 			alert(memberResult.message);
 

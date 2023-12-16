@@ -63,12 +63,50 @@
 	width: calc(100% / 7);
 	text-align: left;
 	color: #999;
-	font-size: 12px;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.sec_cal .cal_wrap .delete-day {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% / 7);
+	text-align: left;
+	color: #999;
+	font-size: 20px;
+	text-align: center;
+	border-radius: 5px;
+}
+
+.sec_cal .cal_wrap .next-delete-day {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: calc(100% / 7);
+	text-align: left;
+	color: #999;
+	font-size: 20px;
 	text-align: center;
 	border-radius: 5px;
 }
 
 .sec_cal .cal_wrap .dates {
+	display: flex;
+	flex-flow: wrap;
+	height: 90%;
+	font-size: large;
+}
+
+.sec_cal .cal_wrap .dates-delete {
+	display: flex;
+	flex-flow: wrap;
+	height: 90%;
+	font-size: large;
+}
+
+.sec_cal .cal_wrap .next-dates-delete {
 	display: flex;
 	flex-flow: wrap;
 	height: 90%;
@@ -89,14 +127,25 @@
 }
 
 .sec_cal .cal_wrap .day.disable {
-	color: #ddd;
-}
-
-.day.current._active._on {
-	background-color: #cbf0ff;
+	color: #cbcbcb;
 }
 
 .day.current._active {
+	background: rgb(242 242 242);
+	cursor: pointer;
+}
+
+.day.current._available {
+	background: rgb(242 242 242);
+	cursor: pointer;
+}
+
+.delete-day.current._delete {
+	background: rgb(242 242 242);
+	cursor: pointer;
+}
+
+.next-delete-day.current._delete {
 	background: rgb(242 242 242);
 	cursor: pointer;
 }

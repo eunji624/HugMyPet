@@ -1,23 +1,4 @@
-
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjI4ODEwLCJleHAiOjE3MDI2MzI0MTB9.9_dAAN9MzayPW1aPLQ8QqIwmBoPympy03yjzDgsDfWM
-
-
-
-###테스트 데이터 넣기
-POST http://localhost:3010/api/pet-sitters/petSitter/post 
-Content-Type: application/json
-
-{
-  "petSitterName": "공공이",
-	"age": 22,
-	"selfIntro": "안녕하세요 저는 공공이가 좋아요",
-	"availablePet": "Dog",
-	"availableAddress": "서울 관악구 봉천동",
-	"certificate": "대한애견협회 1급 자격증",
-	"score": 9,
-	"imagePath": "알이아ㅓ"
-}
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6NSwibmFtZSI6IuycoOydgOyngCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNzI4NTQwLCJleHAiOjE3MDI3MzIxNDB9.Htgv5lvCJLkmrjDjvwXIqu_RrKJ4U8R6EV4rIpNwF2k
 
 #
 
@@ -41,22 +22,23 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-24T00:00:00.000Z", "2023-12-25T00:00:00.000Z"]
+	"availableDate": ["2023-12-31, 2024-01-01"]
 }
 
+# "availableDate": ["2023-12-31T00:00:00.000Z", "2023-12-30T00:00:00.000Z"]
 
 
 #
 ###펫시터 예약 수정하기
-PATCH  http://localhost:3010/api/reservation/contract/3
-Content-Type: application/json
-authorization: Bearer {{token}}
+# PATCH  http://localhost:3010/api/reservation/contract/3
+# Content-Type: application/json
+# authorization: Bearer {{token}}
 
-{
-	"availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
-}
+# {
+# 	"availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
+# }
 
-# "availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
+# # "availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
 
 
 #

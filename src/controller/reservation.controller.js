@@ -38,6 +38,9 @@ export class ReservationController {
 			if (!existPetSitter) throw new Error('해당하는 펫 시터를 찾을 수 없습니다.');
 
 			const deleteReservation = await this.reservationService.deleteReservation(+memberId, +petSitterId);
+			console.log('deleteReservation', deleteReservation);
+			if (!deleteReservation.count) throw new Error('이미 삭제된 예약건입니다.');
+
 			res.status(201).json({ success: true, message: '펫 시터 예약이 취소되었습니다.' });
 		} catch (err) {
 			console.log(err);
@@ -48,10 +51,11 @@ export class ReservationController {
 	reservationCheck = async (req, res, next) => {
 		try {
 			const { memberId } = res.locals.user;
-			const existPetSitter = await this.reservationService.findFirstPetSitterData(+petSitterId);
-			if (!existPetSitter) throw new Error('해당하는 펫 시터를 찾을 수 없습니다.');
+			// const existPetSitter = await this.reservationService.findFirstPetSitterData(+petSitterId);
+			// if (!existPetSitter) throw new Error('해당하는 펫 시터를 찾을 수 없습니다.');
 
 			const getReservationInfo = await this.reservationService.getReservationInfo(+memberId);
+			console.log('getReservationInfo', getReservationInfo);
 			res.status(200).json({ success: true, message: '예약하신 정보를 확인합니다.', data: getReservationInfo });
 		} catch (err) {
 			console.log(err);

@@ -37,7 +37,10 @@ export class AuthService {
 
 		return {
 			email: user.email,
-			name: user.name
+			name: user.name,
+			age: user.age,
+			address: user.address,
+			imagePath: user.imagePath
 		};
 	};
 }
