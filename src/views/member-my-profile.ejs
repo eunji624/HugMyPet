@@ -3,14 +3,14 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<script type="module" src="../../assets/js/member-my-profile.js " defer></script>
 		<script type="module" src="../../assets/js/member-sign-out.js" defer></script>
-		<!-- <link rel="stylesheet" href="../../assets/css/member-my-profile.css" /> -->
+		<script type="module" src="../../assets/js/member-my-profile.js " defer></script>
 
-		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
-		<link rel="stylesheet" type="text/css" href="../../assets/css/petsitter-detail.css" />
+		<!-- <link rel="stylesheet" href="../../assets/css/member-my-profile.css" /> -->
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 
+		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
+		<link rel="stylesheet" type="text/css" href="../../assets/css/modify-petsitter-detail.css" />
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -37,26 +37,35 @@
 				</button> -->
 		<!-- </form>
 		</div> -->
-
-		<header class="header"><%- include('header.ejs') %></header>
+		<div style="width: 80%; height: 100%" ="headerWrap">
+			<header class="header"><%- include('modify-header.ejs') %></header>
+		</div>
+		<div style="width: 100%; height: 10%"></div>
 		<main>
 			<!-- 프로필 보드 시작 -->
 			<div class="petsitter-profile-wrab">
-				<div class="pet-sitter-img-wrab">
+				<div style="width: 80%; height: 100%; margin-left: 10%" class="pet-sitter-img-wrab">
 					<img src="../../assets/Img/6.png" alt="PetSitter-Img" class="petsitter-img" />
 				</div>
 				<div class="petsitter-info-wrab">
-					<div class="petsitter-info-top">
-						<div class="petsitter-name" id="userName">이름입니다.</div>
-						<div class="petsitter-address" id="userAddress">주소 입니다.</div>
-						<div class="available-pet-wrab" id="userAvailablePet">Dog</div>
-					</div>
-					<div class="petsitter-info-bottom">
-						<div class="petsitter-intro">여기에 자기소개가 들어갑니다.</div>
+					<!-- <div style="width: 30%; height: 5%;"> -->
+					<div class="petsitter-info-top userProfile">
+						<div style="font-size: 40px; margin: 20px; width: 700px" class="petsitter-name" id="userName"></div>
+						<!-- <div style="width: 30%; height: 1%"> -->
+						<div style="font-size: 30px; margin: 20px; width: 700px" id="userEmail"></div>
+						<div style="font-size: 30px; margin: 20px; width: 700px" class="petsitter-address" id="userAddress"></div>
+						<div class="available-pet-wrab" id="userImagePath"></div>
 					</div>
 				</div>
 			</div>
 			<!-- 프로필 보드 끝 -->
 		</main>
 	</body>
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			console.log('*****');
+			// 스크립트가 문서를 읽고 로드된 후 실행되도록 함
+			myProfile(); // myProfile() 함수 실행
+		});
+	</script>
 </html>

@@ -1,0 +1,379 @@
+.petsitter-profile-wrab {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	height: 100%;
+	margin: 20px auto;
+}
+
+.petsitter-img {
+	border-radius: 30px;
+}
+
+.petsitter-info-wrab {
+	margin-left: 80px;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 50%;
+	height: auto;
+	display: flex;
+	justify-content: space-between;
+}
+
+.petsitter-info-top {
+	height: 30%;
+	margin-top: 20%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+.userProfile {
+	height: 50%;
+}
+.petsitter-name {
+	font-size: 40px;
+}
+
+.petsitter-address {
+	font-size: 20px;
+}
+
+.available-pet-wrab {
+	font-size: 20px;
+}
+
+.petsitter-info-bottom {
+	height: 50%;
+	font-size: 20px;
+}
+
+.reservation-wrab {
+	width: 100%;
+	height: 1000px;
+	margin: 0 auto 50px;
+	display: flex;
+	flex-direction: column;
+}
+
+.reservation-title {
+	color: #82d9fa;
+	margin: 50px 0px 30px 0px;
+}
+
+.reservation-calendar-wrab {
+	height: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
+
+.this-month {
+	width: 45%;
+	background-color: #feeb84;
+	border-radius: 25px;
+}
+
+.next-month {
+	width: 45%;
+	background-color: #d1e6ee;
+	border-radius: 25px;
+}
+
+.input-dates-wrab {
+	width: auto;
+	display: flex;
+	align-items: center;
+	margin: 0 auto 25px;
+}
+
+.dates-input {
+	height: 50px;
+	width: 700px;
+	border: none;
+	border-bottom: 1px solid #c5c5c5;
+	outline: none;
+	font-size: 20px;
+}
+
+.dates-btn {
+	order: 1px solid #feeb84;
+	background-color: #feeb84;
+	border: none;
+	border-radius: 0.4rem;
+	color: black;
+	height: 50px;
+	padding: 10px 45px;
+	font-size: 20px;
+	margin-left: 15px;
+}
+
+.dates-btn:hover {
+	background-color: #ffefb4;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.detail-board {
+	position: relative;
+	width: 100%;
+	height: 700px;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	background-color: #e5e5e5;
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin: 0 auto;
+	z-index: 100;
+}
+
+.detail-board .back {
+	position: absolute;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: 100% 100%;
+	opacity: 0.3;
+	top: 0px;
+	left: 0px;
+	right: 0px;
+	bottom: 0px;
+	z-index: -1;
+}
+
+.detail-board-left {
+	display: flex;
+	flex-direction: column;
+	width: 60%;
+}
+
+.detail-board-title {
+	display: flex;
+	width: 80%;
+	margin: 150px 0 60px 100px;
+	font-size: 48px;
+}
+
+.detail-board-team {
+	display: flex;
+	width: 50%;
+	margin: 0 0 60px 100px;
+	font-size: 20px;
+}
+
+.detail-board-overview {
+	display: flex;
+	width: 80%;
+	height: 150px;
+	margin: 0 0 70px 100px;
+	font-size: 20px;
+}
+
+.detail-tech-icons {
+	width: 80%;
+	display: flex;
+	flex-direction: row;
+	margin: 10px 0 20px 100px;
+}
+
+.tech-icon {
+	background-color: #eac645;
+	border-radius: 5px;
+	margin-right: 1rem;
+	padding: 0.1rem 1.25rem;
+}
+
+.detail-board-right {
+	display: flex;
+	flex-direction: column-reverse;
+	width: auto;
+}
+
+.go-demo {
+	padding: 10px 45px;
+	background-color: #fff;
+	font-size: 15px;
+	border: 1px solid #eac645;
+	border-radius: 0.4rem;
+	margin: 100px;
+	color: black;
+}
+
+.go-demo:hover {
+	background-color: #eac645;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.detail-body {
+	width: 100%;
+	margin: 0 auto;
+	position: relative; /* 추가: 가상 요소를 상대적으로 위치시키기 위해 */
+	padding-bottom: 50px;
+}
+
+.detail-body-title {
+	color: #d64553;
+	margin: 50px 0px 30px 0px;
+}
+
+.detail-body-point {
+	margin: 0 0 50px 0;
+	padding-bottom: 20px;
+	position: relative;
+}
+
+.detail-body-point::after {
+	content: ''; /* 가상 요소 생성 */
+	position: absolute;
+	bottom: 0;
+	left: 50%;
+	transform: translateX(-50%);
+	width: 100%;
+	height: 2px;
+	background-color: #e5e5e5;
+}
+
+.detail-body-contents {
+	margin: 0 0 50px 0;
+}
+
+.attachments {
+	display: flex;
+	flex-direction: row;
+	padding: 0;
+}
+
+.attachment {
+	border-radius: 5px;
+	margin-right: 1.5rem;
+	color: #c5c5c5;
+}
+
+.attachment img {
+	width: 100%;
+	height: 100%;
+	max-width: 230px;
+	max-height: 150px;
+}
+
+.like-btn {
+	padding: 10px 45px;
+	background-color: #d64553;
+	color: #fff;
+	font-size: 15px;
+	border: none;
+	border-radius: 0.4rem;
+	float: right;
+}
+
+.like-btn:hover {
+	background-color: #9d343f;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.detail-comments {
+	width: 100%;
+	margin: 0 auto 100px auto;
+}
+
+.detail-comments-title {
+	color: #82d9fa;
+	margin: 50px 0px 30px 0px;
+}
+
+.comment-input-box {
+	width: 100%;
+	margin-bottom: 50px;
+}
+.comment-input {
+	width: 90%;
+	height: 40px;
+	border: none;
+	border-bottom: 1px solid #c5c5c5;
+	outline: none;
+}
+
+.comment-btn {
+	width: 8%;
+	height: 40px;
+	margin-left: 25px;
+	font-size: 15px;
+	border-radius: 0.4rem;
+	border: none;
+	background-color: #feeb84;
+}
+
+.comment-btn:hover {
+	background-color: #f9e18b;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.comment-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.comment-btns-box {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.comment-btns-box button {
+	padding: 10px 45px;
+	height: 40px;
+	margin-left: 25px;
+	font-size: 15px;
+	border-radius: 0.4rem;
+	border: 1px solid #feeb84;
+}
+
+.comment-btns-box button:hover {
+	background-color: #feeb84;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.edit-comment-input {
+	width: 95%;
+	height: 40px;
+	border: none;
+	border-bottom: 1px solid #d64553;
+	outline: none;
+	font-size: 15px;
+	margin-bottom: 10px;
+}
+
+.confirm-edit-btn,
+.cancel-edit-btn {
+	padding: 10px 45px;
+	font-size: 15px;
+	border: none;
+	border-radius: 0.4rem;
+	margin-left: 25px;
+	background-color: #d64553;
+	color: #fff;
+
+	align-self: flex-end; /* 각 버튼을 오른쪽 끝으로 정렬 */
+}
+
+.confirm-edit-btn:hover,
+.cancel-edit-btn:hover {
+	background-color: #9d343f;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.detail-comments-lists {
+	padding-left: 10px;
+}
+
+.comment {
+	margin-bottom: 50px;
+}
