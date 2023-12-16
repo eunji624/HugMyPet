@@ -43,18 +43,22 @@ export class PetsitterScheduleService {
 
   }
 
-  deleteScheduleByScheduleId = async (scheduleId, petSitterId) => {
-    const existSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
+  deleteScheduleByScheduleId = async (scheduleIds, petSitterId) => {
+    console.log('scheduleIds: ', scheduleIds);
+    await Promise.all(scheduleIds.map(async (scheduleId) => {
+      const schedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleId);
+      if (!schedule) {
+        throw new Error("해당하는 스케쥴이 존재하지 않습니다.");
+      }
+    }));
 
-    if (!existSchedule) {
-      throw new Error("해당하는 스케쥴이 존재하지 않습니다.")
-    };
+    // const existSchedule = await this.petSitterScheduleRepository.findScheduleByScheduleId(scheduleIds);
 
-    if (existSchedule.petSitterId !== petSitterId) {
-      throw new Error("권한이 없습니다.");
-    };
+    // if (existSchedule.petSitterId !== petSitterId) {
+    //   throw new Error("권한이 없습니다.");
+    // };
 
-    await this.petSitterScheduleRepository.destroyScheduleByScheduleId(scheduleId, petSitterId);
+    await this.petSitterScheduleRepository.destroyScheduleByScheduleId(scheduleIds, petSitterId);
 
   }
 

@@ -1,4 +1,4 @@
-import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar } from '../../assets/js/calendar.js'
+import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar, toActivateAvailableDates, toActivateAvailableNextMonthDates } from '../../assets/js/calendar.js'
 import { getAccessToken } from './token.js';
 console.log('이것은 토큰이에요 !!!!!!!!!!!!!', getAccessToken());
 
@@ -103,7 +103,8 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
     const token = getAccessToken();
     console.log('token: ', token);
     if (!token) {
-      return alert('로그인 후 이용 가능합니다.');
+      alert('로그인 후 이용 가능합니다.');
+      window.location.href = "/user-sign-in";
     };
 
     const inputDates = $('.dates-input').val();
@@ -118,7 +119,7 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
       body: JSON.stringify({ availableDate: [inputDates] })
     });
 
-    alert("예약에 성공했습니다.");
+    // alert("예약에 성공했습니다.");
 
   } catch (err) {
     console.error(err)
@@ -139,5 +140,7 @@ const petSitterSchedules = await getAvailableDatesBypetSitterId(petSitterId)
 const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
 
 drawThisMonthAvailableDatesCalendar(availableDates);
+toActivateAvailableDates(availableDates);
 drawNextMonthAvailableDatesCalendar(availableDates);
+toActivateAvailableNextMonthDates(availableDates);
 
