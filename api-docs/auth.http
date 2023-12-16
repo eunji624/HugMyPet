@@ -29,6 +29,7 @@ Content-Type: application/json
 
 
 
+
 ### 일반회원 가입 하기
 POST   http://localhost:3010/api/sign-up/users
 Content-Type: application/json
@@ -54,5 +55,6 @@ Content-Type: application/json
   "email" : "3test@test.com",
   "password" : "123456"
 }
+
 
 

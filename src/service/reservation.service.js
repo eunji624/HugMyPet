@@ -14,19 +14,24 @@ export class ReservationService {
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
 
-		const stillPossibleSchedule = petSitterPossibleSchedule.filter((schedule) => {
-			return userSchedule.some((scheduleDate) => {
-				return schedule.availableDate.getTime() === new Date(scheduleDate).getTime();
-			});
-		});
+		const stillPossibleSchedule = [];
+
+		for (const schedule of petSitterPossibleSchedule) {
+			const available = userSchedule[0].split(', ');
+			for (const scheduleDate of available) {
+				const test = scheduleDate + 'T00:00:00.000Z';
+				// console.log('a=>', schedule.availableDate.toISOString());
+				// console.log('b=>', test);
+
+				if (schedule.availableDate.toISOString() === test) {
+					stillPossibleSchedule.push(schedule);
+				}
+			}
+		}
+
 		console.log('stillPossibleSchedule', stillPossibleSchedule);
 
-		console.log('userSchedule', userSchedule);
-
 		if (!stillPossibleSchedule) throw new Error('이미 예약된 날짜입니다.');
-		if (stillPossibleSchedule.length !== userSchedule.length) {
-			throw new Error('이미 예약된 날짜입니다.');
-		}
 
 		let successReservation = [];
 		await Promise.all(
