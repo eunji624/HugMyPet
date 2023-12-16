@@ -47,9 +47,7 @@
 //             ${isLogin ? isOk[1].name : isNot[1].name}
 //           </button>
 //         </a>
-      
+
 //     </div>
 //   `);
 // }
-
-// loginHeader();

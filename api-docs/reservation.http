@@ -1,5 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MywibmFtZSI6IjHtmozsm5Ag7YWM7Iqk7Yq4IiwiZW1haWwiOiIzdGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNjM4NDIwLCJleHAiOjE3MDI2NDIwMjB9.f9J9cqK1uhgYnkOKZwgMjXW43AbeVE0puF9bM2XmJE0
-
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6NSwibmFtZSI6IuycoOydgOyngCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNzI4NTQwLCJleHAiOjE3MDI3MzIxNDB9.Htgv5lvCJLkmrjDjvwXIqu_RrKJ4U8R6EV4rIpNwF2k
 
 #
 
@@ -23,8 +22,10 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-31T00:00:00.000Z","2023-12-30T00:00:00.000Z"]
+	"availableDate": ["2023-12-31, 2024-01-01"]
 }
+
+# "availableDate": ["2023-12-31T00:00:00.000Z", "2023-12-30T00:00:00.000Z"]
 
 
 #

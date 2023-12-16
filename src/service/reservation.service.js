@@ -40,7 +40,7 @@ export class ReservationService {
 				//예약테이블에 데이터 넣기
 				const newReservation = await this.reservationRepository.createReservation(
 					possibleSchedule.availableDate,
-					possibleSchedule.scheduleId,
+					+possibleSchedule.scheduleId,
 					memberId,
 					petSitterId
 				);
@@ -101,6 +101,14 @@ export class ReservationService {
 	getReservationInfo = async (memberId) => {
 		const getReservationInfo = await this.reservationRepository.getReservationInfo(memberId);
 
+		const getPetSitterName = await this.reservationRepository.findFirstPetSitterData(getReservationInfo.petSitterId);
+		getReservationInfo.map((e) => {
+			e.petSitterName = getPetSitterName.name;
+		});
+		// const checkReservation = {
+		// 	...getReservationInfo,
+		// 	petSitterName: getPetSitterName.name
+		// };
 		return getReservationInfo;
 	};
 }
