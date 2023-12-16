@@ -62,7 +62,7 @@ const getReviewsByPetSitterId = async (petSitterId) => {
 const reviews = await getReviewsByPetSitterId(petSitterId);
 
 /* 가져온 평점 및 리뷰를 HTML 로 뿌려주기 */
-const speadReviews = async (reviews) => {
+const speadReviews = async (reviews, currentMemberId) => {
   const reviewDiv = $('.detail-comments-lists');
   reviewDiv.empty();
 
@@ -81,26 +81,48 @@ const speadReviews = async (reviews) => {
     const formattedCreatedAt = formatDateTime(createdAt);
     const formattedUpdatedAt = formatDateTime(updatedAt);
 
-    reviewDiv.append(
-      `<li class="comment" data-review-id=${reviewId}>
-      <div class="id-score">
-        <h4 class="comment-user data-user-id=${memberId}">${name}</h4>
-        <div class="comment-score">${score}</div>
-      </div>
-      <div class ="comment-contents-box">
-      <div class="comment-text">${content}</div>
-      ${formattedCreatedAt === formattedUpdatedAt
+    const commentElement = $(`
+    <li class="comment" data-comment-id="${reviewId}" data-updated-at="${formattedUpdatedAt}">
+    <div class="id-score">
+    <h4 class="comment-user data-user-id=${memberId}">${name}</h4>
+    <div class="comment-score">${score}</div>
+  </div>
+      <div class="comment-box">
+        <div class="comment-contents-box">
+          <div class="comment-text">${content}</div>
+          ${formattedCreatedAt === formattedUpdatedAt
         ? `<div class="comment-create-at">${formattedCreatedAt}</div>`
         : `<div class="comment-create-at">${formattedUpdatedAt} 수정됨</div>`
       }
-      </div>
-    </li>`
-    )
+        </div>
+        ${memberId === currentMemberId
+        ? `<div class="comment-btns-box">
+         <button class="edit-comment-btn">수정</button>
+         <button class="delete-comment-btn">삭제</button>`
+        : ''
+      }
+        </div>
+      </div>        
+    </li>
+  `);
+
+    // 수정 버튼 클릭 시 수정 입력란을 보여주는 이벤트 추가
+    commentElement.find('.edit-comment-btn').on('click', function () {
+      editComment(commentElement, reviewId);
+    });
+
+    // 삭제 버튼 클릭 시 댓글 삭제하는 이벤트 추가
+    commentElement.find('.delete-comment-btn').on('click', function () {
+      deleteComment(reviewId, commentElement);
+    });
+
+    reviewDiv.append(commentElement);
+
   }
   )
 }
 
-speadReviews(reviews);
+speadReviews(reviews, currentMemberId);
 
 
 
@@ -130,8 +152,12 @@ const createReview = async (petSitterId) => {
       })
     });
 
+
+    $('.comment-input').val(''); // 댓글 입력 폼 초기화
+    $('#score-select').val('5'); // 평점 선택 초기화
+
     const reviews = await getReviewsByPetSitterId(petSitterId);
-    await speadReviews(reviews);
+    await speadReviews(reviews, currentMemberId);
 
   } catch (err) {
     console.error(err)
@@ -143,3 +169,83 @@ $('.comment-btn').on('click', async (event) => {
   event.preventDefault()
   createReview(petSitterId)
 });
+
+
+/* 리뷰 수정하기 */
+export const editComment = async (commentElement, reviewId) => {
+  const commentText = commentElement.find('.comment-text').text();
+
+  // 기존의 수정, 삭제 버튼 숨기기
+  commentElement.find('.edit-comment-btn, .delete-comment-btn').hide();
+
+  const editInput = $(
+    '<input type="text" class="edit-comment-input" value="' +
+    commentText +
+    '">',
+  );
+  const confirmBtn = $('<button class="confirm-edit-btn">확인</button>');
+  const cancelBtn = $('<button class="cancel-edit-btn">취소</button>');
+
+  commentElement.find('.comment-text').replaceWith(editInput);
+
+  const editBtnsDiv = $('<div class="edit-btns"></div>');
+  editBtnsDiv.append(confirmBtn);
+  editBtnsDiv.append(cancelBtn);
+
+  commentElement.find('.comment-box').append(editBtnsDiv);
+
+  editInput.on('keydown', async function (event) {
+    if (event.key === 'Enter') {
+      // event.preventDefault();
+      confirmBtn.trigger('click');
+    }
+  });
+
+  confirmBtn.on('click', async function () {
+    const editedText = editInput.val();
+
+    const result = await fetch(
+      `/api/pet-sitters/reviews/${reviewId}`,
+      {
+        method: 'PATCH',
+        headers: {
+          'Content-Type': 'application/json',
+          Authorization: `Bearer ${getAccessToken()}`,
+        },
+        body: JSON.stringify({ content: editedText }),
+      },
+    );
+
+
+
+    const { data } = await result.json()
+
+    const updatedAt = data.updatedAt;
+
+    // 수정 입력란 및 확인 버튼을 다시 댓글 내용으로 교체
+    commentElement
+      .find('.edit-comment-input')
+      .replaceWith(`<div class="comment-text">${editedText}</div>`);
+    commentElement
+      .find('.comment-create-at')
+      .replaceWith(
+        `<div class="comment-updated-at">${formatDateTime(
+          updatedAt,
+        )} 수정됨</div>`,
+      );
+    editBtnsDiv.remove();
+
+    // 수정, 삭제 버튼 다시 보이게 하기
+    commentElement.find('.edit-comment-btn, .delete-comment-btn').show();
+  });
+
+  // 수정 취소 시에 입력된 내용이 아니라 원래의 댓글 내용으로 복원
+  cancelBtn.on('click', function () {
+    commentElement
+      .find('.edit-comment-input')
+      .replaceWith(`<div class="comment-text">${commentText}</div>`);
+    editBtnsDiv.remove();
+
+    commentElement.find('.edit-comment-btn, .delete-comment-btn').show();
+  });
+};

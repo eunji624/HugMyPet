@@ -23,10 +23,8 @@ export class ReviewService {
 
 	updateReview = async (reviewId, content, score) => {
 		const updateReview = await this.reviewRepository.updateReview(reviewId, content, score);
-
-		const modifyPetSitterScore = await this.getPetSitterScore(+updateReview.petSitterId, score);
-
-		return [updateReview, modifyPetSitterScore];
+		// 프론트에서 편하게 쓰기 위해서 아래 유저 정보 부분 삭제했습니다.
+		return updateReview;
 	};
 
 	deleteReview = async (reviewId) => {
