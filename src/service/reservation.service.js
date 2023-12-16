@@ -39,7 +39,7 @@ export class ReservationService {
 				//예약테이블에 데이터 넣기
 				const newReservation = await this.reservationRepository.createReservation(
 					possibleSchedule.availableDate,
-					possibleSchedule.scheduleId,
+					+possibleSchedule.scheduleId,
 					memberId,
 					petSitterId
 				);
