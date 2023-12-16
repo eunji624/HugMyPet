@@ -100,6 +100,14 @@ export class ReservationService {
 	getReservationInfo = async (memberId) => {
 		const getReservationInfo = await this.reservationRepository.getReservationInfo(memberId);
 
+		const getPetSitterName = await this.reservationRepository.findFirstPetSitterData(getReservationInfo.petSitterId);
+		getReservationInfo.map((e) => {
+			e.petSitterName = getPetSitterName.name;
+		});
+		// const checkReservation = {
+		// 	...getReservationInfo,
+		// 	petSitterName: getPetSitterName.name
+		// };
 		return getReservationInfo;
 	};
 }

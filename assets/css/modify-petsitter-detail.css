@@ -10,6 +10,52 @@
 	border-radius: 30px;
 }
 
+#exampleModalLabel {
+	margin-top: 10px;
+	font-size: 33px;
+}
+
+#checkReservationBtn {
+	background-color: #feeb84;
+	border-radius: 20px;
+	border: transparent;
+	width: 80px;
+	height: auto;
+	padding: 3% 4% 3% 4%;
+	font-size: 26px;
+	margin-left: 10%;
+	margin-top: 10%;
+}
+
+#checkReservationBtn:focus {
+	border: none;
+	outline: none;
+}
+
+.checkBox {
+	width: 100%;
+	height: 400px;
+	border-radius: 30px;
+	background-color: #e7e7e7;
+	padding: 5%;
+}
+
+#modalCloseBtn {
+	background-color: #82d9fa;
+	border-radius: 20px;
+	padding: 10px 20px 10px 20px;
+	font-size: 20px;
+	position: absolute;
+	top: 75%;
+	left: 75%;
+}
+.checkReservationTitle {
+	font-size: 40px;
+	font-family: monospace;
+	text-align: center;
+	margin-bottom: 10%;
+}
+
 .petsitter-info-wrab {
 	margin-left: 80px;
 
