@@ -48,7 +48,7 @@ async function signOut() {
 	}
 }
 
-const btn = document.querySelector('.sign-out-btn');
+const btn = document.querySelector('.petsitter-sign-out-btn');
 btn.addEventListener('click', () => {
 	signOut();
 });
