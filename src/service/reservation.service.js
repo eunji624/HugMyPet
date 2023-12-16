@@ -10,8 +10,8 @@ export class ReservationService {
 		return petSitterData;
 	};
 
-
 	reservationPetSitter = async (petSitterId, userSchedule, memberId) => {
+		console.log('memberId', memberId);
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
 
@@ -38,12 +38,14 @@ export class ReservationService {
 		await Promise.all(
 			stillPossibleSchedule.map(async (possibleSchedule, i) => {
 				//예약테이블에 데이터 넣기
+				console.log('=====>', possibleSchedule.availableDate, +possibleSchedule.scheduleId, memberId, petSitterId);
 				const newReservation = await this.reservationRepository.createReservation(
 					possibleSchedule.availableDate,
 					+possibleSchedule.scheduleId,
 					memberId,
 					petSitterId
 				);
+				console.log('newReservation', newReservation);
 				//펫시터 스케줄 테이블에 데이터 수정하기
 				const modifyPetSitterSchedule = await this.reservationRepository.updatePetSitterSchedule(
 					memberId,
