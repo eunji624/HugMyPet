@@ -72,7 +72,7 @@ model PetSitterReviews {
 
 model Reservations {
   reserveId          Int                  @id @default(autoincrement())
-  scheduleId         Int      @unique     @map("scheduleId")
+  scheduleId         Int                  @map("scheduleId")
   petSitterId        Int                  @map("petSitterId")
   memberId           Int                  @map("memberId")
   reservationDate    DateTime  @db.Date   @map("reservationDate")
