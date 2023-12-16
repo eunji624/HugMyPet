@@ -38,6 +38,17 @@ export class ReviewService {
 	findManyReview = async (petSitterId) => {
 		const findManyReview = await this.reviewRepository.findManyReview(petSitterId);
 
-		return findManyReview;
+		const joinedReviews = findManyReview.map(review => ({
+			reviewId: review.reviewId,
+			petSitterId: review.petSitterId,
+			memberId: review.memberId,
+			content: review.content,
+			score: review.score,
+			createdAt: review.createdAt,
+			updatedAt: review.updatedAt,
+			name: review.Member.name
+		}))
+
+		return joinedReviews
 	};
 }

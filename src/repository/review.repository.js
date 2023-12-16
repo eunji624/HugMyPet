@@ -51,7 +51,21 @@ export class ReviewRepository {
 
 	findManyReview = async (petSitterId) => {
 		const findManyReview = this.prisma.petSitterReviews.findMany({
-			where: { petSitterId }
+			where: { petSitterId },
+			select: {
+				reviewId: true,
+				petSitterId: true,
+				memberId: true,
+				content: true,
+				score: true,
+				createdAt: true,
+				updatedAt: true,
+				Member: {
+					select: {
+						name: true
+					}
+				}
+			}
 		});
 		return findManyReview;
 	};
