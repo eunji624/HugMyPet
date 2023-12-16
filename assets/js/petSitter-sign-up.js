@@ -14,6 +14,7 @@ async function signup() {
 		alert('비밀번호와 비밀번호 확인이 일치하지 않습니다.');
 		return;
 	}
+
 	// 서버로 전송할 데이터 생성
 	const petsitterInfo = {
 		name: name,

@@ -4,14 +4,14 @@ document.addEventListener('DOMContentLoaded', () => {
 	button.addEventListener('click', async () => {
 		try {
 			const accessToken = localStorage.getItem('accessToken');
-			const response = await fetch('api/logout', {
+			const response = await fetch('/api/logout', {
 				method: 'POST',
 				headers: {
 					Authorization: `Bearer ${accessToken}`,
 					Accept: 'application/json'
 				}
 			});
-			console.log('respose', respose);
+
 			const data = await response.json();
 			if (data.success) {
 				localStorage.removeItem('accessToken');

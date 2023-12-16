@@ -188,3 +188,60 @@ main {
 	height: 30px;
 	object-fit: contain;
 }
+
+.petsitter-sign-out-btn {
+	display: none;
+}
+
+.petsitter-btn {
+	display: flex;
+	flex-direction: row;
+}
+
+.petsitter-my-profile-btn {
+	display: none;
+}
+
+.petsitter-sign-in {
+	margin-right: 10px;
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	padding: 10px 45px;
+	font-size: 18px;
+	margin-top: 3rem;
+}
+
+.petsitter-sign-in button:hover {
+	background-color: #7fd5f7;
+	cursor: pointer;
+}
+
+.petsitter-sign-out-btn {
+	margin-left: 10px;
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	padding: 10px 45px;
+	font-size: 18px;
+	margin-top: 3rem;
+}
+
+.petsitter-sign-out-btn:hover {
+	background-color: #bcecff;
+	cursor: pointer;
+}
+
+.petsitter-signup button {
+	border: 1px solid #82d9fa;
+	background-color: #82d9fa;
+	border-radius: 0.4rem;
+	padding: 10px 45px;
+	font-size: 18px;
+	margin-top: 3rem;
+}
+
+.petsitter-signup button:hover {
+	background-color: #bcecff;
+	cursor: pointer;
+}
