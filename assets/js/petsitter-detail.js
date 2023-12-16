@@ -3,7 +3,7 @@ import { getAccessToken } from './token.js';
 console.log('이것은 토큰이에요 !!!!!!!!!!!!!', getAccessToken());
 
 /* 현재 위치에서 펫시터 아이디 구하기 */
-const getPetsitterIdByPath = () => {
+export const getPetsitterIdByPath = () => {
   const path = window.location.pathname;
 
   const petSitterId = path.split('/')[2];
@@ -20,7 +20,6 @@ const getDetailPetsitterById = async (petSitterId) => {
     })
       .then(res => res.json())
       .catch(err => err)
-    console.log(result);
 
     return result.data;
 
@@ -101,14 +100,13 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
   try {
 
     const token = getAccessToken();
-    console.log('token: ', token);
+
     if (!token) {
       alert('로그인 후 이용 가능합니다.');
       window.location.href = "/user-sign-in";
     };
 
     const inputDates = $('.dates-input').val();
-    console.log('inputDates: ', inputDates);
 
     await fetch(`/api/reservation/contract/${petSitterId}`, {
       method: 'POST',
@@ -135,7 +133,7 @@ $('.dates-btn').on('click', async (event) => {
 });
 
 
-
+/* 예약이 가능한 날짜를 가져와서 가져오는 부분 */
 const petSitterSchedules = await getAvailableDatesBypetSitterId(petSitterId)
 const availableDates = petSitterSchedules.map(schedule => schedule.availableDate.split("T")[0]);
 

@@ -21,7 +21,14 @@ const spreadPetSittersCard = async (petSitters) => {
 	const cardListDiv = $('#petsitter-cards-list');
 	cardListDiv.empty(); // 카드를 뿌리기 전 초기화
 	petSitters.forEach((petSitter) => {
-		const { petSitterId, name, availablePet, availableAddress, score, imagePath } = petSitter;
+		const {
+			petSitterId,
+			name,
+			availablePet,
+			availableAddress,
+			selfIntro,
+			score,
+			imagePath } = petSitter;
 
 		const thumbnailPath = imagePath // 나중에 순서 바꾸기
 			? '../../assets/Img/6.png'
@@ -42,7 +49,7 @@ const spreadPetSittersCard = async (petSitters) => {
           <div class="card-title">
             <a href="/pet-sitter/${petSitterId}"> ${name} </a>
           </div>
-          <div class="card-overview">펫시터 소개 부분 추가해주세요 은지님 !!!! </div>
+          <div class="card-overview">${selfIntro}</div>
           <div class="card-footer">
             <div class="card-score">${petsitterScore}</div>
             <div class="card-info"></div>

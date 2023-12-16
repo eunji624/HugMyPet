@@ -9,8 +9,6 @@ GET http://localhost:3010/
 GET  http://localhost:3010/api/schedule/3
 
 
-# 
-
 
 ### 펫시터 스케쥴 추가하기
 POST  http://localhost:3010/api/schedule

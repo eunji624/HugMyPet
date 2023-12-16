@@ -291,6 +291,7 @@
 	border: none;
 	border-bottom: 1px solid #c5c5c5;
 	outline: none;
+	margin-top: 20px;
 }
 
 .comment-btn {
@@ -372,4 +373,47 @@
 
 .comment {
 	margin-bottom: 50px;
+}
+
+.id-score {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.comment-score {
+	margin-left: 20px;
+}
+
+.comment-user {
+	font-size: 20px;
+}
+
+select {
+	padding: 8px;
+	font-size: 16px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background-color: #fff;
+	color: #333;
+	outline: none;
+	cursor: pointer;
+}
+
+/* 선택된 옵션 스타일링 */
+select option:checked {
+	background-color: #007bff;
+	color: #fff;
+	align-items: center;
+}
+
+/* 드롭다운 화살표 스타일링 */
+select::after {
+	content: '\25BC'; /* 화살표 유니코드 */
+	position: absolute;
+	top: 50%;
+	right: 10px;
+	transform: translateY(-50%);
+	pointer-events: none;
+	color: #333;
 }
