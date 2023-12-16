@@ -67,9 +67,8 @@ const hideBtn = async () => {
 
 	let accessToken = localStorage.getItem('accessToken');
 	let role = localStorage.getItem('role');
-	console.log(role);
+
 	if (accessToken && role === 'user') {
-		console.log(role);
 		signUpButton.style.display = 'none';
 		petsitterSignUpButton.style.display = 'none';
 		memberMyProfileButton.style.display = 'block';
@@ -97,7 +96,6 @@ const hideBtn = async () => {
 		memberSignInButton.style.display = 'block';
 		logoutButton.style.display = 'none';
 	}
-	console.log(role);
 };
 
 hideBtn();
