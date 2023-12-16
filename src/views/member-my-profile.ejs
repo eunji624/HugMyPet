@@ -6,6 +6,7 @@
 		<link rel="stylesheet" href="../../assets/css/default.css" />
 		<link rel="stylesheet" href="../../assets/css/modify-petsitter-detail.css" />
 		<link rel="stylesheet" href="../../assets/css/header.css" />
+		<link rel="stylesheet" href="../../assets/css/index.css" />
 
 		<script type="module" src="../../assets/js/member-my-profile.js " defer></script>
 		<script type="module" src="../../assets/js/sign-out.js" defer></script>
@@ -33,21 +34,6 @@
 		<title>내 정보 조회</title>
 	</head>
 	<body>
-		<div class="petsitter-btn">
-			<a href="/petsitter-sign-in">
-				<button class="petsitter-sign-in">펫시터 로그인</button>
-			</a>
-			<div class="petsitter-signup">
-				<a href="/petsitter-sign-up">
-					<button id="petsitter-signup-btn">펫시터 가입하기</button>
-				</a>
-				<a href="/petsitter-my-profile">
-					<button class="petsitter-my-profile-btn">펫시터 정보 조회</button>
-				</a>
-			</div>
-			<button type="button" class="petsitter-sign-out-btn">펫시터 탈퇴</button>
-		</div>
-
 		<!-- <div class="container">
 			<div id="gif-box">
 				<div>
@@ -68,6 +54,20 @@
 		<div style="width: 80%; height: 100%" ="headerWrap">
 			<header class="header"><%- include('modify-header.ejs') %></header>
 		</div>
+		<div class="petsitter-btn">
+			<a href="/petsitter-sign-in">
+				<button class="petsitter-sign-in">펫시터 로그인</button>
+			</a>
+			<div class="petsitter-signup">
+				<a href="/petsitter-sign-up">
+					<button id="petsitter-signup-btn">펫시터 가입하기</button>
+				</a>
+				<a href="/petsitter-my-profile">
+					<button class="petsitter-my-profile-btn">펫시터 정보 조회</button>
+				</a>
+			</div>
+			<button type="button" class="petsitter-sign-out-btn">펫시터 탈퇴</button>
+		</div>
 		<div style="width: 100%; height: 10%"></div>
 		<main>
 			<!-- 프로필 보드 시작 -->
@@ -75,6 +75,7 @@
 				<div style="width: 80%; height: 100%; margin-left: 10%" class="pet-sitter-img-wrab">
 					<img src="../../assets/Img/6.png" alt="PetSitter-Img" class="petsitter-img" />
 				</div>
+
 				<div class="petsitter-info-wrab">
 					<!-- <div style="width: 30%; height: 5%;"> -->
 					<div class="petsitter-info-top userProfile">
@@ -135,9 +136,9 @@
 			<!-- 부트스트랩-->
 		</main>
 	</body>
-	<script>
+	<!-- <script>
 		document.addEventListener('DOMContentLoaded', () => {
 			myProfile();
 		});
-	</script>
+	</script> -->
 </html>

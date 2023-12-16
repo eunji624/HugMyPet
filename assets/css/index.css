@@ -203,6 +203,7 @@ main {
 }
 
 .petsitter-sign-in {
+	display: none;
 	margin-right: 10px;
 	border: 1px solid #82d9fa;
 	background-color: #82d9fa;
@@ -244,4 +245,8 @@ main {
 .petsitter-signup button:hover {
 	background-color: #bcecff;
 	cursor: pointer;
+}
+
+.petsitter-my-profile-btn {
+	display: none;
 }
