@@ -9,7 +9,7 @@ export class ReviewRepository {
 				petSitterId,
 				memberId,
 				content,
-				score
+				score: +score
 			}
 		});
 		return createReview;

@@ -100,14 +100,13 @@ const setReservationByPetSitterIdAndDates = async (petSitterId) => {
   try {
 
     const token = getAccessToken();
-    console.log('token: ', token);
+
     if (!token) {
       alert('로그인 후 이용 가능합니다.');
       window.location.href = "/user-sign-in";
     };
 
     const inputDates = $('.dates-input').val();
-    console.log('inputDates: ', inputDates);
 
     await fetch(`/api/reservation/contract/${petSitterId}`, {
       method: 'POST',
