@@ -23,6 +23,7 @@ export class PetsitterScheduleRepository {
 	};
 
 	//펫시터의 스케줄을 조회합니다(스케줄 아이디로)
+
 	findScheduleByScheduleId = async (scheduleId) => {
 		const schedule = await prisma.PetSitterSchedules.findFirst({
 			where: { scheduleId: +scheduleId }
@@ -68,4 +69,16 @@ export class PetsitterScheduleRepository {
 			});
 		}
 	};
+
+	//한번에 삭제
+	// destroyScheduleByScheduleId = async (scheduleIds, petSitterId) => {
+	// 	const deleteSchedule = await prisma.petSitterSchedules.deleteMany({
+	// 		where: {
+	// 			scheduleId: {
+	// 				in: scheduleIds
+	// 			}
+	// 		}
+	// 	});
+	// 	return deleteSchedule;
+	// };
 }
