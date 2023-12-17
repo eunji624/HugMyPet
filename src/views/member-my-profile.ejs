@@ -13,7 +13,6 @@
 		<script type="module" src="../../assets/js/member-my-reservation.js " defer></script>
 		<script type="module" src="../../assets/js/header.js " defer></script>
 		<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-
 		<link rel="stylesheet" type="text/css" href="../../assets/css/default.css" />
 		<link rel="stylesheet" type="text/css" href="../../assets/css/modify-petsitter-detail.css" />
 
@@ -32,7 +31,7 @@
 		<title>내 정보 조회</title>
 	</head>
 	<body>
-		<div style="width: 80%; height: 100%" ="headerWrap">
+		<div style="width: 80%; height: 100%" class="headerWrap">
 			<header class="header"><%- include('modify-header.ejs') %></header>
 		</div>
 		<div class="petsitter-btn">
@@ -59,11 +58,13 @@
 
 				<div class="petsitter-info-wrab">
 					<div class="petsitter-info-top userProfile">
-						<div style="font-size: 40px; margin: 20px; width: 700px" class="petsitter-name" id="userName"></div>
-						<div style="font-size: 30px; margin: 20px; width: 700px" id="userEmail"></div>
+						<div style="font-size: 40px; margin: 20px; width: 700px" class="petsitter-name" id="userName">
+						</div>
+						<div style="font-size: 30px; margin: 20px; width: 700px" id="userEmail">
+						</div>
 						<div style="font-size: 30px; margin: 20px; width: 700px" class="petsitter-address" id="userAddress"></div>
 						<div class="available-pet-wrab" id="userImagePath"></div>
-						<button
+						<!-- <button
 							style="width: 37%; color: black; border: none"
 							id="checkReservationBtn"
 							class="btn btn-primary"
@@ -72,9 +73,9 @@
 							data-bs-target="#exampleModal"
 						>
 							예약 정보 조회
-						</button>
+						</button> -->
 						<!-- Modal -->
-						<div
+						<!-- <div
 							class="modal fade"
 							id="exampleModal"
 							tabindex="-1"
@@ -105,12 +106,39 @@
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- 부트스트랩-->
 					</div>
 				</div>
 			</div>
 			<!-- 프로필 보드 끝 -->
+			<div class="reservationCheckWrap">
+				<div class="reservationCheck">
+					<div class = "reservationTitle">
+						<h2>예약 스케줄 확인</h2>
+					</div>
+					<table class="table" id="reservationCheckTable">
+						<thead>
+							<tr>
+								<th scope="col">예약번호</th>
+								<th scope="col">펫시터 이름</th>
+								<th scope="col">예약 스케쥴</th>
+								<th scope="col">진행 상황</th>
+								<th scope="col">신청 날짜</th>
+							</tr>
+						</thead>
+						<tbody class="reservations">
+							<tr>
+								<td class="email">test@test.com</td>
+								<td class="name">문천재</td>
+								<td class="reservationDate">2023-12-05</td>
+								<td class="createDate">2023-12-01</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+
 		</main>
 	</body>
 </html>

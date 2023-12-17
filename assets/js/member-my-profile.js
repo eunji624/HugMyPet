@@ -8,9 +8,9 @@ async function myProfile() {
 		}
 	});
 	const data = await response.json();
-	document.getElementById('userName').innerText = `${data.message.user.name}`;
-	document.getElementById('userEmail').innerText = `회원 이메일 👉  ${data.message.user.email}`;
-	document.getElementById('userAddress').innerText = `서비스 지역 👉 ${data.message.user.address}`;
+	document.getElementById('userName').innerText = `👤 ${data.message.user.name}`;
+	document.getElementById('userEmail').innerText = ` 📨 ${data.message.user.email}`;
+	document.getElementById('userAddress').innerText = ` 🏠 ${data.message.user.address}`;
 }
 
 myProfile();
