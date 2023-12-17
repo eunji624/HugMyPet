@@ -13,6 +13,7 @@ async function myProfile() {
 	});
 	const data = await response.json();
 	const newData = data.data;
+	console.log('newDate', newData);
 	let reservationDateStr = '';
 
 	if (newData.length > 1) {
@@ -24,8 +25,6 @@ async function myProfile() {
 				reservationDateStr += `${newDate}, `;
 			}
 		});
-	} else {
-		reservationDateStr = newData[0].reservationDate.slice(0, 10);
 	}
 	const newReservationArr = reservationDateStr.split(', ');
 
@@ -44,8 +43,8 @@ async function myProfile() {
 				<td class="reservationDate">${newReservationArr[i]}</td>
 				<td class="status">${status}</td>
 				<td class="createDate">${data.createdAt}</td>
-				<td>
-					<button id=${data.scheduleId} class="cancelReservation">예약 취소</button>
+				<td id=${data.petSitterId}>
+					<button id=${data.reserveId} class="cancelReservation">예약 취소</button>
 				</td>
 				</tr>
 		`);
@@ -53,21 +52,22 @@ async function myProfile() {
 }
 
 $('body').on('click', '.cancelReservation', async function (e) {
-	const scheduleIds = [parseInt(e.target.id)];
-	console.log('scheduleIds', scheduleIds);
+	const reserveId = [parseInt(e.target.id)];
+	const petSitterId = e.target.parentElement.id;
+	console.log('reserveId', reserveId);
 
-	const response = await fetch('/api/schedule', {
+	const response = await fetch(`api/reservation/contract/${petSitterId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`
 		},
-		body: JSON.stringify({ scheduleIds: scheduleIds })
+		body: JSON.stringify({ reserveId: reserveId })
 	});
 	const data = await response.json();
 	console.log('response', data);
 	// const newData = data.data;
 
-	// location.reload();
+	location.reload();
 });
 myProfile();
