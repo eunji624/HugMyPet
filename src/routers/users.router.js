@@ -27,5 +27,5 @@ router.delete('/contract/:petSitterId', needSignIn, reservationController.delete
 router.get('/contract/check', needSignIn, reservationController.reservationCheck);
 
 //펫시터 수정하기
-// router.patch('/contract/:petSitterId', needSignIn, reservationController.modifyReservationPetSitter);
+router.patch('/contract/:petSitterId', needSignIn, reservationController.modifyReservationPetSitter);
 export default router;

@@ -19,6 +19,8 @@ export class ReservationController {
 				+memberId
 			);
 
+			if (!reservationPetSitter.length) throw new Error('예약이 불가능한 날짜입니다.');
+
 			res.status(201).json({
 				success: true,
 				message: '펫 시터 예약에 성공하였습니다.',
@@ -82,13 +84,14 @@ export class ReservationController {
 			const { petSitterId } = req.params;
 			const { memberId } = res.locals.user;
 			const userSchedule = req.body.availableDate;
-
+			console.log(petSitterId, memberId, userSchedule);
 			//한번에 데이터 조회..
 			const reservationPetSitter = await this.reservationService.modifyReservationPetSitter(
 				+petSitterId,
 				+memberId,
 				userSchedule
 			);
+			res.status(201).json({ success: 'true', message: '예약 수정에 성공했습니다.', data: reservationPetSitter });
 			next();
 		} catch (err) {
 			console.log(err);
