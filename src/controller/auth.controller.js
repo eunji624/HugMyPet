@@ -119,12 +119,14 @@ export class AuthController {
 	logout = async (req, res, next) => {
 		const { authorization } = req.headers;
 
-		if (!authorization) {
-			return res.status(400).json({
-				success: false,
-				errorMessage: '현재 로그인된 계정이 없습니다.'
-			});
-		}
+		// if (!authorization) {
+		// 	return res.status(400).json({
+		// 		success: false,
+		// 		errorMessage: '현재 로그인된 계정이 없습니다.'
+		// 	});
+		// }
+
+		if (!authorization) throw new Error('현재 로그인된 계정이 없습니다.');
 
 		res.removeHeader('authorization');
 
@@ -138,28 +140,30 @@ export class AuthController {
 		try {
 			const { password } = req.body;
 
-			if (!password) {
-				return res.status(400).json({
-					success: false,
-					message: '비밀번호를 입력하세요.'
-				});
-			}
+			// if (!password) {
+			// 	return res.status(400).json({
+			// 		success: false,
+			// 		message: '비밀번호를 입력하세요.'
+			// 	});
+			// }
 
 			const user = await this.AuthService.findByEmail(res.locals.user.email);
-
-			if (!user) {
-				return res.status(404).json({
-					success: false,
-					message: '사용자가 존재하지 않습니다.'
-				});
-			}
+			if (!user) throw new Error('사용자가 존재하지 않습니다.');
+			// if (!user) {
+			// 	return res.status(404).json({
+			// 		success: false,
+			// 		message: '사용자가 존재하지 않습니다.'
+			// 	});
+			// }
 
 			const isPasswordMatched = bcrypt.compareSync(password, user.password);
-			if (!isPasswordMatched) {
-				return res.status(400).json({
-					message: '비밀번호가 틀립니다.'
-				});
-			}
+			if (!isPasswordMatched) throw new Error('비밀번호가 틀립니다.');
+
+			// if (!isPasswordMatched) {
+			// 	return res.status(400).json({
+			// 		message: '비밀번호가 틀립니다.'
+			// 	});
+			// }
 
 			await this.AuthService.signOut(res.locals.user.email);
 
