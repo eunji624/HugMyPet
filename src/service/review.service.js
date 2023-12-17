@@ -3,8 +3,8 @@ export class ReviewService {
 		this.reviewRepository = reviewRepository;
 	}
 
-	//리뷰 평점 평균 구하는 함수입니다.
-	async getPetSitterScore(petSitterId, score) {
+	//펫시터 리뷰 평점 평균 업데이트 함수입니다.
+	async updatePetSitterScore(petSitterId, score) {
 		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
 		const oldScore = getPetSitterScore.score;
 		const scoreAvg = Math.round((score + oldScore) / 2);
@@ -20,20 +20,37 @@ export class ReviewService {
 		const reservationPetSitterCorrect = newfindUserReservation.some((e) => e === petSitterId);
 		if (!reservationPetSitterCorrect) throw new Error('예약한 펫시터만 리뷰를 남길 수 있습니다.');
 
+		//예약한 날짜가 지나야 후기 남길 수 있도록
+		const isAfterUserReservation = findUserReservation.map((e) => e.reservationDate);
+		const sortUserReservation = isAfterUserReservation.sort((a, b) => a - b); //곧 있을 예약순으로
+		const nowDate = new Date();
+		const bigOrSmall = nowDate > sortUserReservation[0];
+		if (!bigOrSmall) throw new Error('예약하신 날짜가 지나야 리뷰를 남길 수 있습니다.');
+
 		const createReview = await this.reviewRepository.createReview(petSitterId, memberId, content, score);
 
-		const modifyPetSitterScore = await this.getPetSitterScore(+petSitterId, score);
+		const modifyPetSitterScore = await this.updatePetSitterScore(+petSitterId, score);
 
 		return [createReview, modifyPetSitterScore];
 	};
 
-	updateReview = async (reviewId, content, score) => {
+	updateReview = async (reviewId, content, score, memberId) => {
+		//유저가 작성한 글이 맞는지 확인
+		const findUserReview = await this.reviewRepository.findUserReservation(+memberId);
+		if (memberId !== findUserReview.memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
+
 		const updateReview = await this.reviewRepository.updateReview(reviewId, content, score);
+		const modifyPetSitterScore = await this.updatePetSitterScore(+updateReview.petSitterId, score);
+
 		// 프론트에서 편하게 쓰기 위해서 아래 유저 정보 부분 삭제했습니다.
 		return updateReview;
 	};
 
-	deleteReview = async (reviewId) => {
+	deleteReview = async (reviewId, memberId) => {
+		//실제로 유저가 작성한게 맞는지 확인.
+		const findUserReview = await this.reviewRepository.findUserReservation(+memberId);
+		if (memberId !== findUserReview.memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
+
 		const deleteReview = await this.reviewRepository.deleteReview(reviewId);
 
 		return deleteReview;

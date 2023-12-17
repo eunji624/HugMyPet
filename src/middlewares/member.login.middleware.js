@@ -10,15 +10,15 @@ export const needSignIn = async (req, res, next) => {
 	try {
 		const { authorization } = req.headers;
 		// headers로 하면 안 들어옴
-
 		const [tokenType, accessToken] = authorization.split(' ');
 
-		if (tokenType !== 'Bearer') {
-			return res.status(400).json({
-				success: false,
-				message: '지원하지 않는 인증 방식입니다.'
-			});
-		}
+		if (tokenType !== 'Bearer') throw new Error('지원하지 않는 인증 방식입니다.');
+		// if (tokenType !== 'Bearer') {
+		// 	return res.status(400).json({
+		// 		success: false,
+		// 		message: '지원하지 않는 인증 방식입니다.'
+		// 	});
+		// }
 
 		if (!accessToken) {
 			return res.status(400).json({
@@ -26,6 +26,7 @@ export const needSignIn = async (req, res, next) => {
 				message: 'AccessToken이 없습니다.'
 			});
 		}
+		if (!accessToken) throw new Error('AccessToken이 없습니다.');
 
 		const userVerify = jwt.verify(accessToken, process.env.JWT_SECRET);
 
