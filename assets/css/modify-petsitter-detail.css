@@ -6,6 +6,14 @@
 	margin: 10% auto;
 }
 
+.cancelReservation {
+	background-color: #82d9fa;
+	border-radius: 10px;
+	border: transparent;
+	padding: 5%;
+	color: #515151;
+}
+
 .petsitter-img {
 	border-radius: 30px;
 }

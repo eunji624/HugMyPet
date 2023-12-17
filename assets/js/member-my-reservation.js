@@ -13,39 +13,40 @@ async function myProfile() {
 	});
 	const data = await response.json();
 	const newData = data.data;
-	let reservationDateStr = '';
+	console.log('newDate', newData);
+	// let reservationDateStr = '';
 
-	if (newData.length > 1) {
-		newData.forEach((reservationData, i) => {
-			const newDate = reservationData.reservationDate.slice(0, 10);
-			if (i === newData.length - 1) {
-				reservationDateStr += `${newDate}`;
-			} else {
-				reservationDateStr += `${newDate}, `;
-			}
-		});
-	} else {
-		reservationDateStr = newData[0].reservationDate.slice(0, 10);
-	}
-	const newReservationArr = reservationDateStr.split(', ');
-
+	// if (newData.length > 1) {
+	// 	newData.forEach((reservationData, i) => {
+	// 		const newDate = reservationData.reservationDate.slice(0, 10);
+	// 		if (i === newData.length - 1) {
+	// 			reservationDateStr += `${newDate}`;
+	// 		} else {
+	// 			reservationDateStr += `${newDate}, `;
+	// 		}
+	// 	});
+	// }
+	// const newReservationArr = reservationDateStr.split(', ');
+	const reservationDate = newData.sort((a, b) => new Date(a.reservationDate) - new Date(b.reservationDate));
+	console.log('reservationDate', reservationDate);
 	const reservationCheckData = $('.reservations');
 	reservationCheckData.empty();
 
-	newData.forEach((data, i) => {
+	reservationDate.map((data, i) => {
 		const reservationCheckCount = i + 1;
 		const createdAt = data.createdAt.slice(0, 10);
+		const dateSlice = data.reservationDate.slice(0, 10);
 		const status = data.status === 'Completed' ? '예약 완료' : '예약 진행중';
 
 		return reservationCheckData.append(`
 			<tr>
 				<td class="reservationCount">${reservationCheckCount}</td>
 				<td class="name">${data.petSitterName}</td>
-				<td class="reservationDate">${newReservationArr[i]}</td>
+				<td class="reservationDate">${dateSlice}</td>
 				<td class="status">${status}</td>
-				<td class="createDate">${data.createdAt}</td>
-				<td>
-					<button id=${data.scheduleId} class="cancelReservation">예약 취소</button>
+				<td class="createDate">${createdAt}</td>
+				<td id=${data.petSitterId}>
+					<button id=${data.reserveId} class="cancelReservation">예약 취소</button>
 				</td>
 				</tr>
 		`);
@@ -53,21 +54,22 @@ async function myProfile() {
 }
 
 $('body').on('click', '.cancelReservation', async function (e) {
-	const scheduleIds = [parseInt(e.target.id)];
-	console.log('scheduleIds', scheduleIds);
+	const reserveId = [parseInt(e.target.id)];
+	const petSitterId = e.target.parentElement.id;
+	console.log('reserveId', reserveId);
 
-	const response = await fetch('/api/schedule', {
+	const response = await fetch(`api/reservation/contract/${petSitterId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 			Authorization: `Bearer ${token}`
 		},
-		body: JSON.stringify({ scheduleIds: scheduleIds })
+		body: JSON.stringify({ reserveId: reserveId })
 	});
 	const data = await response.json();
 	console.log('response', data);
 	// const newData = data.data;
 
-	// location.reload();
+	location.reload();
 });
 myProfile();
