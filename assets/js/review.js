@@ -39,7 +39,7 @@ const getLogInUserId = async () => {
 }
 
 const currentMemberId = await getLogInUserId();
-const currentMemberRole = getLogInUserRole();
+const currentMemberRole = await getLogInUserRole();
 
 
 
@@ -135,11 +135,12 @@ const createReview = async (petSitterId, role) => {
 
     if (!token) {
       alert('로그인 후 이용 가능합니다.');
-      window.location.href = "/user-sign-in";
+      return window.location.href = "/user-sign-in";
     };
 
     if (role !== 'user') {
-      alert('리뷰는 유저만 남길 수 있습니다.')
+      console.log('role: ', role);
+      return alert('리뷰는 유저만 남길 수 있습니다.')
     }
 
     const inputComment = $('.comment-input').val();
@@ -172,7 +173,7 @@ const createReview = async (petSitterId, role) => {
 /* 버튼 클릭 시 리뷰 생성하기 */
 $('.comment-btn').on('click', async (event) => {
   event.preventDefault()
-  createReview(petSitterId)
+  createReview(petSitterId, currentMemberRole)
 });
 
 
