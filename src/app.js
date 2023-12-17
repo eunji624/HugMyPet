@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 
 import router from './routers/index.js';
-
+import { AvailablePet } from '@prisma/client';
 // import ErrorHandler from './middlewares/ErrorHandler.js';
 
 const port = process.env.PORT;
@@ -39,8 +39,10 @@ app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
+const availablePetEnum = Object.keys(AvailablePet);
+
 app.get('/petsitter-sign-up', async (req, res) => {
-	res.render('../views/petSitter-sign-up.ejs');
+	res.render('../views/petSitter-sign-up.ejs', { availablePetEnum });
 });
 
 app.get('/member-my-profile', async (req, res) => {
