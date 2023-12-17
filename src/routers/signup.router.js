@@ -6,7 +6,7 @@ const petsitterAuthController = new PetsitterAuthController();
 const authController = new AuthController();
 const router = express.Router();
 
-/* 유저 */
+/* 유저  */
 router.post('/users', registerValidation, authController.signUp);
 
 /* 펫시터 */
