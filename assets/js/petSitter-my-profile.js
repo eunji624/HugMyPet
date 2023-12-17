@@ -9,7 +9,7 @@ import {
 	toActivateDeleteNextMonthDates
 } from '../../assets/js/calendar.js';
 import { getAccessToken } from './localstorage.js';
-import { formatDateTime } from './calendar.js'
+import { formatDateTime } from './calendar.js';
 
 const token = getAccessToken();
 
@@ -46,7 +46,12 @@ const spreadPetSitterProfile = async (petsitter) => {
 
 	const { petSitterId, name, age, selfIntro, availablePet, availableAddress, certificate, score, imagePath } =
 		petsitter;
-
+	let koreaAvailablePet = '';
+	if (availablePet === 'Dog') {
+		koreaAvailablePet = '강아지';
+	} else if (availablePet === 'Cat') {
+		koreaAvailablePet = '고양이';
+	}
 	const profilePath = imagePath // 나중에 순서 바꾸기
 		? '../../assets/Img/6.png'
 		: `https://nbcamp-bukkit.s3.ap-northeast-2.amazonaws.com/${images_path.split(',')[0]}`;
@@ -59,12 +64,12 @@ const spreadPetSitterProfile = async (petsitter) => {
   </div>
   <div class="petsitter-info-wrab">
     <div class="petsitter-info-top">
-      <div class="petsitter-name">${name}</div>
-      <div class="petsitter-address">${availableAddress}</div>
-      <div class="available-pet-wrab">${availablePet}</div>
+      <div class="petsitter-name">펫시터🐾 ${name}</div>
+      <div class="petsitter-address">펫시터 서비스 지역🐾 ${availableAddress}</div>
+      <div class="available-pet-wrab">펫시터 케어 애완동물🐾 ${koreaAvailablePet}</div>
     </div>
     <div class="petsitter-info-bottom">
-      <div class="petsitter-intro">${selfIntro}</div>
+      <div class="petsitter-intro">펫시터 자기소개🐾 ${selfIntro}</div>
     </div>
   </div>`
 	);
@@ -195,7 +200,6 @@ $('.dates-btn.delete').on('click', async (event) => {
 	location.reload();
 });
 
-
 /* 나에게 예약된 스케쥴 확인하기 */
 const getReservationsToMe = async (token) => {
 	try {
@@ -211,7 +215,7 @@ const getReservationsToMe = async (token) => {
 		return result.data;
 	} catch (err) {
 		console.error(err);
-	};
+	}
 };
 
 const reservations = await getReservationsToMe(token);
@@ -219,16 +223,10 @@ const reservations = await getReservationsToMe(token);
 /* 예약된 함수 뿌려주기 */
 const spreadReservations = async (reservations) => {
 	const reservationsDiv = $('.reservations');
-	reservationsDiv.empty()
+	reservationsDiv.empty();
 
 	reservations.forEach((reservation) => {
-		const {
-			reserveId,
-			petSitterId,
-			memberId,
-			createdAt,
-			reservationDate
-		} = reservation
+		const { reserveId, petSitterId, memberId, createdAt, reservationDate } = reservation;
 
 		const memberName = reservation.Member.name;
 		const email = reservation.Member.email;
@@ -246,7 +244,7 @@ const spreadReservations = async (reservations) => {
 				<td>${formatCreatedAt}</td>
 			</tr>
 			`
-		)
-	})
-}
+		);
+	});
+};
 spreadReservations(reservations);

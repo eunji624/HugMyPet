@@ -38,10 +38,11 @@ export class ReviewController {
 	updateReview = async (req, res, next) => {
 		try {
 			const { reviewId } = req.params;
-			const { content, score } = req.body;
+			const { content } = req.body;
 			const { memberId } = res.locals.user;
 
-			const updateReview = await this.reviewService.updateReview(+reviewId, content, score, memberId);
+			const updateReview = await this.reviewService.updateReview(+reviewId, content, memberId);
+			console.log(updateReview);
 			res.status(200).json({ success: true, message: '펫 시터 후기 수정에 성공했습니다.', data: updateReview });
 			next();
 		} catch (err) {

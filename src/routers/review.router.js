@@ -7,7 +7,7 @@ import { ReviewService } from '../service/review.service.js';
 import { ReviewRepository } from '../repository/review.repository.js';
 
 import { needSignIn } from '../middlewares/member.login.middleware.js';
-import { createReviewValidation } from '../middlewares/joiValidation.js';
+import { createReviewValidation, modifyReviewValidation } from '../middlewares/joiValidation.js';
 const router = express.Router();
 dotenv.config();
 
@@ -22,7 +22,7 @@ router.post('/', needSignIn, createReviewValidation, reviewController.createRevi
 router.get('/', reviewController.findManyReview);
 
 //리뷰 수정
-router.patch('/:reviewId', needSignIn, createReviewValidation, reviewController.updateReview);
+router.patch('/:reviewId', needSignIn, modifyReviewValidation, reviewController.updateReview);
 
 //리뷰 삭제
 router.delete('/:reviewId', needSignIn, reviewController.deleteReview);

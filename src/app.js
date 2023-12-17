@@ -41,6 +41,7 @@ app.get('/member-sign-up', async (req, res) => {
 
 app.get('/petsitter-sign-up', async (req, res) => {
 	const availablePetEnum = Object.keys(AvailablePet);
+
 	res.render('../views/petSitter-sign-up.ejs', { availablePetEnum });
 });
 
