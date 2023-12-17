@@ -24,7 +24,6 @@ const getDetailPetsitterByToken = async (token) => {
 		})
 			.then((res) => res.json())
 			.catch((err) => err);
-		console.log(result);
 
 		return result.data;
 	} catch (err) {
@@ -85,7 +84,6 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
 		})
 			.then((res) => res.json())
 			.catch((err) => err);
-		console.log(result);
 
 		return result.data;
 	} catch (err) {
@@ -95,7 +93,6 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
 
 /* 스케쥴 추가하기 달력 관련 함수 */
 const petSitterSchedules = await getAvailableDatesBypetSitterId(petsitter.petSitterId);
-console.log('petSitterSchedules: ', petSitterSchedules);
 
 const availableDates = petSitterSchedules.map((schedule) => schedule.availableDate.split('T')[0]);
 
@@ -167,12 +164,10 @@ $('._delete').on('click', function () {
 		// 선택되지 않은 날짜를 클릭하여 선택할 경우 배열에 추가
 		selectedScheduleIds.push(scheduleId);
 	}
-	console.log('selectedScheduleIds: ', selectedScheduleIds);
 });
 
 /* 스케쥴 삭제하기 */
 const deleteReservationSchedule = async (selectedScheduleIds) => {
-	console.log('프론트에서 이거 넘겨줍니다. ', selectedScheduleIds);
 	try {
 		const token = getAccessToken();
 		if (!token) {

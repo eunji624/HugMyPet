@@ -42,7 +42,6 @@ export class ReviewController {
 			const { memberId } = res.locals.user;
 
 			const updateReview = await this.reviewService.updateReview(+reviewId, content, memberId);
-			console.log(updateReview);
 			res.status(200).json({ success: true, message: '펫 시터 후기 수정에 성공했습니다.', data: updateReview });
 			next();
 		} catch (err) {

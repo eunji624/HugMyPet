@@ -32,6 +32,7 @@ export class ReservationRepository {
 		return petSitterPossibleSchedule;
 	};
 
+	//펫시터를 예약합니다.
 	createReservation = async (availableDate, scheduleId, memberId, petSitterId) => {
 		const newReservation = this.prisma.reservations.create({
 			data: {
@@ -45,6 +46,7 @@ export class ReservationRepository {
 		return newReservation;
 	};
 
+	//펫시터의 스케줄을 변경합니다.
 	updatePetSitterSchedule = async (memberId, scheduleId) => {
 		const updatePetSitterSchedule = this.prisma.petSitterSchedules.update({
 			where: { scheduleId },

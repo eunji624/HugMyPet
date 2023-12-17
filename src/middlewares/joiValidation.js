@@ -26,10 +26,6 @@ const registerValidation = async (req, res, next) => {
 		imagePath: Joi.string().required().messages({
 			'string.empty': '이미지를 넣어주세요'
 		}),
-		//이미지 파일.. 처리..
-		// imagePath: Joi.string().dataUri().required().messages({
-		// 	'string.dataUri': '이미지 파일의 형식이 올바르지 않습니다.'
-		// }),
 		address: Joi.string().required().messages({
 			'string.empty': '주소를 입력해 주세요'
 		})
@@ -77,10 +73,6 @@ const petSitterRegisterValidation = async (req, res, next) => {
 		imagePath: Joi.string().required().messages({
 			'string.empty': '이미지를 넣어주세요'
 		}),
-		//이미지 파일.. 처리..
-		// imagePath: Joi.string().dataUri().required().messages({
-		// 	'string.dataUri': '이미지 파일의 형식이 올바르지 않습니다.'
-		// }),
 		availableAddress: Joi.string().required().messages({
 			'string.empty': '주소를 입력해 주세요'
 		})
@@ -133,7 +125,6 @@ const signOut = async (req, res, next) => {
 
 //리뷰 작성 유효성 검사
 const createReviewValidation = async (req, res, next) => {
-	console.log('req.body', req.body);
 	const schema = Joi.object({
 		content: Joi.string().required().messages({
 			'string.empty': '내용을 입력해 주세요.'
@@ -146,7 +137,6 @@ const createReviewValidation = async (req, res, next) => {
 		await schema.validateAsync(req.body);
 		next();
 	} catch (err) {
-		console.log(err);
 		const message = err.details[0].message;
 		return res.status(400).json({ success: false, message: message });
 	}
@@ -154,7 +144,6 @@ const createReviewValidation = async (req, res, next) => {
 
 // 리뷰 수정 유효성 검사
 const modifyReviewValidation = async (req, res, next) => {
-	console.log('req.body', req.body);
 	const schema = Joi.object({
 		content: Joi.string().required().messages({
 			'string.empty': '내용을 입력해 주세요.'
@@ -164,7 +153,6 @@ const modifyReviewValidation = async (req, res, next) => {
 		await schema.validateAsync(req.body);
 		next();
 	} catch (err) {
-		console.log(err);
 		const message = err.details[0].message;
 		return res.status(400).json({ success: false, message: message });
 	}

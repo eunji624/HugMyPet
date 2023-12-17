@@ -18,7 +18,7 @@ const reviewController = new ReviewController(reviewService);
 //리뷰 작성
 router.post('/', needSignIn, createReviewValidation, reviewController.createReview);
 
-//리뷰 조회하기 (리뷰는 로그인하지 않은 사용자도 예약페이지에서 다 보여지기 때문에 미들웨어 삭제합니다.)
+//리뷰 조회하기
 router.get('/', reviewController.findManyReview);
 
 //리뷰 수정

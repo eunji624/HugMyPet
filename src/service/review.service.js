@@ -41,9 +41,7 @@ export class ReviewService {
 		if (memberId !== findUserReview[0].memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
 
 		const updateReview = await this.reviewRepository.updateReview(reviewId, content);
-		// const modifyPetSitterScore = await this.updatePetSitterScore(+updateReview.petSitterId);
 
-		// 프론트에서 편하게 쓰기 위해서 아래 유저 정보 부분 삭제했습니다.
 		return updateReview;
 	};
 

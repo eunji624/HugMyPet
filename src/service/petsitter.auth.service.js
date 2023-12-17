@@ -3,6 +3,7 @@ import { PetsitterAuthRepository } from '../repository/petsitter.auth.repository
 export class PetsitterAuthService {
 	PetsitterAuthRepository = new PetsitterAuthRepository();
 
+	//펫시터가 회원가입 합니다.
 	signUp = async (
 		email,
 		name,
@@ -42,24 +43,21 @@ export class PetsitterAuthService {
 		};
 	};
 
+	//펫시터의 정보를 가져옵니다.
 	findByEmail = async (email) => {
 		const petsitter = await this.PetsitterAuthRepository.findByEmail(email);
 
 		return petsitter;
 	};
 
-	findByPetsitterId = async (petsitterId) => {
-		const petsitter = await this.PetsitterAuthRepository.findByPetsitterId(petsitterId);
-
-		return petsitter;
-	};
-
+	//펫시터가 회원 탈퇴를 합니다.
 	signOut = async (email) => {
 		const user = await this.PetsitterAuthRepository.signOut(email);
 
 		return user;
 	};
 
+	//펫시터의 정보를 가져옵니다.
 	myProfile = async (email) => {
 		const user = await this.PetsitterAuthRepository.findByEmail(email);
 
@@ -73,6 +71,6 @@ export class PetsitterAuthService {
 			certificate: user.certificate,
 			score: user.score,
 			imagePath: user.imagePath
-		}
+		};
 	};
 }

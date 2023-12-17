@@ -11,7 +11,6 @@ export class ReservationService {
 	};
 
 	reservationPetSitter = async (petSitterId, userSchedule, memberId) => {
-		console.log('memberId', memberId);
 		//현재 펫시터 스케줄 조회
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
 
@@ -22,16 +21,12 @@ export class ReservationService {
 			const available = userSchedule[0].split(', ');
 			for (const scheduleDate of available) {
 				const test = scheduleDate + 'T00:00:00.000Z';
-				// console.log('a=>', schedule.availableDate.toISOString());
-				// console.log('b=>', test);
 
 				if (schedule.availableDate.toISOString() === test) {
 					stillPossibleSchedule.push(schedule);
 				}
 			}
 		}
-
-		console.log('stillPossibleSchedule', stillPossibleSchedule);
 
 		if (!stillPossibleSchedule) throw new Error('이미 예약된 날짜입니다.');
 
@@ -40,14 +35,12 @@ export class ReservationService {
 		await Promise.all(
 			stillPossibleSchedule.map(async (possibleSchedule, i) => {
 				//예약테이블에 데이터 넣기
-				console.log('=====>', possibleSchedule.availableDate, +possibleSchedule.scheduleId, memberId, petSitterId);
 				const newReservation = await this.reservationRepository.createReservation(
 					possibleSchedule.availableDate,
 					+possibleSchedule.scheduleId,
 					memberId,
 					petSitterId
 				);
-				console.log('newReservation', newReservation);
 				//펫시터 스케줄 테이블에 데이터 수정하기
 				const modifyPetSitterSchedule = await this.reservationRepository.updatePetSitterSchedule(
 					memberId,
@@ -66,13 +59,9 @@ export class ReservationService {
 	modifyReservationPetSitter = async (petSitterId, memberId, userSchedule) => {
 		//유저가 예약한 스케줄
 		const currentReservation = await this.reservationRepository.findAllUserReservationSchedule(memberId);
-		console.log('유저가 예약한 스케줄', currentReservation);
 
 		//아직 가능한 펫시터 스케줄
 		const petSitterPossibleSchedule = await this.reservationRepository.findAllPossibleSchedule(petSitterId);
-		console.log('아직 가능한 펫시터 스케줄', petSitterPossibleSchedule);
-
-		console.log('유저가 새로 입력한 스케줄', userSchedule);
 
 		//유저의 기존 스케줄과, 새로 입력한 유저 스케줄에서 겹치는 애들만 빼고 나머지는 삭제 __ 삭제할 애들 따로 추룰
 		const oldUserReservation = currentReservation.map((e) => e.availableDate);
@@ -85,13 +74,10 @@ export class ReservationService {
 				willDeleteReservation.push(oldScheduleDate);
 			}
 		}
-		console.log('==>> 삭제할 애들 모음 ==>', willDeleteReservation);
 
 		//해당 유저 예약 스케줄 삭제하기
 		willDeleteReservation.forEach(async (deleteReservation) => {
-			console.log('deleteReservation', deleteReservation);
 			const checkDeleteReservation = await this.reservationRepository.deleteReservationDate(deleteReservation);
-			console.log('삭제 확인', checkDeleteReservation);
 		});
 
 		// currentReservation.filter((currentReservation) => {
@@ -156,10 +142,6 @@ export class ReservationService {
 		getReservationInfo.map((e) => {
 			e.petSitterName = getPetSitterName.name;
 		});
-		// const checkReservation = {
-		// 	...getReservationInfo,
-		// 	petSitterName: getPetSitterName.name
-		// };
 		return getReservationInfo;
 	};
 }

@@ -3,6 +3,7 @@ import { PetsitterScheduleService } from '../service/petsitter.schedule.service.
 export class PetsitterScheduleController {
 	petSitterScheduleService = new PetsitterScheduleService();
 
+	//펫시터의 스케줄을 조회합니다.
 	getSchedules = async (req, res, next) => {
 		try {
 			const { petSitterId } = req.params;
@@ -15,10 +16,10 @@ export class PetsitterScheduleController {
 		}
 	};
 
+	//펫시터의 스케줄을 등록합니다.
 	setSchedules = async (req, res, next) => {
 		try {
 			const { dates } = req.body;
-			console.log('프론트에서 어떻게 받는지 보고 싶네요 : ', dates);
 			const { petSitterId } = res.locals.user;
 
 			if (!dates) {
@@ -26,7 +27,6 @@ export class PetsitterScheduleController {
 			}
 
 			const datesArr = dates.split(', ');
-			console.log('컨트롤러의 데이터 어레이 입니다. ', datesArr);
 
 			/* 해당일(오늘) 이전 날짜/30일 이후는 예약 가능 스케쥴로 등록 불가 */
 			datesArr.forEach((date) => {
@@ -49,6 +49,7 @@ export class PetsitterScheduleController {
 		}
 	};
 
+	//펫시터의 스케줄을 수정합니다.
 	updateSchedule = async (req, res, next) => {
 		try {
 			const { scheduleId } = req.params;
@@ -62,10 +63,10 @@ export class PetsitterScheduleController {
 		}
 	};
 
+	//펫시터의 스케줄을 삭제합니다.
 	deleteSchedule = async (req, res, next) => {
 		try {
 			const { scheduleIds } = req.body;
-			console.log('컨트롤러에서는 어떤 식? ', scheduleIds);
 			const { petSitterId } = res.locals.user;
 
 			await this.petSitterScheduleService.deleteScheduleByScheduleId(scheduleIds, petSitterId);

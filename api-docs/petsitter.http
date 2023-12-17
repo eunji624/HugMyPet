@@ -29,12 +29,6 @@ PUT   http://localhost:3010/api/schedule/3
 Content-Type: application/json
 Authorization: Bearer {{token}}
 
-
-# {
-#    "dates" : "2023-01-01"
-# }
-
-
 #
 
 ### 해당 펫시터 스케줄 데이터 전체 삭제하기
