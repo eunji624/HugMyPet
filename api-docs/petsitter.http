@@ -31,7 +31,7 @@ Authorization: Bearer {{token}}
 
 #
 
-### 해당 펫시터 스케줄 데이터 전체 삭제하기
+### 해당 펫시터 스케줄 데이터 삭제(스케줄 아이디값)
 
 DELETE http://localhost:3010/api/schedule
 Content-Type: application/json

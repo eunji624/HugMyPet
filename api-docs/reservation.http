@@ -36,7 +36,7 @@ authorization: Bearer {{token}}
 
 
 #
-###펫시터 예약 삭제하기
+###유저가 한 펫시터 예약 삭제하기 __ 
 DELETE  http://localhost:3010/api/reservation/contract/3
 Content-Type: application/json
 authorization: Bearer {{token}}
