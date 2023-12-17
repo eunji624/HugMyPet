@@ -9,3 +9,13 @@ export const getAccessToken = () => {
 
   return accessToken;
 }
+
+export const getLogInUserRole = () => {
+  const role = window.localStorage.getItem('role');
+
+  if (!role) {
+    return null
+  }
+
+  return role
+};

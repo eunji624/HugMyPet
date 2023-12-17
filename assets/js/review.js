@@ -1,5 +1,5 @@
 import { getPetsitterIdByPath } from './petsitter-detail.js'
-import { getAccessToken } from './token.js';
+import { getAccessToken, getLogInUserRole } from './localstorage.js';
 
 /** 펫시터 아이디 찾기 **/
 const petSitterId = getPetsitterIdByPath();
@@ -39,6 +39,7 @@ const getLogInUserId = async () => {
 }
 
 const currentMemberId = await getLogInUserId();
+const currentMemberRole = getLogInUserRole();
 
 
 
@@ -62,7 +63,7 @@ const getReviewsByPetSitterId = async (petSitterId) => {
 const reviews = await getReviewsByPetSitterId(petSitterId);
 
 /* 가져온 평점 및 리뷰를 HTML 로 뿌려주기 */
-const speadReviews = async (reviews, currentMemberId) => {
+const speadReviews = async (reviews, currentMemberId, role) => {
   const reviewDiv = $('.detail-comments-lists');
   reviewDiv.empty();
 
@@ -95,7 +96,7 @@ const speadReviews = async (reviews, currentMemberId) => {
         : `<div class="comment-create-at">${formattedUpdatedAt} 수정됨</div>`
       }
         </div>
-        ${memberId === currentMemberId
+        ${role === 'user' && memberId === currentMemberId
         ? `<div class="comment-btns-box">
          <button class="edit-comment-btn">수정</button>
          <button class="delete-comment-btn">삭제</button>`
@@ -122,13 +123,13 @@ const speadReviews = async (reviews, currentMemberId) => {
   )
 }
 
-speadReviews(reviews, currentMemberId);
+speadReviews(reviews, currentMemberId, currentMemberRole);
 
 
 
 
 /* 리뷰 및 평점 등록하기 */
-const createReview = async (petSitterId) => {
+const createReview = async (petSitterId, role) => {
   try {
     const token = getAccessToken();
 
@@ -136,6 +137,10 @@ const createReview = async (petSitterId) => {
       alert('로그인 후 이용 가능합니다.');
       window.location.href = "/user-sign-in";
     };
+
+    if (role !== 'user') {
+      alert('리뷰는 유저만 남길 수 있습니다.')
+    }
 
     const inputComment = $('.comment-input').val();
     const inputScore = $('#score-select').val();
@@ -157,7 +162,7 @@ const createReview = async (petSitterId) => {
     $('#score-select').val('5'); // 평점 선택 초기화
 
     const reviews = await getReviewsByPetSitterId(petSitterId);
-    await speadReviews(reviews, currentMemberId);
+    await speadReviews(reviews, currentMemberId, currentMemberRole);
 
   } catch (err) {
     console.error(err)
