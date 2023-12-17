@@ -142,7 +142,7 @@ const createReviewValidation = async (req, res, next) => {
 		content: Joi.string().required().messages({
 			'string.empty': '내용을 입력해 주세요.'
 		}),
-		score: Joi.number().max(10).min(0).required().messages({
+		score: Joi.number().max(5).min(0).required().messages({
 			'number.empty': '펫 시터에게 평점을 남겨주세요.'
 		})
 	});

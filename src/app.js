@@ -4,8 +4,7 @@ import cookieParser from 'cookie-parser';
 import path from 'path';
 
 import router from './routers/index.js';
-
-// import ErrorHandler from './middlewares/ErrorHandler.js';
+import ErrorHandler from './middlewares/ErrorHandler.js';
 
 const port = process.env.PORT;
 const app = express();
@@ -55,6 +54,8 @@ app.get('/petsitter-my-profile', async (req, res) => {
 app.get('/pet-sitter/:petsitterId', async (req, res) => {
 	res.render('../views/petsitter-detail.ejs', { includeHeader: true });
 });
+
+app.use(ErrorHandler);
 
 app.listen(port, () => {
 	console.log(port, '번 포트가 열렸어요');
