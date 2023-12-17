@@ -7,4 +7,12 @@ export class PetSittersService {
 		const petSittersData = await this.petSittersRepository.petSittersData();
 		return petSittersData;
 	};
+
+
+
+	getReservationsByPetsitterId = async (petSitterId) => {
+		const reservations = await this.petSittersRepository.findManyreservationsToMe(petSitterId);
+
+		return reservations;
+	}
 }
