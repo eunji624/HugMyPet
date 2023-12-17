@@ -8,7 +8,7 @@ import {
 	drawNextMonthDeleteDatesCalendar,
 	toActivateDeleteNextMonthDates
 } from '../../assets/js/calendar.js';
-import { getAccessToken } from './token.js';
+import { getAccessToken } from './localstorage.js';
 
 const token = getAccessToken();
 
