@@ -52,7 +52,8 @@ export class ReservationService {
 					+possibleSchedule.scheduleId
 				);
 
-				if (!newReservation || !modifyPetSitterSchedule) throw new Error('잠시후 다시 예약해 주세요');
+				if (!newReservation || !modifyPetSitterSchedule)
+					throw new Error('이미 처리된 예약건 입니다. 잠시후 다시 예약해 주세요.');
 
 				return successReservation.push(newReservation);
 			})

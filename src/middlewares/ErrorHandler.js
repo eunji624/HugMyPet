@@ -1,4 +1,4 @@
-export default ErrorHandler = (err, req, res, next) => {
+const ErrorHandler = (err, req, res, next) => {
 	console.log('에러처리 미들웨어 구동중 입니다.=>', err);
 	const errorCodeMap = {
 		'이름을 입력해 주세요': 400,
@@ -22,17 +22,20 @@ export default ErrorHandler = (err, req, res, next) => {
 		'날짜를 다시 확인해주세요.': 403,
 		'해당하는 스케쥴이 존재하지 않습니다.': 404,
 		'권한이 없습니다.': 401,
-		'해당하는 스케쥴이 존재하지 않습니다.': 404,
 		'해당하는 펫 시터를 찾을 수 없습니다.': 404,
 		'이미 삭제된 예약건입니다.': 404,
 		'작성자가 아님으로 권한이 없습니다.': 401,
 		'이미 예약된 날짜입니다.': 403,
-		'잠시후 다시 예약해 주세요': 403,
+		'이미 처리된 예약건 입니다. 잠시후 다시 예약해 주세요': 403,
 		'예약 정보를 찾을 수 없습니다.': 400,
-		'예약한 펫시터만 리뷰를 남길 수 있습니다.': 403
+		'예약한 펫시터만 리뷰를 남길 수 있습니다.': 403,
+		'예약하신 날짜가 지나야 리뷰를 남길 수 있습니다.': 403
 	};
-	switch (err.message) {
-		case '이름을 입력해 주세요.':
-			return;
-	}
+
+	const errorCode = errorCodeMap[err.message];
+	if (errorCode) return res.status(errorCode).json({ success: false, message: err.message });
+
+	return res.status(500).json({ success: false, message: '연결에 실패하였습니다. 잠시 후 다시 시도해 주십시오.' });
 };
+
+export default ErrorHandler;
