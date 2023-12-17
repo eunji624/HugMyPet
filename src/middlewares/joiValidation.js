@@ -67,13 +67,13 @@ const petSitterRegisterValidation = async (req, res, next) => {
 		confirmPassword: Joi.any().valid(Joi.ref('password')).required().messages({
 			'any.only': '비밀번호가 일치하지 않습니다.'
 		}),
-		selfIntro: Joi.string().required().message({
+		selfIntro: Joi.string().required().messages({
 			'string.empty': '자기소개를 작성해 주세요.'
 		}),
-		availablePet: Joi.string().valid('Dog', 'Cat').required().message({
+		availablePet: Joi.string().valid('Dog', 'Cat').required().messages({
 			'string.empty': '케어 가능한 펫 종류를 입력해 주세요.'
 		}),
-		certificate: Joi.string().required().message({
+		certificate: Joi.string().required().messages({
 			'string.empty': '보유하고 계신 자격증 명을 입력해 주세요. 없으시다면 없음 을 입력해 주세요.'
 		}),
 		imagePath: Joi.string().required().messages({
@@ -142,7 +142,7 @@ const createReviewValidation = async (req, res, next) => {
 		content: Joi.string().required().messages({
 			'string.empty': '내용을 입력해 주세요.'
 		}),
-		score: Joi.number().max(10).min(0).required().messages({
+		score: Joi.number().max(5).min(0).required().messages({
 			'number.empty': '펫 시터에게 평점을 남겨주세요.'
 		})
 	});

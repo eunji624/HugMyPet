@@ -1,6 +1,6 @@
 
 
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MSwibmFtZSI6Iu2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyNzI2NTEwLCJleHAiOjE3MDI3MzAxMTB9.5x4ftn7wsl8xqBnbYlcuN8rGH4vfKyMl4PYSx00b97w
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwZXRTaXR0ZXJJZCI6MiwibmFtZSI6IuusuOykgOyLnSIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJQZXQtU2l0dGVyIiwiaWF0IjoxNzAyODA2OTMzLCJleHAiOjE3MDI4MTA1MzN9.wdUNOXZGBFgl8QBDNZloj7obBXjavA3qqfHZcBsD1f0
 
 # 페이지 접속
 GET http://localhost:3010/
@@ -50,4 +50,9 @@ Authorization: Bearer {{token}}
 
 ### 펫시터 프로필 정보 조회하기 
 GET http://localhost:3010/api/my-profile/pet-sitters
+Authorization: Bearer {{token}}
+
+
+### 펫시터에게 잡힌 예약 조회하기
+GET http://localhost:3010/api/pet-sitters/reservations
 Authorization: Bearer {{token}}

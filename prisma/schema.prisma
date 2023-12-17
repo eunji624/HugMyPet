@@ -57,7 +57,6 @@ model PetSitterReviews {
   reviewId    Int        @id @default(autoincrement())
   petSitterId Int        @map("petSitterId")
   memberId    Int        @map("memberId")
-  title       String?     @map("title")
   content     String     @map("content")
   score       Int        @map("score")
   createdAt   DateTime   @default(now())
