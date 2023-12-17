@@ -21,6 +21,7 @@ export class ReservationRepository {
 		return petSitterData;
 	};
 
+	//펫시터의 가능한 스케줄
 	findAllPossibleSchedule = async (petSitterId) => {
 		const petSitterPossibleSchedule = this.prisma.petSitterSchedules.findMany({
 			where: {
@@ -72,6 +73,14 @@ export class ReservationRepository {
 			}
 		});
 		return deleteReservation;
+	};
+
+	//날짜로 예약 테이블 삭제
+	deleteReservationDate = async (availableDate) => {
+		const deleteReservationDate = this.prisma.reservations.delete({
+			where: { availableDate }
+		});
+		return deleteReservationDate;
 	};
 
 	//특정 펫시터의 스케줄 수정
