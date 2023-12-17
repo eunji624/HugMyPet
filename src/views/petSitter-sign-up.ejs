@@ -5,6 +5,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 		<script src="../../assets/js/petSitter-sign-up.js"></script>
 		<link rel="stylesheet" href="../../assets/css/signup.css" />
+		<link rel="stylesheet" href="../../assets/css/petsitter-detail.css">
 		<link
 			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
 			rel="stylesheet"
@@ -59,8 +60,12 @@
 				</label>
 				<label class="input-wrap">
 					<span>* availablePet</span>
-					<input type="text" id="availablePet" />
-				</label>
+					<select id="availablePet" name="availablePet">
+					  <% for (let petOption of availablePetEnum) { %>
+						<option value="<%= petOption %>"><%= petOption %></option>
+					  <% } %>
+					</select>
+				  </label>
 				<label class="input-wrap">
 					<span>* certificate </span>
 					<input type="text" id="certificate" />
