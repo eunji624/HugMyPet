@@ -1,6 +1,5 @@
 import { drawThisMonthAvailableDatesCalendar, drawNextMonthAvailableDatesCalendar, toActivateAvailableDates, toActivateAvailableNextMonthDates } from '../../assets/js/calendar.js'
-import { getAccessToken } from './token.js';
-console.log('이것은 토큰이에요 !!!!!!!!!!!!!', getAccessToken());
+import { getAccessToken } from './localstorage.js';
 
 /* 현재 위치에서 펫시터 아이디 구하기 */
 export const getPetsitterIdByPath = () => {

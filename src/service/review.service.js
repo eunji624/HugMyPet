@@ -3,8 +3,8 @@ export class ReviewService {
 		this.reviewRepository = reviewRepository;
 	}
 
-	//리뷰 평점 평균 구하는 함수입니다.
-	async getPetSitterScore(petSitterId, score) {
+	//펫시터 리뷰 평점 평균 업데이트 함수입니다.
+	async updatePetSitterScore(petSitterId, score) {
 		const getPetSitterScore = await this.reviewRepository.getPetSitterScore(petSitterId);
 		const oldScore = getPetSitterScore.score;
 		const scoreAvg = Math.round((score + oldScore) / 2);
@@ -29,7 +29,7 @@ export class ReviewService {
 
 		const createReview = await this.reviewRepository.createReview(petSitterId, memberId, content, score);
 
-		const modifyPetSitterScore = await this.getPetSitterScore(+petSitterId, score);
+		const modifyPetSitterScore = await this.updatePetSitterScore(+petSitterId, score);
 
 		return [createReview, modifyPetSitterScore];
 	};
@@ -40,7 +40,7 @@ export class ReviewService {
 		if (memberId !== findUserReview.memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
 
 		const updateReview = await this.reviewRepository.updateReview(reviewId, content, score);
-		const modifyPetSitterScore = await this.getPetSitterScore(+updateReview.petSitterId, score);
+		const modifyPetSitterScore = await this.updatePetSitterScore(+updateReview.petSitterId, score);
 
 		// 프론트에서 편하게 쓰기 위해서 아래 유저 정보 부분 삭제했습니다.
 		return updateReview;
