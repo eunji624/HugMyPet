@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MTAsIm5hbWUiOiIx7ZqM7JuQIO2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyODMyNzAzLCJleHAiOjE3MDI4MzYzMDN9.YTkBoYJ1poX0QhayqX09yt3PDzaxNQnYtaDGl-Ik__E
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MTAsIm5hbWUiOiIx7ZqM7JuQIO2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyODQyOTEzLCJleHAiOjE3MDI4NDY1MTN9.5IycqTcIIgCkwtxtrHeazvKqT98tLV8KlZj6msRKwiQ
 
 ###펫시터 리스트 출력
 GET http://localhost:3010/api/pet-sitters
@@ -20,7 +20,7 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-30, 2023-12-31"]
+	"availableDate": ["2023-12-29, 2023-12-30"]
 }
 
 
@@ -31,15 +31,19 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"availableDate": ["2023-12-27, 2023-12-28, 2023-12-30"]
+	"availableDate": ["2023-12-26, 2023-12-25, 2023-12-30"]
 }
 
 
 #
 ###유저가 한 펫시터 예약 삭제하기 __ 
-DELETE  http://localhost:3010/api/reservation/contract/3
+DELETE  http://localhost:3010/api/reservation/contract/5
 Content-Type: application/json
 authorization: Bearer {{token}}
+
+{
+	"reserveId": [115]
+}
 
 
 ###펫시터 현재 예약 조회하기

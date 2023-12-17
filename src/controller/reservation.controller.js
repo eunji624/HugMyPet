@@ -37,12 +37,12 @@ export class ReservationController {
 		try {
 			const { memberId } = res.locals.user;
 			const { petSitterId } = req.params;
+			const { reserveId } = req.body;
 
 			const existPetSitter = await this.reservationService.findFirstPetSitterData(+petSitterId);
 			if (!existPetSitter) throw new Error('해당하는 펫 시터를 찾을 수 없습니다.');
 
-			const deleteReservation = await this.reservationService.deleteReservation(+memberId, +petSitterId);
-			if (!deleteReservation.count) throw new Error('이미 삭제된 예약건입니다.');
+			const deleteReservation = await this.reservationService.deleteReservation(+memberId, +petSitterId, +reserveId);
 
 			res.status(201).json({ success: true, message: '펫 시터 예약이 취소되었습니다.' });
 		} catch (err) {

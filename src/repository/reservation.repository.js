@@ -67,11 +67,10 @@ export class ReservationRepository {
 	};
 
 	//해당 유저가 특정 펫시터에게 예약한 예약 테이블 데이터 삭제
-	deleteReservation = async (memberId, petSitterId) => {
-		const deleteReservation = this.prisma.reservations.deleteMany({
+	deleteReservation = async (memberId, petSitterId, reserveId) => {
+		const deleteReservation = this.prisma.reservations.delete({
 			where: {
-				memberId,
-				petSitterId
+				reserveId
 			}
 		});
 		return deleteReservation;
