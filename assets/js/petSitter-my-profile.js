@@ -9,6 +9,7 @@ import {
 	toActivateDeleteNextMonthDates
 } from '../../assets/js/calendar.js';
 import { getAccessToken } from './localstorage.js';
+import { formatDateTime } from './calendar.js'
 
 const token = getAccessToken();
 
@@ -40,7 +41,6 @@ if (!petsitter) {
 
 /* 펫시터 정보 HTML로 뿌리기 */
 const spreadPetSitterProfile = async (petsitter) => {
-	console.log('petsitter: ', petsitter);
 	const profileDiv = $('.petsitter-profile-wrab');
 	profileDiv.empty();
 
@@ -194,3 +194,59 @@ $('.dates-btn.delete').on('click', async (event) => {
 	await deleteReservationSchedule(selectedScheduleIds);
 	location.reload();
 });
+
+
+/* 나에게 예약된 스케쥴 확인하기 */
+const getReservationsToMe = async (token) => {
+	try {
+		const result = await fetch(`/api/pet-sitters/reservations`, {
+			method: 'GET',
+			headers: {
+				Authorization: `Bearer ${token}`
+			}
+		})
+			.then((res) => res.json())
+			.catch((err) => err);
+
+		return result.data;
+	} catch (err) {
+		console.error(err);
+	};
+};
+
+const reservations = await getReservationsToMe(token);
+
+/* 예약된 함수 뿌려주기 */
+const spreadReservations = async (reservations) => {
+	const reservationsDiv = $('.reservations');
+	reservationsDiv.empty()
+
+	reservations.forEach((reservation) => {
+		const {
+			reserveId,
+			petSitterId,
+			memberId,
+			createdAt,
+			reservationDate
+		} = reservation
+
+		const memberName = reservation.Member.name;
+		const email = reservation.Member.email;
+
+		const formatCreatedAt = formatDateTime(createdAt);
+		const formatReservationDate = formatDateTime(reservationDate);
+
+		reservationsDiv.append(
+			`
+			<tr>
+				<th scope="row">${reserveId}</th>
+				<td>${email}</td>
+				<td>${memberName}</td>
+				<td>${formatReservationDate}</td>
+				<td>${formatCreatedAt}</td>
+			</tr>
+			`
+		)
+	})
+}
+spreadReservations(reservations);

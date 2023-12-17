@@ -14,7 +14,7 @@ const registerValidation = async (req, res, next) => {
 			'number.min': '10살 이상, 90살 이하만 가입이 가능합니다.',
 
 			'number.min': '10살 이상, 90살 이하만 가입이 가능합니다.',
-			'number.max': '10살 이상, 90살 이하만 가입이 가능합니다.'
+			'number.max': '10s살 이상, 90살 이하만 가입이 가능합니다.'
 		}),
 		password: Joi.string().min(6).required().messages({
 			'string.empty': '비밀번호를 입력해 주세요',
@@ -39,9 +39,7 @@ const registerValidation = async (req, res, next) => {
 		next();
 	} catch (err) {
 		const message = err.details[0].message;
-		console.log('err', err);
-		res.status(400).json({ success: false, message: message });
-		next(err);
+		return res.status(400).json({ success: false, message: message });
 	}
 };
 
@@ -67,13 +65,13 @@ const petSitterRegisterValidation = async (req, res, next) => {
 		confirmPassword: Joi.any().valid(Joi.ref('password')).required().messages({
 			'any.only': '비밀번호가 일치하지 않습니다.'
 		}),
-		selfIntro: Joi.string().required().message({
+		selfIntro: Joi.string().required().messages({
 			'string.empty': '자기소개를 작성해 주세요.'
 		}),
-		availablePet: Joi.string().valid('Dog', 'Cat').required().message({
+		availablePet: Joi.string().valid('Dog', 'Cat').required().messages({
 			'string.empty': '케어 가능한 펫 종류를 입력해 주세요.'
 		}),
-		certificate: Joi.string().required().message({
+		certificate: Joi.string().required().messages({
 			'string.empty': '보유하고 계신 자격증 명을 입력해 주세요. 없으시다면 없음 을 입력해 주세요.'
 		}),
 		imagePath: Joi.string().required().messages({
@@ -92,9 +90,7 @@ const petSitterRegisterValidation = async (req, res, next) => {
 		next();
 	} catch (err) {
 		const message = err.details[0].message;
-		console.log('err', err);
-		res.status(400).json({ success: false, message: message });
-		next(err);
+		return res.status(400).json({ success: false, message: message });
 	}
 };
 
@@ -115,8 +111,7 @@ const loginValidation = async (req, res, next) => {
 		next();
 	} catch (err) {
 		const message = err.details[0].message;
-		res.status(400).json({ message });
-		next(err);
+		return res.status(400).json({ success: false, message: message });
 	}
 };
 
@@ -132,12 +127,13 @@ const signOut = async (req, res, next) => {
 		next();
 	} catch (err) {
 		const message = err.details[0].message;
-		next(err);
+		return res.status(400).json({ success: false, message: message });
 	}
 };
 
 //리뷰 작성 유효성 검사
 const createReviewValidation = async (req, res, next) => {
+	console.log('req.body', req.body);
 	const schema = Joi.object({
 		content: Joi.string().required().messages({
 			'string.empty': '내용을 입력해 주세요.'
@@ -150,9 +146,9 @@ const createReviewValidation = async (req, res, next) => {
 		await schema.validateAsync(req.body);
 		next();
 	} catch (err) {
+		console.log(err);
 		const message = err.details[0].message;
-		res.status(400).json({ message });
-		next(err);
+		return res.status(400).json({ success: false, message: message });
 	}
 };
 
