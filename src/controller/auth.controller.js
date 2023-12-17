@@ -55,11 +55,12 @@ export class AuthController {
 
 			const newUser = await this.AuthService.signUp(email, name, age, hashedPassword, imagePath, address);
 
-			return res.status(201).json({
+			res.status(201).json({
 				success: true,
 				message: '회원가입에 성공했습니다.',
 				data: newUser
 			});
+			next();
 		} catch (error) {
 			next(error); // error핸들링 미들웨어로 보낸다/
 		}

@@ -65,7 +65,7 @@ export class PetsitterAuthController {
 			// }
 
 			const existedUser = await this.PetsitterAuthService.findByEmail(email);
-			if (!existedUser) throw new Error('이미 가입된 이메일입니다.');
+			if (existedUser) throw new Error('이미 가입 된 이메일입니다.');
 			// if (existedUser) {
 			// 	return res.status(400).json({
 			// 		success: false,
