@@ -152,4 +152,29 @@ const createReviewValidation = async (req, res, next) => {
 	}
 };
 
-export { registerValidation, loginValidation, createReviewValidation, signOut, petSitterRegisterValidation };
+// 리뷰 수정 유효성 검사
+const modifyReviewValidation = async (req, res, next) => {
+	console.log('req.body', req.body);
+	const schema = Joi.object({
+		content: Joi.string().required().messages({
+			'string.empty': '내용을 입력해 주세요.'
+		})
+	});
+	try {
+		await schema.validateAsync(req.body);
+		next();
+	} catch (err) {
+		console.log(err);
+		const message = err.details[0].message;
+		return res.status(400).json({ success: false, message: message });
+	}
+};
+
+export {
+	registerValidation,
+	loginValidation,
+	createReviewValidation,
+	signOut,
+	petSitterRegisterValidation,
+	modifyReviewValidation
+};

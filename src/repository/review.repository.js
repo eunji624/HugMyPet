@@ -38,12 +38,11 @@ export class ReviewRepository {
 		return updatePetSitterScore;
 	};
 
-	updateReview = async (reviewId, content, score) => {
+	updateReview = async (reviewId, content) => {
 		const updateReview = await this.prisma.petSitterReviews.update({
 			where: { reviewId },
 			data: {
-				content,
-				score
+				content
 			}
 		});
 		return updateReview;

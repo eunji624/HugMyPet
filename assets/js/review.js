@@ -54,6 +54,8 @@ const speadReviews = async (reviews, currentMemberId, role) => {
 	reviews.forEach((review) => {
 		const { reviewId, petSitterId, memberId, content, score, createdAt, updatedAt, name } = review;
 
+		let rescore = '⭐️'.repeat(score);
+
 		const formattedCreatedAt = formatDateTime(createdAt);
 		const formattedUpdatedAt = formatDateTime(updatedAt);
 
@@ -61,7 +63,9 @@ const speadReviews = async (reviews, currentMemberId, role) => {
     <li class="comment" data-comment-id="${reviewId}" data-updated-at="${formattedUpdatedAt}">
     <div class="id-score">
     <h4 class="comment-user data-user-id=${memberId}">${name}</h4>
-    <div class="comment-score">${score}</div>
+	
+    <div class="comment-score">평점: ${rescore} </div>
+
   </div>
       <div class="comment-box">
         <div class="comment-contents-box">
@@ -183,30 +187,35 @@ export const editComment = async (commentElement, reviewId, currentMemberRole) =
 	});
 
 	confirmBtn.on('click', async function () {
-		const editedText = editInput.val();
+		try {
+			const editedText = editInput.val();
+			const result = await fetch(`/api/pet-sitters/reviews/${reviewId}`, {
+				method: 'PATCH',
+				headers: {
+					'Content-Type': 'application/json',
+					Authorization: `Bearer ${getAccessToken()}`
+				},
+				body: JSON.stringify({ content: editedText })
+			});
 
-		const result = await fetch(`/api/pet-sitters/reviews/${reviewId}`, {
-			method: 'PATCH',
-			headers: {
-				'Content-Type': 'application/json',
-				Authorization: `Bearer ${getAccessToken()}`
-			},
-			body: JSON.stringify({ content: editedText })
-		});
+			const data = await result.json();
 
-		const { data } = await result.json();
+			alert(data.message);
 
-		const updatedAt = data.updatedAt;
+			const updatedAt = data.data.updatedAt;
 
-		// 수정 입력란 및 확인 버튼을 다시 댓글 내용으로 교체
-		commentElement.find('.edit-comment-input').replaceWith(`<div class="comment-text">${editedText}</div>`);
-		commentElement
-			.find('.comment-create-at')
-			.replaceWith(`<div class="comment-updated-at">${formatDateTime(updatedAt)} 수정됨</div>`);
-		editBtnsDiv.remove();
+			// 수정 입력란 및 확인 버튼을 다시 댓글 내용으로 교체
+			commentElement.find('.edit-comment-input').replaceWith(`<div class="comment-text">${editedText}</div>`);
+			commentElement
+				.find('.comment-create-at')
+				.replaceWith(`<div class="comment-updated-at">${formatDateTime(updatedAt)} 수정됨</div>`);
+			editBtnsDiv.remove();
 
-		// 수정, 삭제 버튼 다시 보이게 하기
-		commentElement.find('.edit-comment-btn, .delete-comment-btn').show();
+			// 수정, 삭제 버튼 다시 보이게 하기
+			commentElement.find('.edit-comment-btn, .delete-comment-btn').show();
+		} catch (error) {
+			console.error(error);
+		}
 	});
 
 	// 수정 취소 시에 입력된 내용이 아니라 원래의 댓글 내용으로 복원
