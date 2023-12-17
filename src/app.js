@@ -39,9 +39,8 @@ app.get('/member-sign-up', async (req, res) => {
 	res.render('../views/member-sign-up.ejs');
 });
 
-const availablePetEnum = Object.keys(AvailablePet);
-
 app.get('/petsitter-sign-up', async (req, res) => {
+	const availablePetEnum = Object.keys(AvailablePet);
 	res.render('../views/petSitter-sign-up.ejs', { availablePetEnum });
 });
 
