@@ -9,9 +9,9 @@ export class ReviewController {
 			// const { petSitterId } = req.params;
 			const { petSitterId } = req.query;
 			const { memberId } = res.locals.user;
-			const { title, content, score } = req.body;
+			const { content, score } = req.body;
 
-			const createReview = await this.reviewService.createReview(+petSitterId, +memberId, title, content, score);
+			const createReview = await this.reviewService.createReview(+petSitterId, +memberId, content, score);
 
 			res.status(201).json({ success: true, message: '펫 시터 후기 등록에 성공했습니다.', data: createReview });
 		} catch (err) {
@@ -38,9 +38,9 @@ export class ReviewController {
 	updateReview = async (req, res, next) => {
 		try {
 			const { reviewId } = req.params;
-			const { title, content, score } = req.body;
+			const { content, score } = req.body;
 
-			const updateReview = await this.reviewService.updateReview(+reviewId, title, content, score);
+			const updateReview = await this.reviewService.updateReview(+reviewId, content, score);
 			res.status(200).json({ success: true, message: '펫 시터 후기 수정에 성공했습니다.', data: updateReview });
 		} catch (err) {
 			console.log(err);
@@ -51,10 +51,10 @@ export class ReviewController {
 	//리뷰 삭제하기
 	deleteReview = async (req, res, next) => {
 		try {
-			const { title, content, score } = req.body;
+			// const { content, score } = req.body;
 			const { reviewId } = req.params;
 
-			const deleteReview = await this.reviewService.deleteReview(+reviewId, title, content, score);
+			const deleteReview = await this.reviewService.deleteReview(+reviewId);
 			res.status(200).json({ success: true, message: '펫 시터 후기 삭제에 성공했습니다.', data: deleteReview });
 		} catch (err) {
 			console.log(err);

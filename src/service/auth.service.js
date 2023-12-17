@@ -36,6 +36,7 @@ export class AuthService {
 		const user = await this.AuthRepository.findByEmail(email);
 
 		return {
+			memberId: user.memberId, // 댓글에서 본인이 작성한 것을 확인할 때 사용되어 추가 
 			email: user.email,
 			name: user.name,
 			age: user.age,

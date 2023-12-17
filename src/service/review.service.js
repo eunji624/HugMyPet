@@ -31,17 +31,15 @@ export class ReviewService {
 		return [createReview, modifyPetSitterScore];
 	};
 
-	updateReview = async (reviewId, title, content, score) => {
-		//현재
-		const updateReview = await this.reviewRepository.updateReview(reviewId, title, content, score);
 
-		const modifyPetSitterScore = await this.getPetSitterScore(+updateReview.petSitterId, score);
-
-		return [updateReview, modifyPetSitterScore];
+	updateReview = async (reviewId, content, score) => {
+		const updateReview = await this.reviewRepository.updateReview(reviewId, content, score);
+		// 프론트에서 편하게 쓰기 위해서 아래 유저 정보 부분 삭제했습니다.
+		return updateReview;
 	};
 
-	deleteReview = async (reviewId, title, content, score) => {
-		const deleteReview = await this.reviewRepository.deleteReview(reviewId, title, content, score);
+	deleteReview = async (reviewId) => {
+		const deleteReview = await this.reviewRepository.deleteReview(reviewId);
 
 		return deleteReview;
 	};
@@ -49,6 +47,17 @@ export class ReviewService {
 	findManyReview = async (petSitterId) => {
 		const findManyReview = await this.reviewRepository.findManyReview(petSitterId);
 
-		return findManyReview;
+		const joinedReviews = findManyReview.map(review => ({
+			reviewId: review.reviewId,
+			petSitterId: review.petSitterId,
+			memberId: review.memberId,
+			content: review.content,
+			score: review.score,
+			createdAt: review.createdAt,
+			updatedAt: review.updatedAt,
+			name: review.Member.name
+		}))
+
+		return joinedReviews
 	};
 }

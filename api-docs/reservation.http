@@ -1,6 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6NSwibmFtZSI6IuycoOydgOyngCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyNzI4NTQwLCJleHAiOjE3MDI3MzIxNDB9.Htgv5lvCJLkmrjDjvwXIqu_RrKJ4U8R6EV4rIpNwF2k
-
-#
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MSwibmFtZSI6Iu2ajOybkCDthYzsiqTtirgiLCJlbWFpbCI6InRlc3RAdGVzdC5jb20iLCJyb2xlIjoiVXNlciIsImlhdCI6MTcwMjc0OTE0OSwiZXhwIjoxNzAyNzUyNzQ5fQ.1mk3BfaS1qHOCzXQqvpLaiYkzX3ROhgda2V32FHval0
 
 ###펫시터 리스트 출력
 GET http://localhost:3010/api/pet-sitters
@@ -57,14 +55,13 @@ authorization: Bearer {{token}}
 #
 
 ###팻시터 리뷰 생성
-POST http://localhost:3010/api/pet-sitters/reviews?petSitterId=2
+POST http://localhost:3010/api/pet-sitters/reviews?petSitterId=1
 Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"title": "22좋아요",
-	"content": "22세심하게 배려해주셧어요",
-	"score": 1
+	"content": "문준식 천재 문준식 천재",
+	"score": 5
 }
 
 
@@ -76,7 +73,6 @@ Content-Type: application/json
 authorization: Bearer {{token}}
 
 {
-	"title": "수정2_좋아요",
 	"content": "수정2_세심하게 배려해주셧어요",
 	"score": 1
 }
@@ -91,7 +87,7 @@ authorization: Bearer {{token}}
 #
 
 ###팻시터 리뷰 보여주기
-GET http://localhost:3010/api/pet-sitters/reviews?petSitterId=2
+GET http://localhost:3010/api/pet-sitters/reviews?petSitterId=1
 Content-Type: application/json
-authorization: Bearer {{token}}
+# authorization: Bearer {{token}}
 
