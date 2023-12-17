@@ -37,7 +37,7 @@ POST   http://localhost:3010/api/sign-up/users
 Content-Type: application/json
 
 {
-  "email" : "3test@test.com",
+  "email" : "test@test.com",
   "name" : "1회원 테스트",
   "age" : 19,
   "address" : "서울",
@@ -55,7 +55,7 @@ Content-Type: application/json
 
 {
   "email" : "test@test.com",
-  "password" : "123123"
+  "password" : "123456"
 }
 
 

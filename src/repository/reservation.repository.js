@@ -77,12 +77,58 @@ export class ReservationRepository {
 		return deleteReservation;
 	};
 
-	//날짜로 예약 테이블 삭제
-	deleteReservationDate = async (availableDate) => {
-		const deleteReservationDate = this.prisma.reservations.delete({
-			where: { availableDate }
+	//날짜로 예약 테이블 삭제(벌크 인서트)
+	deleteReservationDate = async (willDeleteReservation) => {
+		const deleteReservationDate = this.prisma.reservations.deleteMany({
+			where: {
+				reservationDate: {
+					in: willDeleteReservation
+				}
+			}
 		});
 		return deleteReservationDate;
+	};
+
+	//날짜로 예약테이블 생성(벌크 인서트)
+	createReservationDate = async (willCreateReservation) => {
+		const createReservationDate = this.prisma.reservations.createMany({
+			data: willCreateReservation.map((data) => ({
+				petSitterId: data.petSitterId,
+				memberId: data.memberId,
+				scheduleId: data.scheduleId,
+				reservationDate: data.reservationDate,
+				status: 'Completed'
+			}))
+		});
+		return createReservationDate;
+	};
+
+	//펫시터의 스케줄 수정(벌크인서트)_ 취소
+	updateManyCancelPetSitterSchedule = async (petSitterCancelScheduleId) => {
+		const updateCancelSchedule = this.prisma.petSitterSchedules.updateMany({
+			where: {
+				scheduleId: { in: petSitterCancelScheduleId }
+			},
+			data: {
+				status: 'inProgress',
+				memberId: null
+			}
+		});
+		return updateCancelSchedule;
+	};
+
+	//펫시터의 스케줄 수정(벌크인서트)_ 추가
+	updateManyCreatePetSitterSchedule = async (petSitterCreateScheduleId, memberId) => {
+		const updateCreateSchedule = this.prisma.petSitterSchedules.updateMany({
+			where: {
+				scheduleId: { in: petSitterCreateScheduleId }
+			},
+			data: {
+				status: 'Completed',
+				memberId
+			}
+		});
+		return updateCreateSchedule;
 	};
 
 	//특정 펫시터의 스케줄 수정
