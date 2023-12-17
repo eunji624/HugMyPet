@@ -115,7 +115,6 @@ const createReview = async (petSitterId, role) => {
 		}
 
 		if (role !== 'user') {
-			console.log('role: ', role);
 			return alert('리뷰는 유저만 남길 수 있습니다.');
 		}
 
@@ -134,7 +133,6 @@ const createReview = async (petSitterId, role) => {
 			})
 		});
 		const reviewResult = await review.json();
-		console.log('reviewResult', reviewResult);
 		if (!reviewResult.success) {
 			return alert(reviewResult.message);
 		}

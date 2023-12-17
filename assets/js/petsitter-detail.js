@@ -84,7 +84,6 @@ const getAvailableDatesBypetSitterId = async (petSitterId) => {
 		})
 			.then((res) => res.json())
 			.catch((err) => err);
-		console.log(result);
 
 		return result.data;
 	} catch (err) {

@@ -3,6 +3,7 @@ export class ReviewRepository {
 		this.prisma = prisma;
 	}
 
+	//일반유저의 예약정보를 조회합니다.
 	findUserReservation = async (memberId) => {
 		const findUserReservation = await this.prisma.reservations.findMany({
 			where: { memberId }
@@ -10,6 +11,7 @@ export class ReviewRepository {
 		return findUserReservation;
 	};
 
+	//일반유저의 리뷰를 작성합니다.
 	createReview = async (petSitterId, memberId, content, score) => {
 		const createReview = await this.prisma.petSitterReviews.create({
 			data: {
@@ -22,6 +24,7 @@ export class ReviewRepository {
 		return createReview;
 	};
 
+	//해당하는 펫시터의 평균 평점을 가져옵니다.
 	getPetSitterScore = async (petSitterId) => {
 		const getPetSitterScore = await this.prisma.petSitters.findFirst({
 			where: { petSitterId },
@@ -30,6 +33,7 @@ export class ReviewRepository {
 		return getPetSitterScore;
 	};
 
+	//펫시터의 평균 평점을 수정합니다.
 	updatePetSitterScore = async (petSitterId, scoreAvg) => {
 		const updatePetSitterScore = await this.prisma.petSitters.update({
 			where: { petSitterId },
@@ -38,6 +42,7 @@ export class ReviewRepository {
 		return updatePetSitterScore;
 	};
 
+	//일반유저가 남긴 리뷰를 수정합니다.
 	updateReview = async (reviewId, content) => {
 		const updateReview = await this.prisma.petSitterReviews.update({
 			where: { reviewId },
@@ -48,6 +53,7 @@ export class ReviewRepository {
 		return updateReview;
 	};
 
+	//일반유저가 남긴 리뷰를 삭제합니다.
 	deleteReview = async (reviewId) => {
 		const deleteReview = this.prisma.petSitterReviews.delete({
 			where: { reviewId }
@@ -55,6 +61,7 @@ export class ReviewRepository {
 		return deleteReview;
 	};
 
+	//현재 펫시터에 해당하는 모든 리뷰를 가져옵니다.
 	findManyReview = async (petSitterId) => {
 		const findManyReview = this.prisma.petSitterReviews.findMany({
 			where: { petSitterId },

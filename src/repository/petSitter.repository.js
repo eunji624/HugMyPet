@@ -3,6 +3,7 @@ export class PetSittersRepository {
 		this.prisma = prisma;
 	}
 
+	//펫시터의 정보를 가져옵니다.
 	petSittersData = async () => {
 		const petSittersData = await this.prisma.petSitters.findMany({
 			select: {
@@ -19,6 +20,7 @@ export class PetSittersRepository {
 		return petSittersData;
 	};
 
+	//예약테이블에서 펫시터와 일치하는 데이터를 가져옵니다.
 	findManyreservationsToMe = async (petSitterId) => {
 		const reservations = await this.prisma.reservations.findMany({
 			where: { petSitterId },
@@ -36,6 +38,6 @@ export class PetSittersRepository {
 				}
 			}
 		});
-		return reservations
-	}
+		return reservations;
+	};
 }

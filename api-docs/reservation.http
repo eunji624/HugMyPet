@@ -23,8 +23,6 @@ authorization: Bearer {{token}}
 	"availableDate": ["2023-12-31, 2024-01-01"]
 }
 
-# "availableDate": ["2023-12-31T00:00:00.000Z", "2023-12-30T00:00:00.000Z"]
-
 
 #
 ###펫시터 예약 수정하기
@@ -35,8 +33,6 @@ authorization: Bearer {{token}}
 # {
 # 	"availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
 # }
-
-# # "availableDate": ["2023-12-26T00:00:00.000Z", "2023-12-24T00:00:00.000Z"]
 
 
 #
