@@ -18,4 +18,7 @@ const petSittersController = new PetSittersController(petSittersService);
 //펫시터 리스트
 router.get('/', petSittersController.findPetSitterList);
 
+// 자신에게 들어온 예약 조회하기
+router.get('/reservations', needSignIn, petSittersController.getReservations)
+
 export default router;
