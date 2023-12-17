@@ -109,12 +109,12 @@ const speadReviews = async (reviews, currentMemberId, role) => {
 
     // 수정 버튼 클릭 시 수정 입력란을 보여주는 이벤트 추가
     commentElement.find('.edit-comment-btn').on('click', function () {
-      editComment(commentElement, reviewId);
+      editComment(commentElement, reviewId, currentMemberRole);
     });
 
     // 삭제 버튼 클릭 시 댓글 삭제하는 이벤트 추가
     commentElement.find('.delete-comment-btn').on('click', function () {
-      deleteComment(reviewId, commentElement);
+      deleteComment(reviewId, commentElement, currentMemberRole);
     });
 
     reviewDiv.append(commentElement);
@@ -178,7 +178,12 @@ $('.comment-btn').on('click', async (event) => {
 
 
 /* 리뷰 수정하기 */
-export const editComment = async (commentElement, reviewId) => {
+export const editComment = async (commentElement, reviewId, currentMemberRole) => {
+  if (currentMemberRole !== 'user') {
+    alert("리뷰 수정은 작성한 유저 본인만 가능합니다.")
+    return;
+  }
+
   const commentText = commentElement.find('.comment-text').text();
 
   // 기존의 수정, 삭제 버튼 숨기기
@@ -258,7 +263,12 @@ export const editComment = async (commentElement, reviewId) => {
 
 
 // 댓글 삭제하는 함수
-export const deleteComment = async function (reviewId, commentElement) {
+export const deleteComment = async function (reviewId, commentElement, currentMemberRole) {
+  if (currentMemberRole !== 'user') {
+    alert("댓글 삭제는 작성한 유저 본인만 가능합니다.")
+    return;
+  }
+
   try {
     await fetch(`/api/pet-sitters/reviews/${reviewId}`, {
       method: 'DELETE',
