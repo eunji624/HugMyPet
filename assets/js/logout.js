@@ -15,6 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
 			const data = await response.json();
 			if (data.success) {
 				localStorage.removeItem('accessToken');
+				localStorage.removeItem('role');
 				alert('로그아웃 완료');
 				window.location.href = '/';
 			} else {

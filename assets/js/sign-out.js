@@ -22,6 +22,7 @@ async function petsittersignOut() {
 		if (data.success) {
 			alert('회원탈퇴 완료');
 			localStorage.removeItem('accessToken');
+			localStorage.removeItem('role');
 			window.location.href = '/';
 			return;
 		} else {
@@ -58,6 +59,7 @@ async function membersignOut() {
 		if (data.success) {
 			alert('회원탈퇴 완료');
 			localStorage.removeItem('accessToken');
+			localStorage.removeItem('role');
 			window.location.href = '/';
 		} else {
 			alert('비밀번호가 다릅니다.');
