@@ -2,7 +2,6 @@ import express from 'express';
 import { PetsitterAuthController } from '../controller/petSitter.auth.controller.js';
 import { AuthController } from '../controller/auth.controller.js';
 import { registerValidation, petSitterRegisterValidation } from '../middlewares/joiValidation.js';
-
 const petsitterAuthController = new PetsitterAuthController();
 const authController = new AuthController();
 const router = express.Router();
