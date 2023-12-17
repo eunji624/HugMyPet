@@ -3,6 +3,13 @@ export class ReviewRepository {
 		this.prisma = prisma;
 	}
 
+	findUserReservation = async (memberId) => {
+		const findUserReservation = await this.prisma.reservations.findMany({
+			where: { memberId }
+		});
+		return findUserReservation;
+	};
+
 	createReview = async (petSitterId, memberId, content, score) => {
 		const createReview = await this.prisma.petSitterReviews.create({
 			data: {
