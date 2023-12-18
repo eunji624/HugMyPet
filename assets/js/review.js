@@ -48,6 +48,7 @@ const reviews = await getReviewsByPetSitterId(petSitterId);
 
 /* 가져온 평점 및 리뷰를 HTML 로 뿌려주기 */
 const speadReviews = async (reviews, currentMemberId, role) => {
+	console.log;
 	const reviewDiv = $('.detail-comments-lists');
 	reviewDiv.empty();
 

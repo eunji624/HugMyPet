@@ -37,8 +37,8 @@ export class ReviewService {
 	updateReview = async (reviewId, content, memberId) => {
 		//유저가 작성한 글이 맞는지 확인
 
-		const findUserReview = await this.reviewRepository.findUserReservation(+memberId);
-		if (memberId !== findUserReview[0].memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
+		const findUserReview = await this.reviewRepository.findReviewByReviewId(reviewId);
+		if (memberId !== findUserReview.memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
 
 		const updateReview = await this.reviewRepository.updateReview(reviewId, content);
 
@@ -47,7 +47,7 @@ export class ReviewService {
 
 	deleteReview = async (reviewId, memberId) => {
 		//실제로 유저가 작성한게 맞는지 확인.
-		const findUserReview = await this.reviewRepository.findUserReservation(+memberId);
+		const findUserReview = await this.reviewRepository.findReviewByReviewId(reviewId);
 		if (memberId !== findUserReview.memberId) throw new Error('작성자가 아님으로 권한이 없습니다.');
 
 		const deleteReview = await this.reviewRepository.deleteReview(reviewId);
