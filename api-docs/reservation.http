@@ -1,4 +1,4 @@
-@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MTAsIm5hbWUiOiIx7ZqM7JuQIO2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyODQyOTEzLCJleHAiOjE3MDI4NDY1MTN9.5IycqTcIIgCkwtxtrHeazvKqT98tLV8KlZj6msRKwiQ
+@token = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJtZW1iZXJJZCI6MTAsIm5hbWUiOiIx7ZqM7JuQIO2FjOyKpO2KuCIsImVtYWlsIjoidGVzdEB0ZXN0LmNvbSIsInJvbGUiOiJVc2VyIiwiaWF0IjoxNzAyODYwMDI2LCJleHAiOjE3MDI4NjM2MjZ9.DAlyCjc0iLxmy_sHJAAw-8wNPC20i4y1hmjA8JvlGJA
 
 ###펫시터 리스트 출력
 GET http://localhost:3010/api/pet-sitters
@@ -89,7 +89,7 @@ authorization: Bearer {{token}}
 #
 
 ###팻시터 리뷰 보여주기
-GET http://localhost:3010/api/pet-sitters/reviews?petSitterId=1
+GET http://localhost:3010/api/pet-sitters/reviews?petSitterId=3
 Content-Type: application/json
 # authorization: Bearer {{token}}
 

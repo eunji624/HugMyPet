@@ -61,9 +61,13 @@
 				<label class="input-wrap">
 					<span>* availablePet</span>
 					<select id="availablePet" name="availablePet">
-					  <% for (let petOption of availablePetEnum) { %>
-						<option value="<%= petOption %>"><%= petOption %></option>
-					  <% } %>
+						<% for (let petOption of availablePetEnum) { %>
+							<% if(petOption === 'Dog'){%>
+								<option value="<%= petOption %>">강아지</option>
+							<% } else if(petOption === 'Cat'){%>
+								<option value="<%= petOption %>">고양이</option>
+							<%}%>
+						<% } %>
 					</select>
 				  </label>
 				<label class="input-wrap">

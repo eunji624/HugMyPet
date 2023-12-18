@@ -61,6 +61,15 @@ export class ReviewRepository {
 		return deleteReview;
 	};
 
+	// 리뷰아이디로 리뷰 찾기
+	findReviewByReviewId = async (reviewId) => {
+		const review = this.prisma.petSitterReviews.findFirst({
+			where: { reviewId }
+		});
+
+		return review;
+	};
+
 	//현재 펫시터에 해당하는 모든 리뷰를 가져옵니다.
 	findManyReview = async (petSitterId) => {
 		const findManyReview = this.prisma.petSitterReviews.findMany({

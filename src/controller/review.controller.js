@@ -26,6 +26,7 @@ export class ReviewController {
 			const { petSitterId } = req.query;
 
 			const petSitterReviews = await this.reviewService.findManyReview(+petSitterId);
+
 			res.status(200).json({ success: true, message: '펫 시터 후기 조회에 성공했습니다.', data: petSitterReviews });
 			next();
 		} catch (err) {
